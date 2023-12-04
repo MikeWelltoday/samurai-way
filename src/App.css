@@ -1,38 +1,52 @@
-.App {
-    text-align: center;
+.app-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+
+    /* укажим РАСПРЕДЕЛЕНИЕ элементов по гридам */
+    grid-template-areas:
+                           'h h'
+                           'n c';
+
+    /* зададим основные параметры нашего грида */
+    /* 1. Количество строк */
+    /* первая строка занимает 60px */
+    /* вторая строка занимает одну фракцию */
+    grid-template-rows: 60px 1fr;
+
+    /* 2. количество колонок */
+    /* первая колонка займет 2фракции */
+    /* вторая колонка займет 10фракций */
+    grid-template-columns: 2fr 10fr;
+
+    /* 3. растояние между колонками */
+    grid-gap: 10px;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+.header {
+    /* зададим произвольное имя */
+    grid-area: h;
+
+    background: orange;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.nav {
+    grid-area: n;
+
+    background: #7272c9;
 }
 
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.content {
+    grid-area: c;
+
+    background: yellow;
 }
 
-.App-link {
-    color: #61dafb;
+img {
+    width: 30px;
+    height: 30px;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
+
+
