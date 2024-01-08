@@ -1,17 +1,19 @@
 import React from 'react'
 import './App.css'
 
-// Components
+//===============================================================================================================================================================
 
 // images
-import myimage from './images/content-iamge.webp'
+import headerImage from './images/content-iamge.webp'
+
+//===============================================================================================================================================================
 
 const App = () => {
     return (
         <div className="app-wrapper">
 
             <header className={'header'}>
-                <img alt={'sry'} src={'#'}/>
+                <img src={headerImage} alt={'sry'}/>
             </header>
 
             <nav className={'nav'}>
@@ -35,7 +37,7 @@ const App = () => {
 
             <main className={'content'}>
                 <div>
-                    <img alt={'sry'} src={myimage}/>
+                    <img alt={'sry'} src={headerImage}/>
                 </div>
                 <div>
                     avatar+description
