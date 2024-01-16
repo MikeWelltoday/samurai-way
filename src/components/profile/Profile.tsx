@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import profileImage from '../../images/content-iamge.webp'
+import profileImage from '../../assets/images/content-iamge.webp'
 
 //===============================================================================================================================================================
 

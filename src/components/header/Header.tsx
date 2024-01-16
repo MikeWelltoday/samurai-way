@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import headerImage from '../../images/content-iamge.webp'
+import headerImage from '../../assets/images/content-iamge.webp'
 
 //===============================================================================================================================================================
 
