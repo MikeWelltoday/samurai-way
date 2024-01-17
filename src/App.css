@@ -14,14 +14,10 @@
 
 .header {
     grid-area: h;
-
-    background: orange;
 }
 
 .nav {
     grid-area: n;
-
-    background: #7272c9;
 }
 
 .content {
@@ -29,11 +25,4 @@
 
     background: yellow;
 }
-
-img {
-    width: 30px;
-    height: 30px;
-}
-
-
 
