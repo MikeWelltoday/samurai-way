@@ -12,17 +12,17 @@
     grid-gap: 10px;
 }
 
-.header {
+header {
     grid-area: h;
 }
 
-.nav {
+nav {
     grid-area: n;
 }
 
-.content {
+main {
     grid-area: c;
-
-    background: yellow;
+    
 }
+
 

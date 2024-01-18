@@ -1,0 +1,13 @@
+.header {
+  background: orange;
+}
+.header img {
+  width: 50px;
+  height: 50px;
+}
+
+.active {
+  background-color: black;
+}
+
+/*# sourceMappingURL=Header.module.css.map */

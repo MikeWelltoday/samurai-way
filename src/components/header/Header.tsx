@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import './Header.styles.css'
+import S from './Header.module.css'
 
 
 //=========================================================================================================================================================
@@ -13,8 +13,12 @@ import headerImage from '../../assets/images/content-iamge.webp'
 
 export const Header: FC = () => {
     return (
-        <header className={'header'}>
-            <img className={'header__image'} src={headerImage} alt={'sry'}/>
+        <header className={S.header}>
+            <img src={headerImage} alt={'sry'}/>
         </header>
     )
 }
+
+
+
+

@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import './Profile.styles.css'
+import S from './Profile.module.css'
 
 
 //=========================================================================================================================================================
@@ -15,9 +15,9 @@ import profileImage from '../../assets/images/content-iamge.webp'
 
 export const Profile: FC = () => {
     return (
-        <main className={'content'}>
-            <div className={'content__image-box'}>
-                <img alt={'sry'} src={profileImage}/>
+        <main className={S.content}>
+            <div className={S.imageBox}>
+                <img className={'content__image'} alt={'sry'} src={profileImage}/>
             </div>
             <div>
                 avatar+description
@@ -38,3 +38,5 @@ export const Profile: FC = () => {
         </main>
     )
 }
+
+
