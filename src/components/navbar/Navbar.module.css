@@ -1,8 +1,7 @@
 .nav {
-  background: #7272c9;
-}
-.nav .item {
-  background-color: aqua;
+    background: #7272c9;
 }
 
-/*# sourceMappingURL=Navbar.module.css.map */
+.nav .item {
+    background-color: aqua;
+}

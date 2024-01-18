@@ -1,0 +1,17 @@
+.post {
+    color: greenyellow;
+    outline: 1px solid blue;
+}
+
+.post img {
+    width: 80px;
+    background-color: #6cde9f;
+    aspect-ratio: 1;
+    border: 3px solid black;
+    border-radius: 50%;
+}
+
+.likeBox {
+    font-size: 30px;
+    color: black;
+}

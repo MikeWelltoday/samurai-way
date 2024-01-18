@@ -1,13 +1,12 @@
 .content {
-  background: yellow;
+    background: yellow;
 }
 
 .imageBox {
-  width: 100%;
-}
-.imageBox img {
-  width: 100%;
-  aspect-ratio: 3.4;
+    width: 100%;
 }
 
-/*# sourceMappingURL=Profile.module.css.map */
+.imageBox img {
+    width: 100%;
+    aspect-ratio: 3.4;
+}
