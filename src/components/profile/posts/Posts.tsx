@@ -17,9 +17,8 @@ export const Posts: FC = () => {
                 <button>Remove</button>
             </div>
             <div className={S.posts}>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post message={'Hi, how are you?'} likesCount={15}/>
+                <Post message={'It is my first post'} likesCount={15}/>
             </div>
 
         </div>

@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 import S from './Profile.module.css'
-import {Posts} from './myPosts/Posts'
+import {Posts} from './posts/Posts'
 
 
 //============================================================================================================

@@ -1,20 +1,22 @@
-import React from 'react'
+import React, {FC} from 'react'
 import S from './Post.module.css'
+import {postsPropsTypes} from './Post.types'
 
 
 //============================================================================================================
 //=> IMAGES
-import avatar1 from './../../../../assets/images/avatars/avatar-1.webp'
+import avatar1 from '../../../../assets/images/avatars/avatar-1.webp'
+
 
 //============================================================================================================
 
 
-export const Post = () => {
+export const Post: FC<postsPropsTypes> = (props) => {
     return (
         <div className={S.post}>
             <img src={avatar1} alt=""/>
-            Post
-            <div className={S.likeBox}><span>♥</span></div>
+            {props.message}
+            <div className={S.likeBox}><span>♥</span>{props.likesCount}</div>
         </div>
     )
 }
