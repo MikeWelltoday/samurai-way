@@ -22,7 +22,12 @@ nav {
 
 main {
     grid-area: c;
-    
+}
+
+/* общие стили для вкладок */
+/* app-wrapper-content */
+main {
+    background: yellow;
 }
 
 

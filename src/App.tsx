@@ -3,6 +3,7 @@ import './App.css'
 import {Header} from './components/header/Header'
 import {Navbar} from './components/navbar/Navbar'
 import {Profile} from './components/profile/Profile'
+import {Dialogs} from './components/dialogs/Dialogs'
 
 //============================================================================================================
 
@@ -14,7 +15,12 @@ const App = () => {
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
-            <Profile/>
+
+            {/* основные ОБЩИЕ стили тегов main оставил в App.css */}
+
+            {/*<Profile/>*/}
+            <Dialogs/>
+
         </div>
     )
 }
