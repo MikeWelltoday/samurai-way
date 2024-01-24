@@ -11,19 +11,19 @@ export const Navbar: FC = () => {
     return (
         <nav className={S.nav}>
             <div className={S.item}>
-                <a href={'#'} target={'_blank'}>Profile</a>
+                <a href={'/profile'}>Profile</a>
             </div>
             <div className={S.item}>
-                <a href={'#'} target={'_blank'}>Messages</a>
+                <a href={'/dialogs'}>Messages</a>
             </div>
             <div className={S.item}>
-                <a href={'#'} target={'_blank'}>News</a>
+                <a href={'/news'}>News</a>
             </div>
             <div className={S.item}>
-                <a href={'#'} target={'_blank'}>Music</a>
+                <a href={'/music'}>Music</a>
             </div>
             <div className={S.item}>
-                <a href={'#'} target={'_blank'}>Settings</a>
+                <a href={'/settings'}>Settings</a>
             </div>
 
         </nav>

@@ -1,8 +1,13 @@
 .header {
     background: #66560f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.header img {
-    width: 50px;
-    height: 50px;
+.header p {
+    font-size: 45px;
+    letter-spacing: 15px;
+    font-weight: 300;
+    color: #282a2e;
 }

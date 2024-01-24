@@ -9,10 +9,10 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/*code {*/
+/*    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',*/
+/*    monospace;*/
+/*}*/
 
 /*===========================================================================*/
 
@@ -37,7 +37,6 @@ body {
 
     min-width: 360px;
 
-
     height: 100%;
     line-height: 1.2;
     background-color: #282a2e;
@@ -55,6 +54,7 @@ ul {
 a, a:hover, a:active {
     text-decoration: none;
     cursor: pointer;
+    color: inherit;
 }
 
 h1, h2, h3, h4, h5, h6 {

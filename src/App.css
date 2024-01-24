@@ -27,7 +27,7 @@ main {
 /* общие стили для вкладок */
 /* app-wrapper-content */
 main {
-    background: yellow;
+    border: 1px solid #1ff68c;
 }
 
 
