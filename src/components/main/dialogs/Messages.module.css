@@ -1,0 +1,28 @@
+.messages {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogs {
+    background-color: rgba(180, 232, 210, 0.32);
+    padding-top: 25px;
+    display: flex;
+    row-gap: 20px;
+    flex-flow: column nowrap;
+}
+
+.dialog {
+    font-size: 20px;
+}
+
+.dialog a.active {
+    color: #e76ee7;
+}
+
+
+.chats {
+    background-color: rgba(221, 180, 232, 0.32);
+}
+
+.chat {
+}

@@ -1,15 +1,15 @@
 import React, {FC} from 'react'
-import S from './Dialogs.module.css'
+import S from './Settings.module.css'
 
 //============================================================================================================
 
 
 //============================================================================================================
 
-export const Dialogs: FC = () => {
+export const Settings: FC = () => {
     return (
-        <main className={S.dialogs}>
-            dialogs
+        <main className={S.settings}>
+            Settings
         </main>
     )
 }
