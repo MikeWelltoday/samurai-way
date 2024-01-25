@@ -1,0 +1,16 @@
+.about {
+    margin-bottom: 25px;
+}
+
+.imageBox {
+    margin-bottom: 25px;
+}
+
+.imageBox img {
+    width: 100%;
+    aspect-ratio: 3.4;
+}
+
+.description {
+    font-size: 16px;
+}

@@ -1,13 +1,14 @@
 import React, {FC} from 'react'
 import S from './Post.module.css'
-import {postsPropsTypes} from './Post.types'
-
 
 //============================================================================================================
 //=> IMAGES
 import avatar1 from '../../../../../assets/images/avatars/avatar-1.webp'
-
-
+//============================================================================================================
+type postsPropsTypes = {
+    message: string
+    likesCount: number
+}
 //============================================================================================================
 
 

@@ -24,7 +24,7 @@ body {
 }
 
 *:focus-visible {
-    outline: 2px solid greenyellow;
+    outline: 2px solid #ADFF2FFF;
 }
 
 html {
@@ -72,7 +72,7 @@ button {
 /* FIRE FOX */
 * {
     scrollbar-width: thin;
-    scrollbar-color: green orange;
+    scrollbar-color: #4d5152 #282a2e;
     /*scrollbar-color: ${ThemeSet.color.scrollbar.thumb}, ${ThemeSet.color.scrollbar.track};*/
 }
 
@@ -82,17 +82,17 @@ button {
 }
 
 *::-webkit-scrollbar-track {
-    background-color: orange;
+    background-color: #313236;
     box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: green;
+    background-color: #4d5152;
     border-radius: 8px;
-    border: 3px solid orange;
+    border: 3px solid #282a2e;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(238, 130, 238, 0.6);
+    background-color: #66560f;
 }
 

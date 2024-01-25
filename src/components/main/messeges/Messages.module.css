@@ -11,15 +11,6 @@
     flex-flow: column nowrap;
 }
 
-.dialog {
-    font-size: 20px;
-}
-
-.dialog a.active {
-    color: #e76ee7;
-}
-
-
 .chats {
     background-color: rgba(221, 180, 232, 0.32);
 }
