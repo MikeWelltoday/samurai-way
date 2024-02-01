@@ -4,10 +4,23 @@ import {Post} from './post/Post'
 
 //============================================================================================================
 
+type PostsData = {
+    id: number
+    message: string
+    likesCount: number
+}
 
 //============================================================================================================
 
 export const Posts: FC = () => {
+
+    const postsData: PostsData[] = [
+        {id: 1, message: 'Hi, how are you?', likesCount: 15},
+        {id: 2, message: 'It is my first post', likesCount: 3},
+        {id: 3, message: 'Yo', likesCount: 1},
+        {id: 4, message: 'Yo', likesCount: 5}
+    ]
+
     return (
         <div className={S.posts}>
             <h3> #POSTS</h3>
@@ -19,8 +32,7 @@ export const Posts: FC = () => {
                 </div>
             </div>
             <div className={S.postsList}>
-                <Post message={'Hi, how are you?'} likesCount={15}/>
-                <Post message={'It is my first post'} likesCount={15}/>
+                {postsData.map(m => <Post key={m.id} message={m.message} likesCount={m.likesCount}/>)}
             </div>
 
         </div>

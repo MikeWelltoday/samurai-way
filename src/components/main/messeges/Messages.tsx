@@ -4,7 +4,13 @@ import {Dialog, dialogPropsType} from './dialog/Dialog'
 
 //============================================================================================================
 
-const persons: dialogPropsType[] = [
+type ChatDataType = {
+    id: string, text: string
+}
+
+//============================================================================================================
+
+const dialogsData: dialogPropsType[] = [
     {id: '1', person: 'Anna'},
     {id: '2', person: 'Dima'},
     {id: '3', person: 'Mike'},
@@ -12,16 +18,20 @@ const persons: dialogPropsType[] = [
     {id: '5', person: 'Margo'}
 ]
 
+const chatData: ChatDataType[] = [
+    {id: '1', text: 'Hello friend'},
+    {id: '2', text: 'How are you?'},
+    {id: '3', text: 'I\'ve got story to tell'}
+]
+
 export const Messages: FC = () => {
     return (
         <main className={S.messages}>
             <ul className={S.dialogs}>
-                {persons.map(item => <Dialog key={item.id} person={item.person} id={item.id}/>)}
+                {dialogsData.map(item => <Dialog key={item.id} person={item.person} id={item.id}/>)}
             </ul>
-            <ul className={S.chats}>
-                <li className={S.chat}>Hello friend</li>
-                <li className={S.chat}>How are you?</li>
-                <li className={S.chat}>I've got story to tell</li>
+            <ul className={S.chat}>
+                {chatData.map(c => <li key={c.id} className={S.chatItem}>{c.text}</li>)}
             </ul>
         </main>
     )

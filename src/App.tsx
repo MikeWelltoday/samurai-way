@@ -11,6 +11,16 @@ import {Settings} from './components/main/settings/Settings'
 
 //============================================================================================================
 
+export const PATH = {
+    PROFILE: '/profile',
+    MESSAGES: '/messages',
+    NEWS: '/news',
+    MUSIC: '/music',
+    SETTINGS: '/settings'
+} as const
+
+//============================================================================================================
+
 const App = () => {
     return (
         <div className="app-wrapper">
@@ -18,11 +28,11 @@ const App = () => {
             <Navbar/>
 
             {/* основные ОБЩИЕ стили тегов main => в App.css */}
-            <Route path="/profile" component={Profile}/>
-            <Route path="/messages" component={Messages}/>
-            <Route path="/news" component={News}/>
-            <Route path="/music" component={Music}/>
-            <Route path="/settings" component={Settings}/>
+            <Route path={PATH.PROFILE} component={Profile}/>
+            <Route path={PATH.MESSAGES} component={Messages}/>
+            <Route path={PATH.NEWS} component={News}/>
+            <Route path={PATH.MUSIC} component={Music}/>
+            <Route path={PATH.SETTINGS} component={Settings}/>
         </div>
 
     )

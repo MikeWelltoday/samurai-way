@@ -11,9 +11,9 @@
     flex-flow: column nowrap;
 }
 
-.chats {
+.chat {
     background-color: rgba(221, 180, 232, 0.32);
 }
 
-.chat {
+.chatItem {
 }
