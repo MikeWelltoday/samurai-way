@@ -1,37 +1,25 @@
 import React, {FC} from 'react'
 import S from './Messages.module.css'
-import {Dialog, dialogPropsType} from './dialog/Dialog'
+import {Dialog} from './dialog/Dialog'
+import {ChatItem} from './chat/ChatItem'
+import {MessagesDataType} from '../../../index'
 
 //============================================================================================================
 
-type ChatDataType = {
-    id: string, text: string
+type MessagesPropsType = {
+    messagesData: MessagesDataType
 }
 
 //============================================================================================================
 
-const dialogsData: dialogPropsType[] = [
-    {id: '1', person: 'Anna'},
-    {id: '2', person: 'Dima'},
-    {id: '3', person: 'Mike'},
-    {id: '4', person: 'Roma'},
-    {id: '5', person: 'Margo'}
-]
-
-const chatData: ChatDataType[] = [
-    {id: '1', text: 'Hello friend'},
-    {id: '2', text: 'How are you?'},
-    {id: '3', text: 'I\'ve got story to tell'}
-]
-
-export const Messages: FC = () => {
+export const Messages: FC<MessagesPropsType> = (props) => {
     return (
         <main className={S.messages}>
             <ul className={S.dialogs}>
-                {dialogsData.map(item => <Dialog key={item.id} person={item.person} id={item.id}/>)}
+                {props.messagesData.dialogsData.map(d => <Dialog key={d.id} person={d.person} id={d.id}/>)}
             </ul>
             <ul className={S.chat}>
-                {chatData.map(c => <li key={c.id} className={S.chatItem}>{c.text}</li>)}
+                {props.messagesData.chatData.map(c => <ChatItem key={c.id} text={c.text}/>)}
             </ul>
         </main>
     )

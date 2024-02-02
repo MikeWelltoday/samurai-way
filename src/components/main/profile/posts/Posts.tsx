@@ -1,26 +1,18 @@
 import React, {FC} from 'react'
 import S from './Posts.module.css'
 import {Post} from './post/Post'
+import {PostsDataType} from '../../../../index'
 
 //============================================================================================================
 
-type PostsData = {
-    id: number
-    message: string
-    likesCount: number
+type PostsPropsType = {
+    postsData: PostsDataType[]
 }
 
 //============================================================================================================
 
-export const Posts: FC = () => {
+export const Posts: FC<PostsPropsType> = (props) => {
 
-    const postsData: PostsData[] = [
-        {id: 1, message: 'Hi, how are you?', likesCount: 15},
-        {id: 2, message: 'It is my first post', likesCount: 3},
-        {id: 3, message: 'Yo', likesCount: 1},
-        {id: 4, message: 'Yo', likesCount: 5}
-    ]
-    
     return (
         <div className={S.posts}>
             <h3> #POSTS</h3>
@@ -32,7 +24,7 @@ export const Posts: FC = () => {
                 </div>
             </div>
             <div className={S.postsList}>
-                {postsData.map(post => <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)}
+                {props.postsData.map(post => <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)}
             </div>
 
         </div>
