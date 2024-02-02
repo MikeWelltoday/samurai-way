@@ -20,7 +20,7 @@ export const Posts: FC = () => {
         {id: 3, message: 'Yo', likesCount: 1},
         {id: 4, message: 'Yo', likesCount: 5}
     ]
-
+    
     return (
         <div className={S.posts}>
             <h3> #POSTS</h3>
@@ -32,7 +32,7 @@ export const Posts: FC = () => {
                 </div>
             </div>
             <div className={S.postsList}>
-                {postsData.map(m => <Post key={m.id} message={m.message} likesCount={m.likesCount}/>)}
+                {postsData.map(post => <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)}
             </div>
 
         </div>
