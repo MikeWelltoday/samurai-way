@@ -1,21 +1,21 @@
-.posts {
+.myPosts {
 
 }
 
-.posts h3 {
+.myPosts h3 {
     text-align: center;
     font-size: 30px;
     margin-bottom: 10px;
 }
 
-.postsAddItem {
+.myPostsAddItem {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     row-gap: 10px;
 }
 
-.postsAddItem textarea {
+.myPostsAddItem textarea {
     background-color: #282a2e;
     padding: 5px;
     border-radius: 8px;
@@ -25,10 +25,10 @@
     min-height: 60px;
 }
 
-.postsAddItem div {
+.myPostsAddItem div {
 }
 
-.postsAddItem div button {
+.myPostsAddItem div button {
     border: 2px solid rgba(173, 255, 47, 0.37);
     padding: 4px 8px;
     border-radius: 8px;
@@ -37,16 +37,16 @@
     text-transform: uppercase;
 }
 
-.postsAddItem div button:first-child {
+.myPostsAddItem div button:first-child {
     margin-right: 20px;
 }
 
-.postsAddItem div button:active {
+.myPostsAddItem div button:active {
     transform: scale(1.05);
 }
 
 
-.postsList {
+.myPostsList {
     background-color: #96af85;
 }
 

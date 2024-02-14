@@ -1,5 +1,5 @@
 import React from 'react'
-import S from './About.module.css'
+import S from './ProfileInfo.module.css'
 
 //============================================================================================================
 //=> IMAGES
@@ -8,9 +8,9 @@ import image from '../../../../assets/images/content-iamge.webp'
 
 //============================================================================================================
 
-export const About = () => {
+export const ProfileInfo = () => {
     return (
-        <div className={S.about}>
+        <div className={S.profileInfo}>
             <div className={S.imageBox}>
                 <img src={image} alt={'sry'}/>
             </div>

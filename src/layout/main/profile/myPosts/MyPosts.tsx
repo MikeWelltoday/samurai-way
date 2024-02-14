@@ -1,30 +1,30 @@
 import React, {FC} from 'react'
-import S from './Posts.module.css'
+import S from './MyPosts.module.css'
 import {Post} from './post/Post'
-import {PostsDataType} from '../../../../index'
+import {PostsType} from '../../../../index'
 
 //============================================================================================================
 
 type PostsPropsType = {
-    postsData: PostsDataType[]
+    posts: PostsType[]
 }
 
 //============================================================================================================
 
-export const Posts: FC<PostsPropsType> = (props) => {
+export const MyPosts: FC<PostsPropsType> = (props) => {
 
     return (
-        <div className={S.posts}>
+        <div className={S.myPosts}>
             <h3> #POSTS</h3>
-            <div className={S.postsAddItem}>
+            <div className={S.myPostsAddItem}>
                 <textarea placeholder={'make a post'}/>
                 <div>
                     <button>add</button>
                     <button>remove</button>
                 </div>
             </div>
-            <div className={S.postsList}>
-                {props.postsData.map(post => <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)}
+            <div className={S.myPostsList}>
+                {props.posts.map(post => <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)}
             </div>
 
         </div>

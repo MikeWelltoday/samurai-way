@@ -1,16 +1,16 @@
 import React, {FC} from 'react'
-import S from './ChatItem.module.css'
+import S from './Message.module.css'
 
 //============================================================================================================
 
-type ChatItemPropsType = {
+type MessagePropsType = {
     text: string
 }
 
 //============================================================================================================
 
-export const ChatItem:FC<ChatItemPropsType> = (props) => {
+export const Message: FC<MessagePropsType> = (props) => {
     return (
-        <li className={S.chatItem}>{props.text}</li>
+        <li className={S.messageItem}>{props.text}</li>
     )
 }

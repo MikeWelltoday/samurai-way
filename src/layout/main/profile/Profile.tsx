@@ -1,13 +1,13 @@
 import React, {FC} from 'react'
 import S from './Profile.module.css'
-import {Posts} from './posts/Posts'
-import {About} from './about/About'
-import {PostsDataType} from '../../../index'
+import {MyPosts} from './myPosts/MyPosts'
+import {ProfileInfo} from './profileInfo/ProfileInfo'
+import {PostsType} from '../../../index'
 
 //============================================================================================================
 
 type ProfilePropsType = {
-    postsData: PostsDataType[]
+    posts: PostsType[]
 }
 
 //============================================================================================================
@@ -15,8 +15,8 @@ type ProfilePropsType = {
 export const Profile: FC<ProfilePropsType> = (props) => {
     return (
         <main className={S.profile}>
-            <About/>
-            <Posts postsData={props.postsData}/>
+            <ProfileInfo/>
+            <MyPosts posts={props.posts}/>
         </main>
     )
 }

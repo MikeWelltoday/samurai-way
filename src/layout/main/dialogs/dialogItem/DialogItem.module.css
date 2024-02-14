@@ -1,7 +1,7 @@
-.dialog {
+.dialogItem {
     font-size: 20px;
 }
 
-.dialog a.active {
+.dialogItem a.active {
     color: #e76ee7;
 }

@@ -1,9 +1,9 @@
-.messages {
+.dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
 
-.dialogs {
+.dialogsList {
     background-color: rgba(180, 232, 210, 0.32);
     padding-top: 25px;
     display: flex;
@@ -11,6 +11,6 @@
     flex-flow: column nowrap;
 }
 
-.chat {
+.messageList {
     background-color: rgba(221, 180, 232, 0.32);
 }
