@@ -34,12 +34,8 @@ const App: FC<AppPropsType> = (props) => {
                 <Navbar/>
 
                 {/* основные ОБЩИЕ стили тегов main => в App.css */}
-                <Route path={PATH.PROFILE} render={() => <Profile posts={props.state.profilePage.posts}/>}/>
-                <Route
-                    path={PATH.DIALOGS}
-                    render={() => <Dialogs dialogs={props.state.messagesPage.dialogs}
-                                           messages={props.state.messagesPage.messages}/>}
-                />
+                <Route path={PATH.PROFILE} render={() => <Profile state={props.state.profilePage}/>}/>
+                <Route path={PATH.DIALOGS} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
                 <Route path={PATH.NEWS} render={() => <News/>}/>
                 <Route path={PATH.MUSIC} render={() => <Music/>}/>
                 <Route path={PATH.SETTINGS} render={() => <Settings/>}/>

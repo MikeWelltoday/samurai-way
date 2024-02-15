@@ -18,9 +18,7 @@ export type MessagesType = {
 
 export type StateType = {
     profilePage: { posts: PostsType[] }
-    messagesPage: { dialogs: DialogsType[], messages: MessagesType[] }
-
-
+    dialogsPage: { dialogs: DialogsType[], messages: MessagesType[] }
 }
 
 //=============================================================================
@@ -38,7 +36,7 @@ export const state: StateType = {
             ]
 
     },
-    messagesPage: {
+    dialogsPage: {
         dialogs:
             [
                 {id: '1', person: 'Anna'},
@@ -53,5 +51,6 @@ export const state: StateType = {
                 {id: '2', text: 'How are you?'},
                 {id: '3', text: 'I\'ve got story to tell'}
             ]
-    }
+    },
+    sideBar: {}
 }

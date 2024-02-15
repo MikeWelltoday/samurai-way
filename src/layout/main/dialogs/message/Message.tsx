@@ -14,3 +14,5 @@ export const Message: FC<MessagePropsType> = (props) => {
         <li className={S.messageItem}>{props.text}</li>
     )
 }
+
+

@@ -1,7 +1,8 @@
 import React, {FC} from 'react'
 import S from './MyPosts.module.css'
 import {Post} from './post/Post'
-import {PostsType} from '../../../../index'
+import {PostsType} from '../../../../redux/state'
+
 
 //============================================================================================================
 
