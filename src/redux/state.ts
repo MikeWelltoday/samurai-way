@@ -20,15 +20,27 @@ export type MessagesType = {
     text: string
 }
 
+export type ProfilePageType = {
+    posts: PostsType[],
+    newPostText: string
+}
+
+export type DialogsPageType = {
+    dialogs: DialogsType[]
+    messages: MessagesType[]
+}
+
 export type StateType = {
-    profilePage: { posts: PostsType[] }
-    dialogsPage: { dialogs: DialogsType[], messages: MessagesType[] }
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
 }
 
 //=============================================================================
 //TYPES-FUNCTIONS
 
-export type AddPostFunctionType = (postMessage: string) => void
+export type AddPostFunctionType = () => void
+
+export type UpdateNewPostTextType = (newText: string) => void
 
 
 //=============================================================================
@@ -43,7 +55,8 @@ export const state: StateType = {
                 {id: 2, message: 'It is my first post', likesCount: 3},
                 {id: 3, message: 'Yo', likesCount: 1},
                 {id: 4, message: 'Yo', likesCount: 5}
-            ]
+            ],
+        newPostText: 'IT-KAMASUTRA.com'
 
     },
     dialogsPage: {
@@ -68,9 +81,14 @@ export const state: StateType = {
 //=============================================================================
 //CALLBACK FUNCTIONS
 
-export function addPost(postMessage: string) {
-    state.profilePage.posts.push({id: 5, message: postMessage, likesCount: 0})
+export function addPost() {
+    state.profilePage.posts.push({id: 5, message: state.profilePage.newPostText, likesCount: 0})
+    state.profilePage.newPostText = ''
     rerenderEntireTree(state)
 }
 
+export function updateNewPostText(newText: string) {
+    state.profilePage.newPostText = newText
+    rerenderEntireTree(state)
+}
 
