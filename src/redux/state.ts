@@ -1,5 +1,9 @@
+import {rerenderEntireTree} from '../render'
+
+
 //============================================================================================================
-// DATA TYPES
+// TYPES-DATA
+
 
 export type PostsType = {
     id: number
@@ -20,6 +24,12 @@ export type StateType = {
     profilePage: { posts: PostsType[] }
     dialogsPage: { dialogs: DialogsType[], messages: MessagesType[] }
 }
+
+//=============================================================================
+//TYPES-FUNCTIONS
+
+export type AddPostFunctionType = (postMessage: string) => void
+
 
 //=============================================================================
 //DATA
@@ -51,6 +61,16 @@ export const state: StateType = {
                 {id: '2', text: 'How are you?'},
                 {id: '3', text: 'I\'ve got story to tell'}
             ]
-    },
-    sideBar: {}
+    }
+    // sideBar: {}
 }
+
+//=============================================================================
+//CALLBACK FUNCTIONS
+
+export function addPost(postMessage: string) {
+    state.profilePage.posts.push({id: 5, message: postMessage, likesCount: 0})
+    rerenderEntireTree(state)
+}
+
+
