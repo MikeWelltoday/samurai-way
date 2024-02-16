@@ -2,14 +2,14 @@ import React, {FC} from 'react'
 import S from './Profile.module.css'
 import {MyPosts} from './myPosts/MyPosts'
 import {ProfileInfo} from './profileInfo/ProfileInfo'
-import {AddPostFunctionType, ProfilePageType, UpdateNewPostTextType} from '../../../redux/state'
+import {AddPostFunctionType, ProfilePageType, UpdateNewPostTextFunctionType} from '../../../redux/state'
 
 //============================================================================================================
 
 type ProfilePropsType = {
     profilePage: ProfilePageType
     addPost: AddPostFunctionType
-    updateNewPostText: UpdateNewPostTextType
+    updateNewPostText: UpdateNewPostTextFunctionType
 }
 
 //============================================================================================================

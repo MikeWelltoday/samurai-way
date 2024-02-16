@@ -1,7 +1,7 @@
-import React, {ChangeEvent, FC, RefObject} from 'react'
+import React, {ChangeEvent, FC} from 'react'
 import S from './MyPosts.module.css'
 import {Post} from './post/Post'
-import {AddPostFunctionType, PostsType, UpdateNewPostTextType} from '../../../../redux/state'
+import {AddPostFunctionType, PostsType, UpdateNewPostTextFunctionType} from '../../../../redux/state'
 
 
 //============================================================================================================
@@ -10,7 +10,7 @@ type PostsPropsType = {
     posts: PostsType[]
     newPostText: string
     addPost: AddPostFunctionType
-    updateNewPostText: UpdateNewPostTextType
+    updateNewPostText: UpdateNewPostTextFunctionType
 }
 
 //============================================================================================================
