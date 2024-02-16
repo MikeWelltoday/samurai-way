@@ -35,33 +35,49 @@ export type StateType = {
 //TYPES-FUNCTIONS
 
 export type RerenderEntireTreeFunctionType = () => void
-
 export type subscribeFunctionType = (observer: () => void) => void
-
 export type GetStateFunctionType = () => StateType
 
-export type AddPostFunctionType = () => void
+//=============================================================================
+//TYPES-REDUCER
 
-export type UpdateNewPostTextFunctionType = (newText: string) => void
+type AddPostActionType = ReturnType<typeof addPostAC>
+type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
+
+type ActionType = AddPostActionType | UpdateNewPostTextActionType
+
+//=============================================================================
+//AC
+
+export function addPostAC() {
+    return {type: 'ADD-POST'} as const
+}
+
+export function updateNewPostTextAC(newText: string) {
+    return {type: 'UPDATE-NEW_POST-TEXT', payload: {newText}} as const
+}
+
+//=============================================================================
+//TYPE-DISPATCH
+
+export type DispatchType = (action: ActionType) => void
+
 
 //=============================================================================
 //TYPES-STORE
 
-export type StoreType = {
+type StoreType = {
     _state: StateType
     _callSubscriber: RerenderEntireTreeFunctionType
     subscribe: subscribeFunctionType
     getState: GetStateFunctionType
-    addPost: AddPostFunctionType
-    updateNewPostText: UpdateNewPostTextFunctionType
+    dispatch: DispatchType
 }
 
 //=============================================================================
 // STORE
 
 export const store: StoreType = {
-
-    // ---------------------------------------------------------------------------------------------------------------
 
     _state: {
         profilePage: {
@@ -103,15 +119,27 @@ export const store: StoreType = {
     getState() {
         return this._state
     },
-    addPost() {
-        this._state.profilePage.posts.push({id: 5, message: this._state.profilePage.newPostText, likesCount: 0})
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber()
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber()
-    }
 
     // ---------------------------------------------------------------------------------------------------------------
+
+    dispatch(action: ActionType): void {
+        switch (action.type) {
+
+            case 'ADD-POST': {
+                this._state.profilePage.posts.push({id: 5, message: this._state.profilePage.newPostText, likesCount: 0})
+                this._state.profilePage.newPostText = ''
+                this._callSubscriber()
+                break
+            }
+
+            case 'UPDATE-NEW_POST-TEXT': {
+                this._state.profilePage.newPostText = action.payload.newText
+                this._callSubscriber()
+                break
+            }
+
+        }
+    }
+
+
 }

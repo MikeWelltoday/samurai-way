@@ -8,7 +8,7 @@ import {Dialogs} from './layout/main/dialogs/Dialogs'
 import {News} from './layout/main/news/News'
 import {Music} from './layout/main/music/Music'
 import {Settings} from './layout/main/settings/Settings'
-import {AddPostFunctionType, StateType, UpdateNewPostTextFunctionType} from './redux/state'
+import {DispatchType, StateType, store} from './redux/state'
 
 //=============================================================================
 
@@ -24,8 +24,7 @@ export const PATH = {
 
 type AppPropsType = {
     state: StateType
-    addPost: AddPostFunctionType
-    updateNewPostText: UpdateNewPostTextFunctionType
+    dispatch: DispatchType
 }
 
 //=============================================================================
@@ -38,13 +37,9 @@ const App: FC<AppPropsType> = (props) => {
             <Navbar/>
 
             {/* основные ОБЩИЕ стили тегов main => в App.css */}
-            <Route path={PATH.PROFILE}
-                   render={() =>
-                       <Profile
-                           profilePage={props.state.profilePage}
-                           addPost={props.addPost}
-                           updateNewPostText={props.updateNewPostText}
-                       />}
+            <Route
+                path={PATH.PROFILE}
+                render={() => <Profile profilePage={props.state.profilePage} dispatch={store.dispatch.bind(store)}/>}
             />
             <Route path={PATH.DIALOGS} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
             <Route path={PATH.NEWS} render={() => <News/>}/>
