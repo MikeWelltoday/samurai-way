@@ -8,7 +8,7 @@ import {Dialogs} from './layout/main/dialogs/Dialogs'
 import {News} from './layout/main/news/News'
 import {Music} from './layout/main/music/Music'
 import {Settings} from './layout/main/settings/Settings'
-import {AddPostFunctionType, StateType, updateNewPostText, UpdateNewPostTextType} from './redux/state'
+import {AddPostFunctionType, StateType, UpdateNewPostTextType} from './redux/state'
 
 //=============================================================================
 

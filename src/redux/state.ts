@@ -1,6 +1,3 @@
-import {rerenderEntireTree} from '../render'
-
-
 //============================================================================================================
 // TYPES-DATA
 
@@ -79,16 +76,28 @@ export const state: StateType = {
 }
 
 //=============================================================================
+// RENDER FUNCTIONS
+
+let rerenderEntireTree = () => {
+}
+
+export function subscribe(observer: () => void) {
+    rerenderEntireTree = observer
+}
+
+//=============================================================================
 //CALLBACK FUNCTIONS
 
 export function addPost() {
     state.profilePage.posts.push({id: 5, message: state.profilePage.newPostText, likesCount: 0})
     state.profilePage.newPostText = ''
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export function updateNewPostText(newText: string) {
     state.profilePage.newPostText = newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
+
+
 
