@@ -1,26 +1,45 @@
-import React, {FC} from 'react'
+import React, {ChangeEvent, FC} from 'react'
 import S from './Dialogs.module.css'
 import {DialogItem} from './dialogItem/DialogItem'
 import {Message} from './message/Message'
-import {DialogsType, MessagesType} from '../../../redux/state'
+import {addMessageAC, DialogsPageType, DispatchType, updateNewMessageBodyAC} from '../../../redux/state'
 
 //============================================================================================================
 
 type MessagesPropsType = {
-    state: { dialogs: DialogsType[], messages: MessagesType[] }
+    dialogsPage: DialogsPageType
+    dispatch: DispatchType
 }
 
 //============================================================================================================
 
 export const Dialogs: FC<MessagesPropsType> = (props) => {
+
+    function onNewMessageChange(e: ChangeEvent<HTMLTextAreaElement>) {
+        props.dispatch(updateNewMessageBodyAC(e.currentTarget.value))
+    }
+
+    function onSendMessageClick() {
+        props.dispatch(addMessageAC())
+    }
+
+
     return (
         <main className={S.dialogs}>
             <ul className={S.dialogsList}>
-                {props.state.dialogs.map(d => <DialogItem key={d.id} person={d.person} id={d.id}/>)}
+                {props.dialogsPage.dialogs.map(d => <DialogItem key={d.id} person={d.person} id={d.id}/>)}
             </ul>
-            <ul className={S.messageList}>
-                {props.state.messages.map(m => <Message key={m.id} text={m.text}/>)}
-            </ul>
+            <div className={S.messageList}>
+                <ul>{props.dialogsPage.messages.map(m => <Message key={m.id} text={m.text}/>)}</ul>
+                <div className={S.inputFrom}>
+                    <textarea
+                        placeholder={'Your Message'}
+                        value={props.dialogsPage.newMessageBody}
+                        onChange={onNewMessageChange}
+                    />
+                    <button onClick={onSendMessageClick}>SEND</button>
+                </div>
+            </div>
         </main>
     )
 }

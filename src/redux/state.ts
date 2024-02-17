@@ -24,6 +24,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
+    newMessageBody: string
 }
 
 export type StateType = {
@@ -34,27 +35,37 @@ export type StateType = {
 //=============================================================================
 //TYPES-FUNCTIONS
 
-export type RerenderEntireTreeFunctionType = () => void
+export type CallSubscriberFunctionType = () => void
 export type subscribeFunctionType = (observer: () => void) => void
 export type GetStateFunctionType = () => StateType
 
 //=============================================================================
 //TYPES-REDUCER
 
-type AddPostActionType = ReturnType<typeof addPostAC>
-type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
+type ActionType =
+    ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewMessageBodyAC>
+    | ReturnType<typeof addMessageAC>
 
-type ActionType = AddPostActionType | UpdateNewPostTextActionType
 
 //=============================================================================
 //AC
+
+export function updateNewPostTextAC(newText: string) {
+    return {type: 'UPDATE-NEW-POST-TEXT', payload: {newText}} as const
+}
 
 export function addPostAC() {
     return {type: 'ADD-POST'} as const
 }
 
-export function updateNewPostTextAC(newText: string) {
-    return {type: 'UPDATE-NEW_POST-TEXT', payload: {newText}} as const
+export function updateNewMessageBodyAC(newBody: string) {
+    return {type: 'UPDATE-NEW-MESSAGE-BODY', payload: {newBody}} as const
+}
+
+export function addMessageAC() {
+    return {type: 'SEND-MESSAGE'} as const
 }
 
 //=============================================================================
@@ -66,9 +77,9 @@ export type DispatchType = (action: ActionType) => void
 //=============================================================================
 //TYPES-STORE
 
-type StoreType = {
+export type StoreType = {
     _state: StateType
-    _callSubscriber: RerenderEntireTreeFunctionType
+    _callSubscriber: CallSubscriberFunctionType
     subscribe: subscribeFunctionType
     getState: GetStateFunctionType
     dispatch: DispatchType
@@ -88,7 +99,7 @@ export const store: StoreType = {
                     {id: 3, message: 'Yo', likesCount: 1},
                     {id: 4, message: 'Yo', likesCount: 5}
                 ],
-            newPostText: 'IT-KAMASUTRA.com'
+            newPostText: ''
         },
         dialogsPage: {
             dialogs:
@@ -104,7 +115,8 @@ export const store: StoreType = {
                     {id: '1', text: 'Hello friend'},
                     {id: '2', text: 'How are you?'},
                     {id: '3', text: 'I\'ve got story to tell'}
-                ]
+                ],
+            newMessageBody: ''
         }
     },
 
@@ -125,6 +137,12 @@ export const store: StoreType = {
     dispatch(action: ActionType): void {
         switch (action.type) {
 
+            case 'UPDATE-NEW-POST-TEXT': {
+                this._state.profilePage.newPostText = action.payload.newText
+                this._callSubscriber()
+                break
+            }
+
             case 'ADD-POST': {
                 this._state.profilePage.posts.push({id: 5, message: this._state.profilePage.newPostText, likesCount: 0})
                 this._state.profilePage.newPostText = ''
@@ -132,14 +150,18 @@ export const store: StoreType = {
                 break
             }
 
-            case 'UPDATE-NEW_POST-TEXT': {
-                this._state.profilePage.newPostText = action.payload.newText
+            case 'UPDATE-NEW-MESSAGE-BODY': {
+                this._state.dialogsPage.newMessageBody = action.payload.newBody
                 this._callSubscriber()
                 break
             }
 
+            case 'SEND-MESSAGE': {
+                this._state.dialogsPage.messages.push({id: '4', text: this._state.dialogsPage.newMessageBody})
+                this._state.dialogsPage.newMessageBody = ''
+                this._callSubscriber()
+                break
+            }
         }
     }
-
-
 }

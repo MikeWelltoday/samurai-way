@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import S from './Profile.module.css'
 import {MyPosts} from './myPosts/MyPosts'
 import {ProfileInfo} from './profileInfo/ProfileInfo'
-import {DispatchType, ProfilePageType, store} from '../../../redux/state'
+import {DispatchType, ProfilePageType} from '../../../redux/state'
 
 //============================================================================================================
 
@@ -20,7 +20,7 @@ export const Profile: FC<ProfilePropsType> = (props) => {
             <MyPosts
                 posts={props.profilePage.posts}
                 newPostText={props.profilePage.newPostText}
-                dispatch={store.dispatch.bind(store)}
+                dispatch={props.dispatch}
             />
         </main>
     )

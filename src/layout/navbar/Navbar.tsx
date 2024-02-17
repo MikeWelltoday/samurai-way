@@ -13,7 +13,7 @@ export const Navbar: FC = () => {
                 <NavLink to={PATH.PROFILE} activeClassName={S.active}>Profile</NavLink>
             </div>
             <div className={S.item}>
-                <NavLink to={PATH.DIALOGS} activeClassName={S.active}>Dialogs</NavLink>
+                <NavLink to={PATH.DIALOGS} activeClassName={S.active}>Messages</NavLink>
             </div>
             <div className={S.item}>
                 <NavLink to={PATH.NEWS} activeClassName={S.active}>News</NavLink>

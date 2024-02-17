@@ -8,7 +8,7 @@ import {Dialogs} from './layout/main/dialogs/Dialogs'
 import {News} from './layout/main/news/News'
 import {Music} from './layout/main/music/Music'
 import {Settings} from './layout/main/settings/Settings'
-import {DispatchType, StateType, store} from './redux/state'
+import {DispatchType, StateType} from './redux/state'
 
 //=============================================================================
 
@@ -39,9 +39,12 @@ const App: FC<AppPropsType> = (props) => {
             {/* основные ОБЩИЕ стили тегов main => в App.css */}
             <Route
                 path={PATH.PROFILE}
-                render={() => <Profile profilePage={props.state.profilePage} dispatch={store.dispatch.bind(store)}/>}
+                render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}
             />
-            <Route path={PATH.DIALOGS} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+            <Route
+                path={PATH.DIALOGS}
+                render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch}/>}
+            />
             <Route path={PATH.NEWS} render={() => <News/>}/>
             <Route path={PATH.MUSIC} render={() => <Music/>}/>
             <Route path={PATH.SETTINGS} render={() => <Settings/>}/>
