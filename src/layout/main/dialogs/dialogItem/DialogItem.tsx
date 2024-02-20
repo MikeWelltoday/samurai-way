@@ -3,11 +3,14 @@ import S from './DialogItem.module.css'
 import {NavLink} from 'react-router-dom'
 
 //============================================================================================================
+// 🎲 .T.Y.P.E.S.
+
 export type DialogItemPropsType = {
     person: string
     id: string
 }
 //============================================================================================================
+// 🧁 .C.O.P.O.N.E.N.T.
 
 export const DialogItem: FC<DialogItemPropsType> = (props) => {
     return (

@@ -4,14 +4,16 @@ import {DialogItem} from './dialogItem/DialogItem'
 import {Message} from './message/Message'
 import {addMessageAC, DialogsPageType, DispatchType, updateNewMessageBodyAC} from '../../../redux/state'
 
-//============================================================================================================
+//========================================================================================
+// 🎲 .T.Y.P.E.S.
 
 type MessagesPropsType = {
     dialogsPage: DialogsPageType
     dispatch: DispatchType
 }
 
-//============================================================================================================
+//========================================================================================
+// 🧁 .C.O.P.O.N.E.N.T.
 
 export const Dialogs: FC<MessagesPropsType> = (props) => {
 

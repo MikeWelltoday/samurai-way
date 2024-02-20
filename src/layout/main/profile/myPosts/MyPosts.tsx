@@ -3,8 +3,8 @@ import S from './MyPosts.module.css'
 import {Post} from './post/Post'
 import {addPostAC, DispatchType, PostsType, updateNewPostTextAC} from '../../../../redux/state'
 
-
-//============================================================================================================
+//========================================================================================
+// ✨ .I.M.A.G.E.S.
 
 type PostsPropsType = {
     posts: PostsType[]
@@ -12,7 +12,8 @@ type PostsPropsType = {
     dispatch: DispatchType
 }
 
-//============================================================================================================
+//========================================================================================
+// 🧁 .C.O.P.O.N.E.N.T.
 
 export const MyPosts: FC<PostsPropsType> = (props) => {
 

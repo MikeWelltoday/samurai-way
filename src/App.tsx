@@ -10,7 +10,8 @@ import {Music} from './layout/main/music/Music'
 import {Settings} from './layout/main/settings/Settings'
 import {DispatchType, StateType} from './redux/state'
 
-//=============================================================================
+//========================================================================================
+// 🌈 .R.O.U.T.S.
 
 export const PATH = {
     PROFILE: '/profile',
@@ -20,14 +21,16 @@ export const PATH = {
     SETTINGS: '/settings'
 } as const
 
-//=============================================================================
+//========================================================================================
+// 🎲 .T.Y.P.E.S.
 
 type AppPropsType = {
     state: StateType
     dispatch: DispatchType
 }
 
-//=============================================================================
+//========================================================================================
+// 🍇 .A.P.P.
 
 const App: FC<AppPropsType> = (props) => {
     return (
