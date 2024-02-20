@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC} from 'react'
 import S from './MyPosts.module.css'
 import {Post} from './post/Post'
-import {addPostAC, DispatchType, PostsType, updateNewPostTextAC} from '../../../../redux/state'
+import {profileReducerAddPostAC, DispatchType, PostsType, profileUpdateNewPostTextAC} from '../../../../redux/state'
 
 //========================================================================================
 // ✨ .I.M.A.G.E.S.
@@ -18,11 +18,11 @@ type PostsPropsType = {
 export const MyPosts: FC<PostsPropsType> = (props) => {
 
     function onPostChange(e: ChangeEvent<HTMLTextAreaElement>) {
-        props.dispatch(updateNewPostTextAC(e.currentTarget.value))
+        props.dispatch(profileUpdateNewPostTextAC(e.currentTarget.value))
     }
 
     function addPost() {
-        props.dispatch(addPostAC())
+        props.dispatch(profileReducerAddPostAC())
     }
 
     return (

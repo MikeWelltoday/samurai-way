@@ -1,6 +1,9 @@
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .D.A.T.A.
 
+import {profileReducer} from './profile-reducer'
+import {dialogsReducer} from './dialogs-reducer'
+
 export type PostsType = {
     id: number
     message: string
@@ -42,30 +45,31 @@ export type GetStateFunctionType = () => StateType
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R.
 
-type ActionType =
-    ReturnType<typeof updateNewPostTextAC>
-    | ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewMessageBodyAC>
-    | ReturnType<typeof addMessageAC>
+export type ProfileReducerActionType = ReturnType<typeof profileUpdateNewPostTextAC>
+    | ReturnType<typeof profileReducerAddPostAC>
 
+export type DialogsReducerActionType = ReturnType<typeof dialogsReducerUpdateNewMessageBodyAC>
+    | ReturnType<typeof dialogsReducerAddMessageAC>
+
+export type ActionType = ProfileReducerActionType | DialogsReducerActionType
 
 //========================================================================================
 // 🍌 .A.C.
 
-export function updateNewPostTextAC(newText: string) {
-    return {type: 'UPDATE-NEW-POST-TEXT', payload: {newText}} as const
+export function profileUpdateNewPostTextAC(newText: string) {
+    return {type: 'PROFILE-UPDATE-NEW-POST-TEXT', payload: {newText}} as const
 }
 
-export function addPostAC() {
-    return {type: 'ADD-POST'} as const
+export function profileReducerAddPostAC() {
+    return {type: 'PROFILE-ADD-POST', payload: {}} as const
 }
 
-export function updateNewMessageBodyAC(newBody: string) {
-    return {type: 'UPDATE-NEW-MESSAGE-BODY', payload: {newBody}} as const
+export function dialogsReducerUpdateNewMessageBodyAC(newBody: string) {
+    return {type: 'DIALOGS-UPDATE-NEW-MESSAGE-BODY', payload: {newBody}} as const
 }
 
-export function addMessageAC() {
-    return {type: 'SEND-MESSAGE'} as const
+export function dialogsReducerAddMessageAC() {
+    return {type: 'DIALOGS-SEND-MESSAGE', payload: {}} as const
 }
 
 //========================================================================================
@@ -135,33 +139,40 @@ export const store: StoreType = {
     //-------------------------------------------------------------------------------------
 
     dispatch(action: ActionType): void {
-        switch (action.type) {
 
-            case 'UPDATE-NEW-POST-TEXT': {
-                this._state.profilePage.newPostText = action.payload.newText
-                this._callSubscriber()
-                break
-            }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber()
 
-            case 'ADD-POST': {
-                this._state.profilePage.posts.push({id: 5, message: this._state.profilePage.newPostText, likesCount: 0})
-                this._state.profilePage.newPostText = ''
-                this._callSubscriber()
-                break
-            }
+        // switch (action.type) {
+        //
+        //     case 'PROFILE-UPDATE-NEW-POST-TEXT': {
+        //         this._state.profilePage.newPostText = action.payload.newText
+        //         this._callSubscriber()
+        //         break
+        //     }
+        //
+        //     case 'PROFILE-ADD-POST': {
+        //         this._state.profilePage.posts.push({id: 5, message: this._state.profilePage.newPostText, likesCount: 0})
+        //         this._state.profilePage.newPostText = ''
+        //         this._callSubscriber()
+        //         break
+        //     }
+        //
+        //     case 'DIALOGS-UPDATE-NEW-MESSAGE-BODY': {
+        //         this._state.dialogsPage.newMessageBody = action.payload.newBody
+        //         this._callSubscriber()
+        //         break
+        //     }
+        //
+        //     case 'DIALOGS-SEND-MESSAGE': {
+        //         this._state.dialogsPage.messages.push({id: '4', text: this._state.dialogsPage.newMessageBody})
+        //         this._state.dialogsPage.newMessageBody = ''
+        //         this._callSubscriber()
+        //         break
+        //     }
+        // }
 
-            case 'UPDATE-NEW-MESSAGE-BODY': {
-                this._state.dialogsPage.newMessageBody = action.payload.newBody
-                this._callSubscriber()
-                break
-            }
 
-            case 'SEND-MESSAGE': {
-                this._state.dialogsPage.messages.push({id: '4', text: this._state.dialogsPage.newMessageBody})
-                this._state.dialogsPage.newMessageBody = ''
-                this._callSubscriber()
-                break
-            }
-        }
     }
 }
