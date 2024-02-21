@@ -2,33 +2,25 @@ import React, {ChangeEvent, FC} from 'react'
 import S from './Dialogs.module.css'
 import {DialogItem} from './dialogItem/DialogItem'
 import {Message} from './message/Message'
-import {
-    DialogsPageType,
-    DispatchType
-} from '../../../redux/store'
-import {dialogsReducerAddMessageAC, dialogsReducerUpdateNewMessageBodyAC} from '../../../redux/dialogs-reducer'
+import {DialogsPageType} from '../../../redux/store'
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S.
 
-type MessagesPropsType = {
+type DialogsPropsType = {
     dialogsPage: DialogsPageType
-    dispatch: DispatchType
+    onNewMessageChange: (textInput: string) => void
+    onSendMessageClick: () => void
 }
 
 //========================================================================================
 // 🧁 .C.O.P.O.N.E.N.T.
 
-export const Dialogs: FC<MessagesPropsType> = (props) => {
+export const Dialogs: FC<DialogsPropsType> = (props) => {
 
     function onNewMessageChange(e: ChangeEvent<HTMLTextAreaElement>) {
-        props.dispatch(dialogsReducerUpdateNewMessageBodyAC(e.currentTarget.value))
+        props.onNewMessageChange(e.currentTarget.value)
     }
-
-    function onSendMessageClick() {
-        props.dispatch(dialogsReducerAddMessageAC())
-    }
-
 
     return (
         <main className={S.dialogs}>
@@ -43,7 +35,7 @@ export const Dialogs: FC<MessagesPropsType> = (props) => {
                         value={props.dialogsPage.newMessageBody}
                         onChange={onNewMessageChange}
                     />
-                    <button onClick={onSendMessageClick}>SEND</button>
+                    <button onClick={props.onSendMessageClick}>SEND</button>
                 </div>
             </div>
         </main>

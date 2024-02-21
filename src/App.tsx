@@ -9,6 +9,7 @@ import {News} from './layout/main/news/News'
 import {Music} from './layout/main/music/Music'
 import {Settings} from './layout/main/settings/Settings'
 import {DispatchType, StateType} from './redux/store'
+import {DialogsContainer} from './layout/main/dialogs/DialogsContainer'
 
 //========================================================================================
 // 🌈 .R.O.U.T.S.
@@ -42,15 +43,8 @@ const App: FC<AppPropsType> = (props) => {
             <Navbar/>
 
             {/* основные ОБЩИЕ стили тегов main => в App.css */}
-            <Route
-                path={PATH.PROFILE}
-                render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}
-                                       store={props.store}/>}
-            />
-            <Route
-                path={PATH.DIALOGS}
-                render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch}/>}
-            />
+            <Route path={PATH.PROFILE} render={() => <Profile/>}/>
+            <Route path={PATH.DIALOGS} render={() => <DialogsContainer/>}/>
             <Route path={PATH.NEWS} render={() => <News/>}/>
             <Route path={PATH.MUSIC} render={() => <Music/>}/>
             <Route path={PATH.SETTINGS} render={() => <Settings/>}/>
