@@ -1,8 +1,7 @@
 import React, {ChangeEvent, FC} from 'react'
 import S from './MyPosts.module.css'
 import {Post} from './post/Post'
-import {DispatchType, PostsType} from '../../../../redux/state'
-import {profileReducerAddPostAC, profileUpdateNewPostTextAC} from '../../../../redux/profile-reducer'
+import {PostsType} from '../../../../redux/store'
 
 //========================================================================================
 // ✨ .I.M.A.G.E.S.
@@ -10,7 +9,8 @@ import {profileReducerAddPostAC, profileUpdateNewPostTextAC} from '../../../../r
 type PostsPropsType = {
     posts: PostsType[]
     newPostText: string
-    dispatch: DispatchType
+    updateNewPostText: (inputText: string) => void
+    addPost: () => void
 }
 
 //========================================================================================
@@ -19,11 +19,7 @@ type PostsPropsType = {
 export const MyPosts: FC<PostsPropsType> = (props) => {
 
     function onPostChange(e: ChangeEvent<HTMLTextAreaElement>) {
-        props.dispatch(profileUpdateNewPostTextAC(e.currentTarget.value))
-    }
-
-    function addPost() {
-        props.dispatch(profileReducerAddPostAC())
+        props.updateNewPostText(e.currentTarget.value)
     }
 
     return (
@@ -36,7 +32,7 @@ export const MyPosts: FC<PostsPropsType> = (props) => {
                     placeholder={'make a post'}
                 />
                 <div>
-                    <button onClick={addPost}>add post</button>
+                    <button onClick={props.addPost}>add post</button>
                 </div>
             </div>
             <div className={S.myPostsList}>

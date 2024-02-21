@@ -1,4 +1,4 @@
-import {ActionType, DialogsPageType} from './state'
+import {ActionType, DialogsPageType} from './store'
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R.
@@ -20,7 +20,25 @@ export function dialogsReducerAddMessageAC() {
 //========================================================================================
 // 🧰 .R.E.D.U.C.E.R.
 
-export function dialogsReducer(state: DialogsPageType, action: ActionType): DialogsPageType {
+const initialState = {
+    dialogs:
+        [
+            {id: '1', person: 'Anna'},
+            {id: '2', person: 'Dima'},
+            {id: '3', person: 'Mike'},
+            {id: '4', person: 'Roma'},
+            {id: '5', person: 'Margo'}
+        ],
+    messages:
+        [
+            {id: '1', text: 'Hello friend'},
+            {id: '2', text: 'How are you?'},
+            {id: '3', text: 'I\'ve got story to tell'}
+        ],
+    newMessageBody: ''
+}
+
+export function dialogsReducer(state: DialogsPageType = initialState, action: ActionType): DialogsPageType {
 
     switch (action.type) {
 

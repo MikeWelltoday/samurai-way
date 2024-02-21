@@ -1,4 +1,4 @@
-import {ActionType, ProfilePageType} from './state'
+import {ActionType, ProfilePageType} from './store'
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R.
@@ -21,7 +21,18 @@ export function profileReducerAddPostAC() {
 //========================================================================================
 // 🧰 .R.E.D.U.C.E.R.
 
-export function profileReducer(state: ProfilePageType, action: ActionType): ProfilePageType {
+const initialState = {
+    posts:
+        [
+            {id: 1, message: 'Hi, how are you?', likesCount: 15},
+            {id: 2, message: 'It is my first post', likesCount: 3},
+            {id: 3, message: 'Yo', likesCount: 1},
+            {id: 4, message: 'Yo', likesCount: 5}
+        ],
+    newPostText: ''
+}
+
+export function profileReducer(state: ProfilePageType = initialState, action: ActionType): ProfilePageType {
 
     switch (action.type) {
 

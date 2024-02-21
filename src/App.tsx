@@ -8,7 +8,7 @@ import {Dialogs} from './layout/main/dialogs/Dialogs'
 import {News} from './layout/main/news/News'
 import {Music} from './layout/main/music/Music'
 import {Settings} from './layout/main/settings/Settings'
-import {DispatchType, StateType} from './redux/state'
+import {DispatchType, StateType} from './redux/store'
 
 //========================================================================================
 // 🌈 .R.O.U.T.S.
@@ -25,6 +25,7 @@ export const PATH = {
 // 🎲 .T.Y.P.E.S.
 
 type AppPropsType = {
+    store: any
     state: StateType
     dispatch: DispatchType
 }
@@ -33,6 +34,7 @@ type AppPropsType = {
 // 🍇 .A.P.P.
 
 const App: FC<AppPropsType> = (props) => {
+
     return (
 
         <div className="app-wrapper">
@@ -42,7 +44,8 @@ const App: FC<AppPropsType> = (props) => {
             {/* основные ОБЩИЕ стили тегов main => в App.css */}
             <Route
                 path={PATH.PROFILE}
-                render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}
+                render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}
+                                       store={props.store}/>}
             />
             <Route
                 path={PATH.DIALOGS}

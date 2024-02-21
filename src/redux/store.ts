@@ -67,7 +67,7 @@ export type StoreType = {
 //========================================================================================
 // 💾 .S.T.O.R.E.
 
-export const store: StoreType = {
+const store: StoreType = {
 
     _state: {
         profilePage: {
