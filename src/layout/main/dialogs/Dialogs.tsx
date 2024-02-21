@@ -3,11 +3,10 @@ import S from './Dialogs.module.css'
 import {DialogItem} from './dialogItem/DialogItem'
 import {Message} from './message/Message'
 import {
-    dialogsReducerAddMessageAC,
     DialogsPageType,
-    DispatchType,
-    dialogsReducerUpdateNewMessageBodyAC
+    DispatchType
 } from '../../../redux/state'
+import {dialogsReducerAddMessageAC, dialogsReducerUpdateNewMessageBodyAC} from '../../../redux/dialogs-reducer'
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S.

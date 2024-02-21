@@ -1,8 +1,8 @@
+import {profileReducer, ProfileReducerActionType} from './profile-reducer'
+import {dialogsReducer, DialogsReducerActionType} from './dialogs-reducer'
+
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .D.A.T.A.
-
-import {profileReducer} from './profile-reducer'
-import {dialogsReducer} from './dialogs-reducer'
 
 export type PostsType = {
     id: number
@@ -45,32 +45,7 @@ export type GetStateFunctionType = () => StateType
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R.
 
-export type ProfileReducerActionType = ReturnType<typeof profileUpdateNewPostTextAC>
-    | ReturnType<typeof profileReducerAddPostAC>
-
-export type DialogsReducerActionType = ReturnType<typeof dialogsReducerUpdateNewMessageBodyAC>
-    | ReturnType<typeof dialogsReducerAddMessageAC>
-
 export type ActionType = ProfileReducerActionType | DialogsReducerActionType
-
-//========================================================================================
-// 🍌 .A.C.
-
-export function profileUpdateNewPostTextAC(newText: string) {
-    return {type: 'PROFILE-UPDATE-NEW-POST-TEXT', payload: {newText}} as const
-}
-
-export function profileReducerAddPostAC() {
-    return {type: 'PROFILE-ADD-POST', payload: {}} as const
-}
-
-export function dialogsReducerUpdateNewMessageBodyAC(newBody: string) {
-    return {type: 'DIALOGS-UPDATE-NEW-MESSAGE-BODY', payload: {newBody}} as const
-}
-
-export function dialogsReducerAddMessageAC() {
-    return {type: 'DIALOGS-SEND-MESSAGE', payload: {}} as const
-}
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .D.I.S.P.A.T.C.H.

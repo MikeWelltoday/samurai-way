@@ -1,7 +1,8 @@
 import React, {ChangeEvent, FC} from 'react'
 import S from './MyPosts.module.css'
 import {Post} from './post/Post'
-import {profileReducerAddPostAC, DispatchType, PostsType, profileUpdateNewPostTextAC} from '../../../../redux/state'
+import {DispatchType, PostsType} from '../../../../redux/state'
+import {profileReducerAddPostAC, profileUpdateNewPostTextAC} from '../../../../redux/profile-reducer'
 
 //========================================================================================
 // ✨ .I.M.A.G.E.S.
