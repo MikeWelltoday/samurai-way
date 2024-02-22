@@ -7,8 +7,8 @@ import {Profile} from './layout/main/profile/Profile'
 import {News} from './layout/main/news/News'
 import {Music} from './layout/main/music/Music'
 import {Settings} from './layout/main/settings/Settings'
-import {DispatchType, StateType} from './redux/store'
 import {DialogsContainer} from './layout/main/dialogs/DialogsContainer'
+import {DispatchType, StateType} from './redux/redux-store'
 
 //========================================================================================
 // 🌈 .R.O.U.T.S.

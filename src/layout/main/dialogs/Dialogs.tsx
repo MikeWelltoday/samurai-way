@@ -2,15 +2,15 @@ import React, {ChangeEvent, FC} from 'react'
 import S from './Dialogs.module.css'
 import {DialogItem} from './dialogItem/DialogItem'
 import {Message} from './message/Message'
-import {DialogsPageType} from '../../../redux/store'
+import {DialogsPageType} from '../../../redux/dialogs-reducer'
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S.
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
-    onNewMessageChange: (textInput: string) => void
-    onSendMessageClick: () => void
+    updateNewMessageBody: (textInput: string) => void
+    sendMessage: () => void
 }
 
 //========================================================================================
@@ -19,7 +19,7 @@ type DialogsPropsType = {
 export const Dialogs: FC<DialogsPropsType> = (props) => {
 
     function onNewMessageChange(e: ChangeEvent<HTMLTextAreaElement>) {
-        props.onNewMessageChange(e.currentTarget.value)
+        props.updateNewMessageBody(e.currentTarget.value)
     }
 
     return (
@@ -35,7 +35,7 @@ export const Dialogs: FC<DialogsPropsType> = (props) => {
                         value={props.dialogsPage.newMessageBody}
                         onChange={onNewMessageChange}
                     />
-                    <button onClick={props.onSendMessageClick}>SEND</button>
+                    <button onClick={props.sendMessage}>SEND</button>
                 </div>
             </div>
         </main>

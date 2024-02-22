@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC} from 'react'
 import S from './MyPosts.module.css'
 import {Post} from './post/Post'
-import {PostsType} from '../../../../redux/store'
+import {PostsType} from '../../../../redux/profile-reducer'
 
 //========================================================================================
 // ✨ .I.M.A.G.E.S.

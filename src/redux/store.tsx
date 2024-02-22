@@ -1,39 +1,6 @@
-import {profileReducer, ProfileReducerActionType} from './profile-reducer'
-import {dialogsReducer, DialogsReducerActionType} from './dialogs-reducer'
-
-//========================================================================================
-// 🎲 .T.Y.P.E.S. - .D.A.T.A.
-
-export type PostsType = {
-    id: number
-    message: string
-    likesCount: number
-}
-
-export type DialogsType = {
-    id: string, person: string
-}
-
-export type MessagesType = {
-    id: string
-    text: string
-}
-
-export type ProfilePageType = {
-    posts: PostsType[],
-    newPostText: string
-}
-
-export type DialogsPageType = {
-    dialogs: DialogsType[]
-    messages: MessagesType[]
-    newMessageBody: string
-}
-
-export type StateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-}
+import {profileReducer} from './profile-reducer'
+import {dialogsReducer} from './dialogs-reducer'
+import {ActionType, DispatchType, StateType} from './redux-store'
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .F.U.N.C.T.I.O.N.S.
@@ -41,17 +8,6 @@ export type StateType = {
 export type CallSubscriberFunctionType = () => void
 export type subscribeFunctionType = (observer: () => void) => void
 export type GetStateFunctionType = () => StateType
-
-//========================================================================================
-// 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R.
-
-export type ActionType = ProfileReducerActionType | DialogsReducerActionType
-
-//========================================================================================
-// 🎲 .T.Y.P.E.S. - .D.I.S.P.A.T.C.H.
-
-export type DispatchType = (action: ActionType) => void
-
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .S.T.O.R.E.

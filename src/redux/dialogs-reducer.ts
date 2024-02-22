@@ -1,4 +1,23 @@
-import {ActionType, DialogsPageType} from './store'
+import {ActionType} from './redux-store'
+
+//========================================================================================
+// 🎲 .T.Y.P.E.S. - .I.N.I.T.I.A.L.S.T.A.T.E.
+
+export type DialogsType = {
+    id: string, person: string
+}
+
+export type MessagesType = {
+    id: string
+    text: string
+}
+
+export type DialogsPageType = {
+    dialogs: DialogsType[]
+    messages: MessagesType[]
+    newMessageBody: string
+}
+
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R.
@@ -43,14 +62,13 @@ export function dialogsReducer(state: DialogsPageType = initialState, action: Ac
     switch (action.type) {
 
         case 'DIALOGS-UPDATE-NEW-MESSAGE-BODY': {
-            state.newMessageBody = action.payload.newBody
-            return state
+            return {...state, newMessageBody: action.payload.newBody}
         }
 
         case 'DIALOGS-SEND-MESSAGE': {
-            state.messages.push({id: '4', text: state.newMessageBody})
+            const newMessageBodyCopy = state.newMessageBody
             state.newMessageBody = ''
-            return state
+            return {...state, messages: [...state.messages, {id: '4', text: newMessageBodyCopy}]}
         }
 
         default: {

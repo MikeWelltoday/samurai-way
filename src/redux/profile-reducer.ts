@@ -1,4 +1,18 @@
-import {ActionType, ProfilePageType} from './store'
+import {ActionType} from './redux-store'
+
+//========================================================================================
+// 🎲 .T.Y.P.E.S. - .I.N.I.T.I.A.L.S.T.A.T.E.
+
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+export type ProfilePageType = {
+    posts: PostsType[],
+    newPostText: string
+}
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R.
@@ -37,14 +51,13 @@ export function profileReducer(state: ProfilePageType = initialState, action: Ac
     switch (action.type) {
 
         case 'PROFILE-UPDATE-NEW-POST-TEXT': {
-            state.newPostText = action.payload.newText
-            return state
+            return {...state, newPostText: action.payload.newText}
         }
 
         case 'PROFILE-ADD-POST': {
-            state.posts.push({id: 5, message: state.newPostText, likesCount: 0})
+            const newPostTextCopy = state.newPostText
             state.newPostText = ''
-            return state
+            return {...state, posts: [...state.posts, {id: 5, message: newPostTextCopy, likesCount: 0}]}
         }
 
         default: {
