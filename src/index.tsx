@@ -8,23 +8,16 @@ import {Provider} from 'react-redux'
 
 //=============================================================================
 
-function rerenderEntireTree() {
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App
+                store={store}
+                state={store.getState()}
+                dispatch={store.dispatch.bind(store)}
+            />
+        </Provider>
+    </BrowserRouter>,
+    document.getElementById('root')
+)
 
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <App
-                    store={store}
-                    state={store.getState()}
-                    dispatch={store.dispatch.bind(store)}
-                />
-            </Provider>
-        </BrowserRouter>,
-        document.getElementById('root')
-    )
-}
-
-rerenderEntireTree()
-
-// передаем функцию RENDER приложения через callBack в state/store
-store.subscribe(rerenderEntireTree)

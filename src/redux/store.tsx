@@ -1,5 +1,5 @@
-import {profileReducer} from './profile-reducer'
-import {dialogsReducer} from './dialogs-reducer'
+import {profileReducer} from './profile-reducer/profile-reducer'
+import {dialogsReducer} from './dialogs-reducer/dialogs-reducer'
 import {ActionType, DispatchType, StateType} from './redux-store'
 
 //========================================================================================
@@ -52,6 +52,31 @@ const store: StoreType = {
                     {id: '3', text: 'I\'ve got story to tell'}
                 ],
             newMessageBody: ''
+        },
+        usersPage: {
+            users: [
+                {
+                    id: 1,
+                    followed: true,
+                    fullName: 'Dmitriy',
+                    status: 'programmer',
+                    location: {city: 'Obninsk', country: 'Russia'}
+                },
+                {
+                    id: 2,
+                    followed: false,
+                    fullName: 'Anna',
+                    status: 'doctor',
+                    location: {city: 'Obninsk', country: 'Russia'}
+                },
+                {
+                    id: 3,
+                    followed: true,
+                    fullName: 'Mikhail',
+                    status: 'programmer',
+                    location: {city: 'Obninsk', country: 'Russia'}
+                }
+            ]
         }
     },
 

@@ -1,4 +1,4 @@
-import {ActionType} from './redux-store'
+import {ActionType} from '../redux-store'
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .I.N.I.T.I.A.L.S.T.A.T.E.

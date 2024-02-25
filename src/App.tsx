@@ -9,6 +9,8 @@ import {Music} from './layout/main/music/Music'
 import {Settings} from './layout/main/settings/Settings'
 import {DialogsContainer} from './layout/main/dialogs/DialogsContainer'
 import {DispatchType, StateType} from './redux/redux-store'
+import {UsersContainer} from './layout/main/users/UsersContainer'
+import {Users} from './layout/main/users/Users'
 
 //========================================================================================
 // 🌈 .R.O.U.T.S.
@@ -18,7 +20,8 @@ export const PATH = {
     DIALOGS: '/dialogs',
     NEWS: '/news',
     MUSIC: '/music',
-    SETTINGS: '/settings'
+    SETTINGS: '/settings',
+    USERS: '/users'
 } as const
 
 //========================================================================================
@@ -47,6 +50,8 @@ const App: FC<AppPropsType> = (props) => {
             <Route path={PATH.NEWS} render={() => <News/>}/>
             <Route path={PATH.MUSIC} render={() => <Music/>}/>
             <Route path={PATH.SETTINGS} render={() => <Settings/>}/>
+
+            <Route path={PATH.USERS} render={() => <UsersContainer/>}/>
         </div>
 
     )

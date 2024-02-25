@@ -23,6 +23,9 @@ export const Navbar: FC = () => {
                 <NavLink to={PATH.MUSIC} activeClassName={S.active}>Music</NavLink>
             </div>
             <div className={S.item}>
+                <NavLink to={PATH.USERS} activeClassName={S.active}>Users</NavLink>
+            </div>
+            <div className={S.item}>
                 <NavLink to={PATH.SETTINGS} activeClassName={S.active}>Settings</NavLink>
             </div>
         </nav>

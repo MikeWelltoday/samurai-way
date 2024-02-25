@@ -1,0 +1,67 @@
+.users {
+    background-color: #6c606c;
+    padding: 30px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    row-gap: 20px;
+}
+
+.users h2 {
+    background-color: #6cde9f;
+    font: 500 28px sans-serif;
+}
+
+.usersList {
+    background-color: #66560f;
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 20px;
+}
+
+.user {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.userPhoto {
+    width: 100px;
+    background-color: #647c3e;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    row-gap: 10px;
+}
+
+.userPhoto span {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #e15176;
+    text-align: center;
+    line-height: 80px;
+    font-size: 40px;
+}
+
+.userPhoto button {
+    background-color: #95e7d5;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.userBody {
+    background-color: #637ba9;
+    padding: 20px;
+
+    font: 400 18px sans-serif;
+    letter-spacing: 2px;
+}
+
+.showMoreButton {
+    background-color: #e7cb6e;
+    padding: 5px 10px;
+    border-radius: 8px;
+
+}
