@@ -17,6 +17,8 @@ export type UsersType = {
 
 export type UserPageType = {
     users: UsersType[]
+    pageSize: number
+    totalUsersCount: number
 }
 
 //========================================================================================
@@ -40,7 +42,9 @@ export function usersFollowToggleAC(userId: number) {
 // 🧰 .R.E.D.U.C.E.R.
 
 const initialState: UserPageType = {
-    users: []
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 0
 }
 
 export function usersReducer(state: UserPageType = initialState, action: UsersReducerActionType): UserPageType {

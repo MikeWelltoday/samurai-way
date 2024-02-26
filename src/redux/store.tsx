@@ -54,7 +54,9 @@ const store: StoreType = {
             newMessageBody: ''
         },
         usersPage: {
-            users: []
+            users: [],
+            pageSize: 5,
+            totalUsersCount: 0
         }
     },
 

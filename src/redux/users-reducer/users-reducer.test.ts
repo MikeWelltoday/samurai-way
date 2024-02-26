@@ -44,7 +44,9 @@ beforeEach(() => {
                 },
                 uniqueUrlName: null
             }
-        ]
+        ],
+        pageSize: 5,
+        totalUsersCount: 0
     }
 
 })

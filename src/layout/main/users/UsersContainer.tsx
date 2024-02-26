@@ -1,7 +1,7 @@
 import {DispatchType, StateType} from '../../../redux/redux-store'
 import {usersFollowToggleAC, usersSetUsersAC, UsersType} from '../../../redux/users-reducer/users-reducer'
 import {connect} from 'react-redux'
-import {UsersClass} from './UsersClass'
+import {Users} from './Users'
 
 
 //========================================================================================
@@ -9,7 +9,9 @@ import {UsersClass} from './UsersClass'
 
 function mapStateToProps(state: StateType) {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount
     }
 }
 
@@ -20,4 +22,4 @@ function mapDispatchToProps(dispatch: DispatchType) {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClass)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
