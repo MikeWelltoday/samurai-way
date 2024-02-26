@@ -1,6 +1,7 @@
 import React, {FC, useEffect} from 'react'
 import S from './Users.module.css'
 import {UsersType} from '../../../redux/users-reducer/users-reducer'
+import axios from 'axios'
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S.
@@ -16,19 +17,12 @@ type UsersPropsType = {
 
 export const Users: FC<UsersPropsType> = (props) => {
 
-    const newUsersFromServer: UsersType[] = [
-        {
-            id: 4,
-            followed: false,
-            fullName: 'New User',
-            status: 'Person',
-            location: {city: 'Moscow', country: 'Russia'}
+    function getUsers() {
+        if (props.users.length === 0) {
+            //делаем запрос на сервак
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => props.usersSetUsers(response.data.items))
         }
-    ]
-
-    useEffect(() => {
-        props.usersSetUsers(newUsersFromServer)
-    }, [])
+    }
 
     function usersFollowToggle(id: number) {
         props.usersFollowToggle(id)
@@ -38,6 +32,8 @@ export const Users: FC<UsersPropsType> = (props) => {
         <main className={S.users}>
 
             <h2>USERS</h2>
+
+            <button onClick={getUsers}>get users</button>
 
             <ul className={S.usersList}>
                 {props.users.map(u => {
@@ -54,9 +50,7 @@ export const Users: FC<UsersPropsType> = (props) => {
                             </div>
 
                             <div className={S.userBody}>
-                                <h4>{u.fullName}</h4>
-                                <span>{u.location.country},{u.location.city}</span>
-                                <p>{u.status}</p>
+                                <h4>{u.name}</h4>
                             </div>
 
                         </li>

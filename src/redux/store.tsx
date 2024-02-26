@@ -54,29 +54,7 @@ const store: StoreType = {
             newMessageBody: ''
         },
         usersPage: {
-            users: [
-                {
-                    id: 1,
-                    followed: true,
-                    fullName: 'Dmitriy',
-                    status: 'programmer',
-                    location: {city: 'Obninsk', country: 'Russia'}
-                },
-                {
-                    id: 2,
-                    followed: false,
-                    fullName: 'Anna',
-                    status: 'doctor',
-                    location: {city: 'Obninsk', country: 'Russia'}
-                },
-                {
-                    id: 3,
-                    followed: true,
-                    fullName: 'Mikhail',
-                    status: 'programmer',
-                    location: {city: 'Obninsk', country: 'Russia'}
-                }
-            ]
+            users: []
         }
     },
 

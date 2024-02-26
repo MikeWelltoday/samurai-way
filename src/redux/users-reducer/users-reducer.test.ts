@@ -13,23 +13,36 @@ beforeEach(() => {
             {
                 id: 1,
                 followed: true,
-                fullName: 'Dmitriy',
+                name: 'Dmitriy',
                 status: 'programmer',
-                location: {city: 'Obninsk', country: 'Russia'}
+                photos: {
+                    small: null,
+                    large: null
+                },
+                uniqueUrlName: null
             },
             {
                 id: 2,
                 followed: false,
-                fullName: 'Anna',
+                name: 'Anna',
                 status: 'doctor',
-                location: {city: 'Obninsk', country: 'Russia'}
+                photos: {
+                    small: null,
+                    large: null
+                },
+                uniqueUrlName: null
+
             },
             {
                 id: 3,
                 followed: true,
-                fullName: 'Mikhail',
+                name: 'Mikhail',
                 status: 'programmer',
-                location: {city: 'Obninsk', country: 'Russia'}
+                photos: {
+                    small: null,
+                    large: null
+                },
+                uniqueUrlName: null
             }
         ]
     }
@@ -46,16 +59,20 @@ test('USERS-SET-USERS', () => {
         {
             id: 4,
             followed: true,
-            fullName: 'NEW',
+            name: 'NEW',
             status: 'NEW',
-            location: {city: 'NEW', country: 'NEW'}
+            photos: {
+                small: null,
+                large: null
+            },
+            uniqueUrlName: null
         }
     ]
 
     const endState = usersReducer(startState, usersSetUsersAC(users))
 
     expect(endState.users.length).toBe(4)
-    expect(endState.users[3].fullName).toBe('NEW')
+    expect(endState.users[3].name).toBe('NEW')
 
 })
 

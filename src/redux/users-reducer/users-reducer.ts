@@ -1,17 +1,18 @@
 //========================================================================================
 // 🎲 .T.Y.P.E.S. - .I.N.I.T.I.A.L.S.T.A.T.E.
 
-export type LocationType = {
-    city: string
-    country: string
+export type PhotosType = {
+    small: string | null
+    large: string | null
 }
 
 export type UsersType = {
     id: number
+    name: string
+    status: string | null
+    photos: PhotosType
     followed: boolean
-    fullName: string
-    status: string
-    location: LocationType
+    uniqueUrlName: string | null
 }
 
 export type UserPageType = {
@@ -39,23 +40,7 @@ export function usersFollowToggleAC(userId: number) {
 // 🧰 .R.E.D.U.C.E.R.
 
 const initialState: UserPageType = {
-    users: [
-        {
-            id: 1,
-            followed: true,
-            fullName: 'Dmitriy',
-            status: 'programmer',
-            location: {city: 'Obninsk', country: 'Russia'}
-        },
-        {id: 2, followed: false, fullName: 'Anna', status: 'doctor', location: {city: 'Obninsk', country: 'Russia'}},
-        {
-            id: 3,
-            followed: true,
-            fullName: 'Mikhail',
-            status: 'programmer',
-            location: {city: 'Obninsk', country: 'Russia'}
-        }
-    ]
+    users: []
 }
 
 export function usersReducer(state: UserPageType = initialState, action: UsersReducerActionType): UserPageType {
