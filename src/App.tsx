@@ -10,7 +10,6 @@ import {Settings} from './layout/main/settings/Settings'
 import {DialogsContainer} from './layout/main/dialogs/DialogsContainer'
 import {DispatchType, StateType} from './redux/redux-store'
 import {UsersContainer} from './layout/main/users/UsersContainer'
-import {Users} from './layout/main/users/Users'
 
 //========================================================================================
 // 🌈 .R.O.U.T.S.

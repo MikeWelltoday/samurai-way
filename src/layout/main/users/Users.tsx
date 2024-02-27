@@ -14,6 +14,7 @@ type UsersClassType = {
     usersSetUsers: (users: UsersType[]) => void
     usersFollowToggle: (userId: number) => void
     usersSetCurrentPage: (newPageNumber: number) => void
+    usersSetTotalUsersCount: (newTotalUsersCount: number) => void
 }
 
 //========================================================================================
@@ -30,12 +31,22 @@ export class Users extends React.Component<UsersClassType, any> {
     // метод, который будет вызываться при монтировании компоненты
     componentDidMount() {
         // получаем данные пользователей с сервера
-        axios.get<any>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => this.props.usersSetUsers(response.data.items))
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.usersSetUsers(response.data.items)
+                this.props.usersSetTotalUsersCount(response.data.totalCount)
+            })
     }
 
     usersFollowToggle(id: number) {
         this.props.usersFollowToggle(id)
+    }
+
+    changePageHandler = (newPageNumber: number) => {
+        this.props.usersSetCurrentPage(newPageNumber)
+
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${newPageNumber}&count=${this.props.pageSize}`)
+            .then(response => this.props.usersSetUsers(response.data.items))
     }
 
     render() {
@@ -44,10 +55,13 @@ export class Users extends React.Component<UsersClassType, any> {
         let pages = []
 
         for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
 
-        console.log(this.props.users)
+            // ограничение по количеству страничек
+            if (i < 30) {
+                pages.push(i)
+            }
+
+        }
 
         return (
             <main className={S.users}>
@@ -59,7 +73,7 @@ export class Users extends React.Component<UsersClassType, any> {
                             <span
                                 key={p}
                                 className={`${p === this.props.currentPage && S.active}`}
-                                onClick={() => this.props.usersSetCurrentPage(p)}
+                                onClick={() => this.changePageHandler(p)}
                             >
                                 {p}
                             </span>

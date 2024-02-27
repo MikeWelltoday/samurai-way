@@ -6,7 +6,7 @@ import {
     UserPageType,
     usersFollowToggleAC,
     usersReducer,
-    usersSetCurrentPageAC,
+    usersSetCurrentPageAC, usersSetTotalUsersCountAC,
     usersSetUsersAC,
     UsersType
 } from './users-reducer'
@@ -81,8 +81,8 @@ test('USERS-SET-USERS', () => {
 
     const endState = usersReducer(startState, usersSetUsersAC(users))
 
-    expect(endState.users.length).toBe(4)
-    expect(endState.users[3].name).toBe('NEW')
+    expect(endState.users.length).toBe(1)
+    expect(endState.users[0].name).toBe('NEW')
 
 })
 
@@ -103,6 +103,16 @@ test('USERS-SET-CURRENT-PAGE', () => {
     const endState = usersReducer(startState, usersSetCurrentPageAC(newPageNumber))
 
     expect(endState.currentPage).toBe(newPageNumber)
+
+})
+
+test('USERS-SET-TOTAL-USERS-COUNT', () => {
+
+    const newTotalUsersCount = 50
+
+    const endState = usersReducer(startState, usersSetTotalUsersCountAC(newTotalUsersCount))
+
+    expect(endState.totalUsersCount).toBe(newTotalUsersCount)
 
 })
 

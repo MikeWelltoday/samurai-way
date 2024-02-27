@@ -1,7 +1,7 @@
 import {DispatchType, StateType} from '../../../redux/redux-store'
 import {
     usersFollowToggleAC,
-    usersSetCurrentPageAC,
+    usersSetCurrentPageAC, usersSetTotalUsersCountAC,
     usersSetUsersAC,
     UsersType
 } from '../../../redux/users-reducer/users-reducer'
@@ -25,7 +25,8 @@ function mapDispatchToProps(dispatch: DispatchType) {
     return {
         usersSetUsers: (users: UsersType[]) => dispatch(usersSetUsersAC(users)),
         usersFollowToggle: (userId: number) => dispatch(usersFollowToggleAC(userId)),
-        usersSetCurrentPage: (newPageNumber: number) => dispatch(usersSetCurrentPageAC(newPageNumber))
+        usersSetCurrentPage: (newPageNumber: number) => dispatch(usersSetCurrentPageAC(newPageNumber)),
+        usersSetTotalUsersCount: (newTotalUsersCount: number) => dispatch(usersSetTotalUsersCountAC(newTotalUsersCount))
     }
 }
 
