@@ -10,8 +10,10 @@ type UsersClassType = {
     users: UsersType[]
     pageSize: number
     totalUsersCount: number
+    currentPage: number
     usersSetUsers: (users: UsersType[]) => void
     usersFollowToggle: (userId: number) => void
+    usersSetCurrentPage: (newPageNumber: number) => void
 }
 
 //========================================================================================
@@ -28,7 +30,8 @@ export class Users extends React.Component<UsersClassType, any> {
     // метод, который будет вызываться при монтировании компоненты
     componentDidMount() {
         // получаем данные пользователей с сервера
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => this.props.usersSetUsers(response.data.items))
+        axios.get<any>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => this.props.usersSetUsers(response.data.items))
     }
 
     usersFollowToggle(id: number) {
@@ -38,19 +41,30 @@ export class Users extends React.Component<UsersClassType, any> {
     render() {
 
         let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+        let pages = []
 
-        const pages = () => {
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
         }
+
+        console.log(this.props.users)
 
         return (
             <main className={S.users}>
 
                 <div className={S.paginationBox}>
-                    <span className={S.active}>1</span>
-                    <span>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
+
+                    {pages.map(p => {
+                        return (
+                            <span
+                                key={p}
+                                className={`${p === this.props.currentPage && S.active}`}
+                                onClick={() => this.props.usersSetCurrentPage(p)}
+                            >
+                                {p}
+                            </span>
+                        )
+                    })}
                 </div>
 
                 <h2>USERS</h2>

@@ -2,7 +2,14 @@
 // 🍄 .S.T.A.R.T. - .S.T.A.T.E.
 
 
-import {UserPageType, usersFollowToggleAC, usersReducer, usersSetUsersAC, UsersType} from './users-reducer'
+import {
+    UserPageType,
+    usersFollowToggleAC,
+    usersReducer,
+    usersSetCurrentPageAC,
+    usersSetUsersAC,
+    UsersType
+} from './users-reducer'
 
 let startState: UserPageType
 
@@ -46,7 +53,8 @@ beforeEach(() => {
             }
         ],
         pageSize: 5,
-        totalUsersCount: 0
+        totalUsersCount: 0,
+        currentPage: 1
     }
 
 })
@@ -85,6 +93,16 @@ test('USERS-FOLLOW-TOGGLE', () => {
     expect(endState.users[0].followed).toBe(false)
     expect(endState.users[1].followed).toBe(false)
     expect(endState.users[2].followed).toBe(true)
+
+})
+
+test('USERS-SET-CURRENT-PAGE', () => {
+
+    const newPageNumber = 2
+
+    const endState = usersReducer(startState, usersSetCurrentPageAC(newPageNumber))
+
+    expect(endState.currentPage).toBe(newPageNumber)
 
 })
 

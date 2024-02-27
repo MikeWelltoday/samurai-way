@@ -56,7 +56,8 @@ const store: StoreType = {
         usersPage: {
             users: [],
             pageSize: 5,
-            totalUsersCount: 0
+            totalUsersCount: 0,
+            currentPage: 1
         }
     },
 
