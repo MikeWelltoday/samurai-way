@@ -10,7 +10,7 @@ import {connect} from 'react-redux'
 import React from 'react'
 import axios from 'axios'
 import {Users} from './Users'
-import {LoaderWrapper} from './loaderWrapper/loaderWrapper'
+import {PreloaderWrapper} from './preloaderWrapper/PreloaderWrapper'
 
 //========================================================================================
 // 🎲 .T.Y.P.E.S.
@@ -36,6 +36,7 @@ export class UsersApiContainer extends React.Component<UsersAPIComponentClassTyp
 
     // метод, который будет вызываться при монтировании компоненты
     componentDidMount() {
+
         this.props.usersIsFetchingToggle(true)
 
         // получаем данные пользователей с сервера
@@ -63,7 +64,7 @@ export class UsersApiContainer extends React.Component<UsersAPIComponentClassTyp
         return (
             <>
                 {this.props.isFetching ?
-                    <LoaderWrapper/>
+                    <PreloaderWrapper/>
                     :
                     <Users
                         users={this.props.users}

@@ -1,14 +1,14 @@
 import React from 'react'
-import {Loader} from '../../../../components/loader/Loader'
-import S from './LoaderWrapper.module.css'
+import {Preloader} from '../../../../components/loader/Preloader'
+import S from './PreloaderWrapper.module.css'
 
 //========================================================================================
 // 🧁 .C.O.P.O.N.E.N.T.
 
-export const LoaderWrapper = () => {
+export const PreloaderWrapper = () => {
     return (
         <main className={S.loadWrapper}>
-            <Loader/>
+            <Preloader/>
         </main>
     )
 }
