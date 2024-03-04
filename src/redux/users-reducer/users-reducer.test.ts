@@ -4,7 +4,7 @@
 
 import {
     UserPageType,
-    usersFollowToggleAC,
+    usersFollowToggleAC, usersIsFetchingToggleAC,
     usersReducer,
     usersSetCurrentPageAC, usersSetTotalUsersCountAC,
     usersSetUsersAC,
@@ -54,7 +54,8 @@ beforeEach(() => {
         ],
         pageSize: 5,
         totalUsersCount: 0,
-        currentPage: 1
+        currentPage: 1,
+        isFetching: false
     }
 
 })
@@ -113,6 +114,18 @@ test('USERS-SET-TOTAL-USERS-COUNT', () => {
     const endState = usersReducer(startState, usersSetTotalUsersCountAC(newTotalUsersCount))
 
     expect(endState.totalUsersCount).toBe(newTotalUsersCount)
+
+})
+
+test('USERS-isFETCHING-TOGGLE', () => {
+
+    const firstEndState = usersReducer(startState, usersIsFetchingToggleAC(true))
+
+    expect(firstEndState.isFetching).toBe(true)
+
+    const secondEndState = usersReducer(firstEndState, usersIsFetchingToggleAC(false))
+
+    expect(secondEndState.isFetching).toBe(false)
 
 })
 

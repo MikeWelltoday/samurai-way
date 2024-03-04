@@ -19,7 +19,8 @@ export type UserPageType = {
     users: UsersType[]
     pageSize: number
     totalUsersCount: number,
-    currentPage: number
+    currentPage: number,
+    isFetching: boolean
 }
 
 //========================================================================================
@@ -30,6 +31,7 @@ export type UsersReducerActionType =
     | ReturnType<typeof usersSetUsersAC>
     | ReturnType<typeof usersSetCurrentPageAC>
     | ReturnType<typeof usersSetTotalUsersCountAC>
+    | ReturnType<typeof usersIsFetchingToggleAC>
 
 //========================================================================================
 // 🍌 .A.C.
@@ -50,6 +52,10 @@ export function usersSetTotalUsersCountAC(newTotalUsersCount: number) {
     return {type: 'USERS-SET-TOTAL-USERS-COUNT', payload: {newTotalUsersCount}} as const
 }
 
+export function usersIsFetchingToggleAC(isFetchingMode: boolean) {
+    return {type: 'USERS-isFETCHING-TOGGLE', payload: {isFetchingMode}} as const
+}
+
 
 //========================================================================================
 // 🧰 .R.E.D.U.C.E.R.
@@ -58,7 +64,8 @@ const initialState: UserPageType = {
     users: [],
     pageSize: 50,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 export function usersReducer(state: UserPageType = initialState, action: UsersReducerActionType): UserPageType {
@@ -81,6 +88,10 @@ export function usersReducer(state: UserPageType = initialState, action: UsersRe
         }
         case 'USERS-SET-TOTAL-USERS-COUNT': {
             return {...state, totalUsersCount: action.payload.newTotalUsersCount}
+        }
+
+        case 'USERS-isFETCHING-TOGGLE': {
+            return {...state, isFetching: action.payload.isFetchingMode}
         }
 
         default: {
