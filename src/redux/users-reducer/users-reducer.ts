@@ -1,5 +1,4 @@
 //========================================================================================
-// 🎲 .T.Y.P.E.S. - .I.N.I.T.I.A.L.S.T.A.T.E.
 
 export type PhotosType = {
     small: string | null
@@ -12,7 +11,7 @@ export type UsersType = {
     status: string | null
     photos: PhotosType
     followed: boolean
-    uniqueUrlName: string | null
+    uniqueUrlName?: string | null
 }
 
 export type UserPageType = {
@@ -24,41 +23,38 @@ export type UserPageType = {
 }
 
 //========================================================================================
-// 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R.
 
 export type UsersReducerActionType =
-    ReturnType<typeof usersFollowToggleAC>
-    | ReturnType<typeof usersSetUsersAC>
-    | ReturnType<typeof usersSetCurrentPageAC>
-    | ReturnType<typeof usersSetTotalUsersCountAC>
-    | ReturnType<typeof usersIsFetchingToggleAC>
+    ReturnType<typeof usersFollowToggle>
+    | ReturnType<typeof usersSetUsers>
+    | ReturnType<typeof usersSetCurrentPage>
+    | ReturnType<typeof usersSetTotalUsersCount>
+    | ReturnType<typeof usersIsFetchingToggle>
 
 //========================================================================================
-// 🍌 .A.C.
 
-export function usersSetUsersAC(users: UsersType[]) {
+export function usersSetUsers(users: UsersType[]) {
     return {type: 'USERS-SET-USERS', payload: {users}} as const
 }
 
-export function usersFollowToggleAC(userId: number) {
+export function usersFollowToggle(userId: number) {
     return {type: 'USERS-FOLLOW-TOGGLE', payload: {userId}} as const
 }
 
-export function usersSetCurrentPageAC(newPageNumber: number) {
+export function usersSetCurrentPage(newPageNumber: number) {
     return {type: 'USERS-SET-CURRENT-PAGE', payload: {newPageNumber}} as const
 }
 
-export function usersSetTotalUsersCountAC(newTotalUsersCount: number) {
+export function usersSetTotalUsersCount(newTotalUsersCount: number) {
     return {type: 'USERS-SET-TOTAL-USERS-COUNT', payload: {newTotalUsersCount}} as const
 }
 
-export function usersIsFetchingToggleAC(isFetchingMode: boolean) {
+export function usersIsFetchingToggle(isFetchingMode: boolean) {
     return {type: 'USERS-isFETCHING-TOGGLE', payload: {isFetchingMode}} as const
 }
 
 
 //========================================================================================
-// 🧰 .R.E.D.U.C.E.R.
 
 const initialState: UserPageType = {
     users: [],

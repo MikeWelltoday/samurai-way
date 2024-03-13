@@ -1,11 +1,10 @@
 import React, {FC} from 'react'
 import S from './Navbar.module.css'
 import {NavLink} from 'react-router-dom'
-import {PATH} from '../../App'
+import {PATH} from '../../app/App'
 
 
 //========================================================================================
-// 🧁 .C.O.P.O.N.E.N.T.
 
 export const Navbar: FC = () => {
     return (

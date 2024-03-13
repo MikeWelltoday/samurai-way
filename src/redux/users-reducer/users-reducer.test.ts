@@ -1,13 +1,11 @@
 //========================================================================================
-// 🍄 .S.T.A.R.T. - .S.T.A.T.E.
-
 
 import {
     UserPageType,
-    usersFollowToggleAC, usersIsFetchingToggleAC,
+    usersFollowToggle, usersIsFetchingToggle,
     usersReducer,
-    usersSetCurrentPageAC, usersSetTotalUsersCountAC,
-    usersSetUsersAC,
+    usersSetCurrentPage, usersSetTotalUsersCount,
+    usersSetUsers,
     UsersType
 } from './users-reducer'
 
@@ -62,7 +60,6 @@ beforeEach(() => {
 
 
 //========================================================================================
-// 🧪 .T.E.S.T.S.
 
 test('USERS-SET-USERS', () => {
 
@@ -80,7 +77,7 @@ test('USERS-SET-USERS', () => {
         }
     ]
 
-    const endState = usersReducer(startState, usersSetUsersAC(users))
+    const endState = usersReducer(startState, usersSetUsers(users))
 
     expect(endState.users.length).toBe(1)
     expect(endState.users[0].name).toBe('NEW')
@@ -89,7 +86,7 @@ test('USERS-SET-USERS', () => {
 
 test('USERS-FOLLOW-TOGGLE', () => {
 
-    const endState = usersReducer(startState, usersFollowToggleAC(1))
+    const endState = usersReducer(startState, usersFollowToggle(1))
 
     expect(endState.users[0].followed).toBe(false)
     expect(endState.users[1].followed).toBe(false)
@@ -101,7 +98,7 @@ test('USERS-SET-CURRENT-PAGE', () => {
 
     const newPageNumber = 2
 
-    const endState = usersReducer(startState, usersSetCurrentPageAC(newPageNumber))
+    const endState = usersReducer(startState, usersSetCurrentPage(newPageNumber))
 
     expect(endState.currentPage).toBe(newPageNumber)
 
@@ -111,7 +108,7 @@ test('USERS-SET-TOTAL-USERS-COUNT', () => {
 
     const newTotalUsersCount = 50
 
-    const endState = usersReducer(startState, usersSetTotalUsersCountAC(newTotalUsersCount))
+    const endState = usersReducer(startState, usersSetTotalUsersCount(newTotalUsersCount))
 
     expect(endState.totalUsersCount).toBe(newTotalUsersCount)
 
@@ -119,11 +116,11 @@ test('USERS-SET-TOTAL-USERS-COUNT', () => {
 
 test('USERS-isFETCHING-TOGGLE', () => {
 
-    const firstEndState = usersReducer(startState, usersIsFetchingToggleAC(true))
+    const firstEndState = usersReducer(startState, usersIsFetchingToggle(true))
 
     expect(firstEndState.isFetching).toBe(true)
 
-    const secondEndState = usersReducer(firstEndState, usersIsFetchingToggleAC(false))
+    const secondEndState = usersReducer(firstEndState, usersIsFetchingToggle(false))
 
     expect(secondEndState.isFetching).toBe(false)
 

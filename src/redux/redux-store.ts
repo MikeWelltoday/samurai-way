@@ -4,7 +4,6 @@ import {ProfilePageType, profileReducer, ProfileReducerActionType} from './profi
 import {UserPageType, usersReducer, UsersReducerActionType} from './users-reducer/users-reducer'
 
 //========================================================================================
-// 🎲 .T.Y.P.E.S. - .S.T.A.T.E.
 
 export type  StateType = {
     profilePage: ProfilePageType
@@ -13,14 +12,11 @@ export type  StateType = {
 }
 
 //========================================================================================
-// 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R. => .D.I.S.P.A.T.C.H.
 
 export type ActionType = ProfileReducerActionType | DialogsReducerActionType | UsersReducerActionType
-
 export type DispatchType = (action: ActionType) => void
 
 //========================================================================================
-// 💾 .S.T.O.R.E.
 
 const rootReducer = combineReducers({
     profilePage: profileReducer,

@@ -6,7 +6,6 @@ import {
 } from './dialogs-reducer'
 
 //========================================================================================
-// 🍄 .S.T.A.R.T. - .S.T.A.T.E.
 
 let startState: DialogsPageType
 

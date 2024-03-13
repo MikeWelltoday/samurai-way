@@ -1,7 +1,6 @@
 import {ActionType} from '../redux-store'
 
 //========================================================================================
-// 🎲 .T.Y.P.E.S. - .I.N.I.T.I.A.L.S.T.A.T.E.
 
 export type PostsType = {
     id: number
@@ -15,14 +14,12 @@ export type ProfilePageType = {
 }
 
 //========================================================================================
-// 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R.
 
 export type ProfileReducerActionType = ReturnType<typeof profileUpdateNewPostTextAC>
     | ReturnType<typeof profileReducerAddPostAC>
 
 
 //========================================================================================
-// 🍌 .A.C.
 
 export function profileUpdateNewPostTextAC(newText: string) {
     return {type: 'PROFILE-UPDATE-NEW-POST-TEXT', payload: {newText}} as const
@@ -33,7 +30,6 @@ export function profileReducerAddPostAC() {
 }
 
 //========================================================================================
-// 🧰 .R.E.D.U.C.E.R.
 
 const initialState = {
     posts:

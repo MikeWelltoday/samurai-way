@@ -1,9 +1,10 @@
 import React, {FC} from 'react'
 import {UsersType} from '../../../redux/users-reducer/users-reducer'
 import S from './Users.module.css'
+import {NavLink} from 'react-router-dom'
+import {PATH} from '../../../app/App'
 
 //========================================================================================
-// 🎲 .T.Y.P.E.S.
 
 type UsersClassType = {
     users: UsersType[]
@@ -16,7 +17,6 @@ type UsersClassType = {
 }
 
 //========================================================================================
-// 🧁 .C.O.P.O.N.E.N.T.
 
 export const Users: FC<UsersClassType> = (props) => {
 
@@ -35,7 +35,7 @@ export const Users: FC<UsersClassType> = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
 
         // ограничение по количеству страничек
-        if (i < 30) {
+        if (i <= 20) {
             pages.push(i)
         }
     }
@@ -66,7 +66,10 @@ export const Users: FC<UsersClassType> = (props) => {
                         <li key={u.id} className={S.user}>
 
                             <div className={S.userPhoto}>
-                                <span>🦝</span>
+                                <NavLink to={`${PATH.PROFILE}/${u.id}`}>
+                                    🦝
+                                </NavLink>
+
                                 <button
                                     onClick={() => usersFollowToggle(u.id)}
                                 >

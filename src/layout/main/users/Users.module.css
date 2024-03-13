@@ -53,16 +53,25 @@
     row-gap: 10px;
 }
 
-.userPhoto span {
+.userPhoto a {
     display: block;
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #e15176;
     text-align: center;
     line-height: 80px;
     font-size: 40px;
+    background-color: #e15176;
 }
+
+.userPhoto a:hover {
+    background-color: #1ff68c;
+}
+
+.userPhoto a:active {
+    transform: scale(1.05);
+}
+
 
 .userPhoto button {
     background-color: #95e7d5;

@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 import {DispatchType, StateType} from '../../../redux/redux-store'
 
 //========================================================================================
-// 🧁 .C.O.P.O.N.E.N.T.
 
 function mapStateToProps(state: StateType) {
     return {

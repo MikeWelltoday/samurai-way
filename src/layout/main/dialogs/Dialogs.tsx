@@ -5,7 +5,6 @@ import {Message} from './message/Message'
 import {DialogsPageType} from '../../../redux/dialogs-reducer/dialogs-reducer'
 
 //========================================================================================
-// 🎲 .T.Y.P.E.S.
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
@@ -14,7 +13,6 @@ type DialogsPropsType = {
 }
 
 //========================================================================================
-// 🧁 .C.O.P.O.N.E.N.T.
 
 export const Dialogs: FC<DialogsPropsType> = (props) => {
 

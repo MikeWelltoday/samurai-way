@@ -1,7 +1,6 @@
 import {ProfilePageType, profileReducer, profileReducerAddPostAC, profileUpdateNewPostTextAC} from './profile-reducer'
 
 //========================================================================================
-// 🍄 .S.T.A.R.T. - .S.T.A.T.E.
 
 let startState: ProfilePageType
 
@@ -21,7 +20,6 @@ beforeEach(() => {
 })
 
 //========================================================================================
-// 🧪 .T.E.S.T.S.
 
 test('PROFILE-UPDATE-NEW-POST-TEXT', () => {
 

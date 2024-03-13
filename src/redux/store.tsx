@@ -5,14 +5,12 @@ export const emptyarray = []
 // import {ActionType, DispatchType, StateType} from './redux-store'
 //
 // //========================================================================================
-// // 🎲 .T.Y.P.E.S. - .F.U.N.C.T.I.O.N.S.
 //
 // export type CallSubscriberFunctionType = () => void
 // export type subscribeFunctionType = (observer: () => void) => void
 // export type GetStateFunctionType = () => StateType
 //
 // //========================================================================================
-// // 🎲 .T.Y.P.E.S. - .S.T.O.R.E.
 //
 // export type StoreType = {
 //     _state: StateType
@@ -23,7 +21,6 @@ export const emptyarray = []
 // }
 //
 // //========================================================================================
-// // 💾 .S.T.O.R.E.
 //
 // const store: StoreType = {
 //

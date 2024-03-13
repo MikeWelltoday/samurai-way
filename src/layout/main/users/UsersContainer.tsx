@@ -1,9 +1,10 @@
-import {DispatchType, StateType} from '../../../redux/redux-store'
+import {StateType} from '../../../redux/redux-store'
 import {
-    usersFollowToggleAC, usersIsFetchingToggleAC,
-    usersSetCurrentPageAC,
-    usersSetTotalUsersCountAC,
-    usersSetUsersAC,
+    usersFollowToggle,
+    usersIsFetchingToggle,
+    usersSetCurrentPage,
+    usersSetTotalUsersCount,
+    usersSetUsers,
     UsersType
 } from '../../../redux/users-reducer/users-reducer'
 import {connect} from 'react-redux'
@@ -13,7 +14,6 @@ import {Users} from './Users'
 import {PreloaderWrapper} from './preloaderWrapper/PreloaderWrapper'
 
 //========================================================================================
-// 🎲 .T.Y.P.E.S.
 
 type UsersAPIComponentClassType = {
     users: UsersType[]
@@ -30,7 +30,27 @@ type UsersAPIComponentClassType = {
 }
 
 //========================================================================================
-// 🧁 .C.O.P.O.N.E.N.T.
+
+type UsersApiType = {
+    items: Item[];
+    totalCount: number;
+    error?: any;
+}
+
+type Item = {
+    name: string;
+    id: number;
+    photos: Photos;
+    status: string | null
+    followed: boolean;
+}
+
+type Photos = {
+    small: string | null
+    large: string | null
+}
+
+//========================================================================================
 
 export class UsersApiContainer extends React.Component<UsersAPIComponentClassType> {
 
@@ -40,7 +60,7 @@ export class UsersApiContainer extends React.Component<UsersAPIComponentClassTyp
         this.props.usersIsFetchingToggle(true)
 
         // получаем данные пользователей с сервера
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get<UsersApiType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.usersSetUsers(response.data.items)
                 this.props.usersSetTotalUsersCount(response.data.totalCount)
@@ -53,11 +73,11 @@ export class UsersApiContainer extends React.Component<UsersAPIComponentClassTyp
         this.props.usersIsFetchingToggle(true)
 
         setTimeout(() => {
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${newPageNumber}&count=${this.props.pageSize}`)
+            axios.get<UsersApiType>(`https://social-network.samuraijs.com/api/1.0/users?page=${newPageNumber}&count=${this.props.pageSize}`)
                 .then(response => this.props.usersSetUsers(response.data.items))
 
             this.props.usersIsFetchingToggle(false)
-        }, 2000)
+        }, 500)
     }
 
     render() {
@@ -84,7 +104,6 @@ export class UsersApiContainer extends React.Component<UsersAPIComponentClassTyp
 }
 
 //========================================================================================
-// 🧁 .C.O.P.O.N.E.N.T.
 
 function mapStateToProps(state: StateType) {
     return {
@@ -96,17 +115,27 @@ function mapStateToProps(state: StateType) {
     }
 }
 
-function mapDispatchToProps(dispatch: DispatchType) {
-    return {
-        usersSetUsers: (users: UsersType[]) => dispatch(usersSetUsersAC(users)),
-        usersFollowToggle: (userId: number) => dispatch(usersFollowToggleAC(userId)),
-        usersSetCurrentPage: (newPageNumber: number) => dispatch(usersSetCurrentPageAC(newPageNumber)),
-        usersSetTotalUsersCount: (newTotalUsersCount: number) => dispatch(usersSetTotalUsersCountAC(newTotalUsersCount)),
-        usersIsFetchingToggle: (isFetchingMode: boolean) => dispatch(usersIsFetchingToggleAC(isFetchingMode))
-    }
-}
+// function mapDispatchToProps(dispatch: DispatchType) {
+//     return {
+//         usersSetUsers: (users: UsersType[]) => dispatch(usersSetUsersAC(users)),
+//         usersFollowToggle: (userId: number) => dispatch(usersFollowToggleAC(userId)),
+//         usersSetCurrentPage: (newPageNumber: number) => dispatch(usersSetCurrentPageAC(newPageNumber)),
+//         usersSetTotalUsersCount: (newTotalUsersCount: number) => dispatch(usersSetTotalUsersCountAC(newTotalUsersCount)),
+//         usersIsFetchingToggle: (isFetchingMode: boolean) => dispatch(usersIsFetchingToggleAC(isFetchingMode))
+//     }
+// }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer)
+// export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer)
+
+// connect сам там составляет cb-function на основе Action Creator
+export const UsersContainer = connect(mapStateToProps, {
+        usersSetUsers,
+        usersFollowToggle,
+        usersSetCurrentPage,
+        usersSetTotalUsersCount,
+        usersIsFetchingToggle
+    }
+)(UsersApiContainer)
 
 
 

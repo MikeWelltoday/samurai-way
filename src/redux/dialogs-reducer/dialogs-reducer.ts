@@ -1,7 +1,6 @@
 import {ActionType} from '../redux-store'
 
 //========================================================================================
-// 🎲 .T.Y.P.E.S. - .I.N.I.T.I.A.L.S.T.A.T.E.
 
 export type DialogsType = {
     id: string, person: string
@@ -20,13 +19,12 @@ export type DialogsPageType = {
 
 
 //========================================================================================
-// 🎲 .T.Y.P.E.S. - .R.E.D.U.C.E.R.
 
-export type DialogsReducerActionType = ReturnType<typeof dialogsReducerUpdateNewMessageBodyAC>
+export type DialogsReducerActionType =
+    ReturnType<typeof dialogsReducerUpdateNewMessageBodyAC>
     | ReturnType<typeof dialogsReducerAddMessageAC>
 
 //========================================================================================
-// 🍌 .A.C.
 
 export function dialogsReducerUpdateNewMessageBodyAC(newBody: string) {
     return {type: 'DIALOGS-UPDATE-NEW-MESSAGE-BODY', payload: {newBody}} as const
@@ -37,7 +35,6 @@ export function dialogsReducerAddMessageAC() {
 }
 
 //========================================================================================
-// 🧰 .R.E.D.U.C.E.R.
 
 const initialState = {
     dialogs:
