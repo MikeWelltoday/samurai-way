@@ -1,4 +1,10 @@
-import {ProfilePageType, profileReducer, profileReducerAddPostAC, profileUpdateNewPostTextAC} from './profile-reducer'
+import {
+    ProfilePageType,
+    profileReducer,
+    profileReducerAddPostAC,
+    profileUpdateNewPostTextAC, setUserProfile,
+    UserProfileType
+} from './profile-reducer'
 
 //========================================================================================
 
@@ -14,7 +20,8 @@ beforeEach(() => {
                 {id: 3, message: 'Yo', likesCount: 1},
                 {id: 4, message: 'Yo', likesCount: 5}
             ],
-        newPostText: ''
+        newPostText: '',
+        userProfile: {}
     }
 
 })
@@ -42,4 +49,35 @@ test('DIALOGS-SEND-MESSAGE', () => {
     expect(endState.posts.length).toBe(5)
     expect(endState.posts[4].message).toBe(newText)
     expect(endState.posts[4].likesCount).toBe(0)
+})
+
+test('PROFILE-SET-USER', () => {
+
+    const userData: UserProfileType = {
+        aboutMe: 'я круто чувак 1001%',
+        contacts: {
+            facebook: 'facebook.com',
+            website: null,
+            vk: 'vk.com/dimych',
+            twitter: 'https://twitter.com/@sdf',
+            instagram: 'instagra.com/sds',
+            youtube: null,
+            github: 'github.com',
+            mainLink: null
+        },
+        lookingForAJob: true,
+        lookingForAJobDescription: 'не ищу, а дурачусь',
+        fullName: 'samurai dimych',
+        userId: 2,
+        photos: {
+            small: 'https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0',
+            large: 'https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0'
+        }
+    }
+
+    const endState = profileReducer(startState, setUserProfile(userData))
+
+    expect(endState.userProfile).not.toEqual({})
+    expect(endState.userProfile).toEqual(userData)
+
 })

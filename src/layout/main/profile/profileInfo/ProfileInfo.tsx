@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {FC} from 'react'
 import S from './ProfileInfo.module.css'
+import {UserProfileType} from '../../../../redux/profile-reducer/profile-reducer'
 
 //========================================================================================
 
@@ -7,7 +8,11 @@ import image from '../../../../assets/images/content-iamge.webp'
 
 //========================================================================================
 
-export const ProfileInfo = () => {
+type ProfileInfoType = {
+    userProfile: UserProfileType
+}
+
+export const ProfileInfo: FC<ProfileInfoType> = (props) => {
     return (
         <div className={S.profileInfo}>
             <div className={S.imageBox}>

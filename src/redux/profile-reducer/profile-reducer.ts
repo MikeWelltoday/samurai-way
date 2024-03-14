@@ -1,4 +1,5 @@
 import {ActionType} from '../redux-store'
+import {ProfileApiType} from '../../layout/main/profile/ProfileContainer'
 
 //========================================================================================
 
@@ -8,15 +9,20 @@ export type PostsType = {
     likesCount: number
 }
 
+export type UserProfileType = ProfileApiType | {}
+
 export type ProfilePageType = {
-    posts: PostsType[],
+    posts: PostsType[]
     newPostText: string
+    userProfile: UserProfileType
 }
 
 //========================================================================================
 
-export type ProfileReducerActionType = ReturnType<typeof profileUpdateNewPostTextAC>
+export type ProfileReducerActionType =
+    ReturnType<typeof profileUpdateNewPostTextAC>
     | ReturnType<typeof profileReducerAddPostAC>
+    | ReturnType<typeof setUserProfile>
 
 
 //========================================================================================
@@ -29,6 +35,10 @@ export function profileReducerAddPostAC() {
     return {type: 'PROFILE-ADD-POST', payload: {}} as const
 }
 
+export function setUserProfile(userProfileFromServer: UserProfileType) {
+    return {type: 'PROFILE-SET-USER', payload: {userProfileFromServer}} as const
+}
+
 //========================================================================================
 
 const initialState = {
@@ -39,7 +49,8 @@ const initialState = {
             {id: 3, message: 'Yo', likesCount: 1},
             {id: 4, message: 'Yo', likesCount: 5}
         ],
-    newPostText: ''
+    newPostText: '',
+    userProfile: {}
 }
 
 export function profileReducer(state: ProfilePageType = initialState, action: ActionType): ProfilePageType {
@@ -54,6 +65,10 @@ export function profileReducer(state: ProfilePageType = initialState, action: Ac
             const newPostTextCopy = state.newPostText
             state.newPostText = ''
             return {...state, posts: [...state.posts, {id: 5, message: newPostTextCopy, likesCount: 0}]}
+        }
+
+        case 'PROFILE-SET-USER': {
+            return {...state, userProfile: {...action.payload.userProfileFromServer}}
         }
 
         default: {

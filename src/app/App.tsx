@@ -10,7 +10,7 @@ import {Settings} from '../layout/main/settings/Settings'
 import {DialogsContainer} from '../layout/main/dialogs/DialogsContainer'
 import {DispatchType, StateType} from '../redux/redux-store'
 import {UsersContainer} from '../layout/main/users/UsersContainer'
-import {ProfileContainer} from '../layout/main/profile/ProfileContainer'
+import {ProfileAPIContainer, ProfileContainer} from '../layout/main/profile/ProfileContainer'
 
 //========================================================================================
 

@@ -3,21 +3,9 @@ import {Profile} from './Profile'
 import {StateType} from '../../../redux/redux-store'
 import {connect} from 'react-redux'
 import axios from 'axios'
-
-
-type ProfileAPIComponentClassType = {}
+import {setUserProfile, UserProfileType} from '../../../redux/profile-reducer/profile-reducer'
 
 //========================================================================================
-
-type ProfileApiType = {
-    aboutMe: string
-    contacts: ContactsType
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: 2,
-    photos: PhotoType
-}
 
 type ContactsType = {
     facebook: string | null
@@ -35,33 +23,51 @@ type PhotoType = {
     large: string
 }
 
+export type ProfileApiType = {
+    aboutMe: string
+    contacts: ContactsType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: 2,
+    photos: PhotoType
+}
 
 //========================================================================================
 
-export class ProfileContainer extends React.Component<ProfileAPIComponentClassType> {
+type ProfileAPIComponentClassType = {
+
+    userProfile: UserProfileType
+
+    setUserProfile: (user: ProfileApiType) => void
+}
+
+//========================================================================================
+
+export class ProfileAPIContainer extends React.Component<ProfileAPIComponentClassType> {
 
     componentDidMount() {
 
         axios.get<ProfileApiType>(`https://social-network.samuraijs.com/api/1.0/profile/${2}`)
             .then(response => {
-                debugger
+                this.props.setUserProfile(response.data)
             })
-
     }
 
-
     render() {
-        return <Profile {...this.props}/>
+        return <Profile {...this.props} userProfile={this.props.userProfile}/>
     }
 }
 
 //========================================================================================
 
-// function mapStateToProps(state: StateType) {
-//     return {}
-// }
-//
-// export const ProfileContainer = connect(mapStateToProps, {})(ProfileApiContainer)
+function mapStateToProps(state: StateType) {
+    return {
+        userProfile: state.profilePage.userProfile
+    }
+}
+
+export const ProfileContainer = connect(mapStateToProps, {setUserProfile})(ProfileAPIContainer)
 
 
 
