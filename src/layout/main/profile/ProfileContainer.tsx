@@ -3,7 +3,7 @@ import {Profile} from './Profile'
 import {StateType} from '../../../redux/redux-store'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import {setUserProfile, UserProfileType} from '../../../redux/profile-reducer/profile-reducer'
+import {setUserProfile} from '../../../redux/profile-reducer/profile-reducer'
 
 //========================================================================================
 
@@ -23,7 +23,7 @@ type PhotoType = {
     large: string
 }
 
-export type ProfileApiType = {
+export type UserProfileApiType = {
     aboutMe: string
     contacts: ContactsType
     lookingForAJob: boolean
@@ -35,20 +35,20 @@ export type ProfileApiType = {
 
 //========================================================================================
 
-type ProfileAPIComponentClassType = {
+type ProfileApiContainerComponentClassType = {
 
-    userProfile: UserProfileType
+    userProfile: UserProfileApiType | null
 
-    setUserProfile: (user: ProfileApiType) => void
+    setUserProfile: (user: UserProfileApiType) => void
 }
 
 //========================================================================================
 
-export class ProfileAPIContainer extends React.Component<ProfileAPIComponentClassType> {
+export class ProfileApiContainer extends React.Component<ProfileApiContainerComponentClassType> {
 
     componentDidMount() {
 
-        axios.get<ProfileApiType>(`https://social-network.samuraijs.com/api/1.0/profile/${2}`)
+        axios.get<UserProfileApiType>(`https://social-network.samuraijs.com/api/1.0/profile/${2}`)
             .then(response => {
                 this.props.setUserProfile(response.data)
             })
@@ -67,13 +67,7 @@ function mapStateToProps(state: StateType) {
     }
 }
 
-export const ProfileContainer = connect(mapStateToProps, {setUserProfile})(ProfileAPIContainer)
-
-
-
-
-
-
+export const ProfileContainer = connect(mapStateToProps, {setUserProfile})(ProfileApiContainer)
 
 
 

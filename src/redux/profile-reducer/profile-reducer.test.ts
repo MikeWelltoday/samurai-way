@@ -2,9 +2,9 @@ import {
     ProfilePageType,
     profileReducer,
     profileReducerAddPostAC,
-    profileUpdateNewPostTextAC, setUserProfile,
-    UserProfileType
+    profileUpdateNewPostTextAC, setUserProfile
 } from './profile-reducer'
+import {UserProfileApiType} from '../../layout/main/profile/ProfileContainer'
 
 //========================================================================================
 
@@ -21,7 +21,7 @@ beforeEach(() => {
                 {id: 4, message: 'Yo', likesCount: 5}
             ],
         newPostText: '',
-        userProfile: {}
+        userProfile: null
     }
 
 })
@@ -53,7 +53,7 @@ test('DIALOGS-SEND-MESSAGE', () => {
 
 test('PROFILE-SET-USER', () => {
 
-    const userData: UserProfileType = {
+    const userData: UserProfileApiType = {
         aboutMe: 'я круто чувак 1001%',
         contacts: {
             facebook: 'facebook.com',

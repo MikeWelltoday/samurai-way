@@ -2,12 +2,12 @@ import React, {FC} from 'react'
 import S from './Profile.module.css'
 import {ProfileInfo} from './profileInfo/ProfileInfo'
 import {MyPostsContainer} from './myPosts/MyPostsContainer'
-import {UserProfileType} from '../../../redux/profile-reducer/profile-reducer'
+import {UserProfileApiType} from './ProfileContainer'
 
 //========================================================================================
 
 type ProfilePropsType = {
-    userProfile: UserProfileType
+    userProfile: UserProfileApiType | null
 }
 
 //========================================================================================

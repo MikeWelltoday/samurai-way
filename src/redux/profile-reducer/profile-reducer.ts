@@ -1,5 +1,5 @@
 import {ActionType} from '../redux-store'
-import {ProfileApiType} from '../../layout/main/profile/ProfileContainer'
+import {UserProfileApiType} from '../../layout/main/profile/ProfileContainer'
 
 //========================================================================================
 
@@ -9,12 +9,10 @@ export type PostsType = {
     likesCount: number
 }
 
-export type UserProfileType = ProfileApiType | {}
-
 export type ProfilePageType = {
     posts: PostsType[]
     newPostText: string
-    userProfile: UserProfileType
+    userProfile: UserProfileApiType | null
 }
 
 //========================================================================================
@@ -35,7 +33,7 @@ export function profileReducerAddPostAC() {
     return {type: 'PROFILE-ADD-POST', payload: {}} as const
 }
 
-export function setUserProfile(userProfileFromServer: UserProfileType) {
+export function setUserProfile(userProfileFromServer: UserProfileApiType) {
     return {type: 'PROFILE-SET-USER', payload: {userProfileFromServer}} as const
 }
 
@@ -50,7 +48,7 @@ const initialState = {
             {id: 4, message: 'Yo', likesCount: 5}
         ],
     newPostText: '',
-    userProfile: {}
+    userProfile: null
 }
 
 export function profileReducer(state: ProfilePageType = initialState, action: ActionType): ProfilePageType {
