@@ -1,5 +1,3 @@
-import {ActionType} from '../redux-store'
-
 //========================================================================================
 
 export type DialogsType = {
@@ -24,15 +22,6 @@ export type DialogsReducerActionType =
     ReturnType<typeof dialogsReducerUpdateNewMessageBodyAC>
     | ReturnType<typeof dialogsReducerAddMessageAC>
 
-//========================================================================================
-
-export function dialogsReducerUpdateNewMessageBodyAC(newBody: string) {
-    return {type: 'DIALOGS-UPDATE-NEW-MESSAGE-BODY', payload: {newBody}} as const
-}
-
-export function dialogsReducerAddMessageAC() {
-    return {type: 'DIALOGS-SEND-MESSAGE', payload: {}} as const
-}
 
 //========================================================================================
 
@@ -54,7 +43,9 @@ const initialState = {
     newMessageBody: ''
 }
 
-export function dialogsReducer(state: DialogsPageType = initialState, action: ActionType): DialogsPageType {
+//========================================================================================
+
+export function dialogsReducer(state: DialogsPageType = initialState, action: DialogsReducerActionType): DialogsPageType {
 
     switch (action.type) {
 
@@ -74,4 +65,14 @@ export function dialogsReducer(state: DialogsPageType = initialState, action: Ac
 
     }
 
+}
+
+//========================================================================================
+
+export function dialogsReducerUpdateNewMessageBodyAC(newBody: string) {
+    return {type: 'DIALOGS-UPDATE-NEW-MESSAGE-BODY', payload: {newBody}} as const
+}
+
+export function dialogsReducerAddMessageAC() {
+    return {type: 'DIALOGS-SEND-MESSAGE', payload: {}} as const
 }

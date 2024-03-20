@@ -1,4 +1,4 @@
-import {StateType} from '../../../redux/redux-store'
+import {StateType} from '../../../redux'
 import {
     usersFollowToggle,
     usersIsFetchingToggle,
@@ -6,7 +6,7 @@ import {
     usersSetTotalUsersCount,
     usersSetUsers,
     UsersType
-} from '../../../redux/users-reducer/users-reducer'
+} from '../../../redux'
 import {connect} from 'react-redux'
 import React from 'react'
 import axios from 'axios'

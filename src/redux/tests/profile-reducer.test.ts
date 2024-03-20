@@ -3,7 +3,7 @@ import {
     profileReducer,
     profileReducerAddPostAC,
     profileUpdateNewPostTextAC, setUserProfile
-} from './profile-reducer'
+} from '../reducers/profile-reducer'
 import {UserProfileApiType} from '../../layout/main/profile/ProfileContainer'
 
 //========================================================================================

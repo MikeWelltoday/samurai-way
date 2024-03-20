@@ -1,10 +1,9 @@
 import React, {ChangeEvent, FC} from 'react'
 import S from './MyPosts.module.css'
 import {Post} from './post/Post'
-import {PostsType} from '../../../../redux/profile-reducer/profile-reducer'
+import {PostsType} from '../../../../redux'
 
 //========================================================================================
-// ✨ .I.M.A.G.E.S.
 
 type PostsPropsType = {
     posts: PostsType[]
@@ -14,7 +13,6 @@ type PostsPropsType = {
 }
 
 //========================================================================================
-// 🧁 .C.O.P.O.N.E.N.T.
 
 export const MyPosts: FC<PostsPropsType> = (props) => {
 

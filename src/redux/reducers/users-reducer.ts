@@ -33,29 +33,6 @@ export type UsersReducerActionType =
 
 //========================================================================================
 
-export function usersSetUsers(users: UsersType[]) {
-    return {type: 'USERS-SET-USERS', payload: {users}} as const
-}
-
-export function usersFollowToggle(userId: number) {
-    return {type: 'USERS-FOLLOW-TOGGLE', payload: {userId}} as const
-}
-
-export function usersSetCurrentPage(newPageNumber: number) {
-    return {type: 'USERS-SET-CURRENT-PAGE', payload: {newPageNumber}} as const
-}
-
-export function usersSetTotalUsersCount(newTotalUsersCount: number) {
-    return {type: 'USERS-SET-TOTAL-USERS-COUNT', payload: {newTotalUsersCount}} as const
-}
-
-export function usersIsFetchingToggle(isFetchingMode: boolean) {
-    return {type: 'USERS-isFETCHING-TOGGLE', payload: {isFetchingMode}} as const
-}
-
-
-//========================================================================================
-
 const initialState: UserPageType = {
     users: [],
     pageSize: 50,
@@ -94,5 +71,26 @@ export function usersReducer(state: UserPageType = initialState, action: UsersRe
             return state
         }
     }
+}
 
+//========================================================================================
+
+export function usersSetUsers(users: UsersType[]) {
+    return {type: 'USERS-SET-USERS', payload: {users}} as const
+}
+
+export function usersFollowToggle(userId: number) {
+    return {type: 'USERS-FOLLOW-TOGGLE', payload: {userId}} as const
+}
+
+export function usersSetCurrentPage(newPageNumber: number) {
+    return {type: 'USERS-SET-CURRENT-PAGE', payload: {newPageNumber}} as const
+}
+
+export function usersSetTotalUsersCount(newTotalUsersCount: number) {
+    return {type: 'USERS-SET-TOTAL-USERS-COUNT', payload: {newTotalUsersCount}} as const
+}
+
+export function usersIsFetchingToggle(isFetchingMode: boolean) {
+    return {type: 'USERS-isFETCHING-TOGGLE', payload: {isFetchingMode}} as const
 }

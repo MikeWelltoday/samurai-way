@@ -1,4 +1,3 @@
-import {ActionType} from '../redux-store'
 import {UserProfileApiType} from '../../layout/main/profile/ProfileContainer'
 
 //========================================================================================
@@ -22,21 +21,6 @@ export type ProfileReducerActionType =
     | ReturnType<typeof profileReducerAddPostAC>
     | ReturnType<typeof setUserProfile>
 
-
-//========================================================================================
-
-export function profileUpdateNewPostTextAC(newText: string) {
-    return {type: 'PROFILE-UPDATE-NEW-POST-TEXT', payload: {newText}} as const
-}
-
-export function profileReducerAddPostAC() {
-    return {type: 'PROFILE-ADD-POST', payload: {}} as const
-}
-
-export function setUserProfile(userProfileFromServer: UserProfileApiType) {
-    return {type: 'PROFILE-SET-USER', payload: {userProfileFromServer}} as const
-}
-
 //========================================================================================
 
 const initialState = {
@@ -51,7 +35,7 @@ const initialState = {
     userProfile: null
 }
 
-export function profileReducer(state: ProfilePageType = initialState, action: ActionType): ProfilePageType {
+export function profileReducer(state: ProfilePageType = initialState, action: ProfileReducerActionType): ProfilePageType {
 
     switch (action.type) {
 
@@ -74,8 +58,22 @@ export function profileReducer(state: ProfilePageType = initialState, action: Ac
         }
 
     }
-
 }
+
+//========================================================================================
+
+export function profileUpdateNewPostTextAC(newText: string) {
+    return {type: 'PROFILE-UPDATE-NEW-POST-TEXT', payload: {newText}} as const
+}
+
+export function profileReducerAddPostAC() {
+    return {type: 'PROFILE-ADD-POST', payload: {}} as const
+}
+
+export function setUserProfile(userProfileFromServer: UserProfileApiType) {
+    return {type: 'PROFILE-SET-USER', payload: {userProfileFromServer}} as const
+}
+
 
 
 

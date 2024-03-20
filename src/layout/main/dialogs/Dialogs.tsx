@@ -2,7 +2,7 @@ import React, {ChangeEvent, FC} from 'react'
 import S from './Dialogs.module.css'
 import {DialogItem} from './dialogItem/DialogItem'
 import {Message} from './message/Message'
-import {DialogsPageType} from '../../../redux/dialogs-reducer/dialogs-reducer'
+import {DialogsPageType} from '../../../redux'
 
 //========================================================================================
 

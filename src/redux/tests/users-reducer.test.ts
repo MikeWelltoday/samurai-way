@@ -7,7 +7,7 @@ import {
     usersSetCurrentPage, usersSetTotalUsersCount,
     usersSetUsers,
     UsersType
-} from './users-reducer'
+} from '../reducers/users-reducer'
 
 let startState: UserPageType
 

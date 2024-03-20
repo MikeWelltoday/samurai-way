@@ -1,7 +1,7 @@
 import {combineReducers, createStore} from 'redux'
-import {DialogsPageType, dialogsReducer, DialogsReducerActionType} from './dialogs-reducer/dialogs-reducer'
-import {ProfilePageType, profileReducer, ProfileReducerActionType} from './profile-reducer/profile-reducer'
-import {UserPageType, usersReducer, UsersReducerActionType} from './users-reducer/users-reducer'
+import {DialogsPageType, dialogsReducer, DialogsReducerActionType} from './reducers/dialogs-reducer'
+import {ProfilePageType, profileReducer, ProfileReducerActionType} from './reducers/profile-reducer'
+import {UserPageType, usersReducer, UsersReducerActionType} from './reducers/users-reducer'
 
 //========================================================================================
 
@@ -13,8 +13,8 @@ export type  StateType = {
 
 //========================================================================================
 
-export type ActionType = ProfileReducerActionType | DialogsReducerActionType | UsersReducerActionType
-export type DispatchType = (action: ActionType) => void
+type AllReducersActionType = ProfileReducerActionType | DialogsReducerActionType | UsersReducerActionType
+export type DispatchType = (action: AllReducersActionType) => void
 
 //========================================================================================
 

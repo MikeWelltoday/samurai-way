@@ -2,9 +2,9 @@ import {Dialogs} from './Dialogs'
 import {
     dialogsReducerAddMessageAC,
     dialogsReducerUpdateNewMessageBodyAC
-} from '../../../redux/dialogs-reducer/dialogs-reducer'
+} from '../../../redux'
 import {connect} from 'react-redux'
-import {DispatchType, StateType} from '../../../redux/redux-store'
+import {DispatchType, StateType} from '../../../redux'
 
 //========================================================================================
 

@@ -3,7 +3,7 @@ import {
     dialogsReducer,
     dialogsReducerAddMessageAC,
     dialogsReducerUpdateNewMessageBodyAC
-} from './dialogs-reducer'
+} from '../reducers/dialogs-reducer'
 
 //========================================================================================
 

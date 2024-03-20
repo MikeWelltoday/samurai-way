@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import {UsersType} from '../../../redux/users-reducer/users-reducer'
+import {UsersType} from '../../../redux'
 import S from './Users.module.css'
 import {NavLink} from 'react-router-dom'
 import {PATH} from '../../../app/App'
@@ -66,8 +66,10 @@ export const Users: FC<UsersClassType> = (props) => {
                         <li key={u.id} className={S.user}>
 
                             <div className={S.userPhoto}>
-                                <NavLink to={`${PATH.PROFILE}/${u.id}`}>
-                                    🦝
+                                <NavLink to={`/profile/${u.id}`}>
+                                    {
+                                        u.photos.small ? <img src={u.photos.small} alt="sry"/> : '🦝'
+                                    }
                                 </NavLink>
 
                                 <button

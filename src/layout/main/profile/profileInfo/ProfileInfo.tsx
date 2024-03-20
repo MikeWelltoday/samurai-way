@@ -1,11 +1,11 @@
 import React, {FC} from 'react'
 import S from './ProfileInfo.module.css'
 import {UserProfileApiType} from '../ProfileContainer'
+import {Preloader} from '../../../../components'
 
 //========================================================================================
 
 import image from '../../../../assets/images/content-iamge.webp'
-import {Preloader} from '../../../../components/loader/Preloader'
 
 //========================================================================================
 
@@ -22,7 +22,7 @@ export const ProfileInfo: FC<ProfileInfoType> = (props) => {
     return (
         <div className={S.profileInfo}>
             <div className={S.imageBox}>
-                {props.userProfile?.photos.large ?
+                {props.userProfile.photos.large ?
                     <img src={props.userProfile.photos.large} alt="sry"/>
                     :
                     <img src={image} alt={'sry'}/>
