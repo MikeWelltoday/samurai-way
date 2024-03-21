@@ -3,8 +3,7 @@ import {Profile} from './Profile'
 import {setUserProfile, StateType} from '../../../redux'
 import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
-import {UserProfileApiType} from '../../../api'
-import {profileApi} from '../../../api/profile-api'
+import {UserProfileApiType, profileApi} from '../../../api'
 
 //========================================================================================
 // connect props
@@ -38,7 +37,7 @@ export class ProfileApiContainer extends React.Component<PropsType> {
 
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = '2'
+            userId = '30801'
         }
 
         profileApi

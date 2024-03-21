@@ -16,13 +16,18 @@ type ProfileInfoType = {
 export const ProfileInfo: FC<ProfileInfoType> = (props) => {
 
     if (!props.userProfile) {
-        return <Preloader/>
+        return (
+            <div className={S.preloaderContainer}>
+                <Preloader/>
+            </div>
+
+        )
     }
 
     return (
         <div className={S.profileInfo}>
             <div className={S.imageBox}>
-                {props.userProfile.photos.large ?
+                {props.userProfile?.photos.large ?
                     <img src={props.userProfile.photos.large} alt="sry"/>
                     :
                     <img src={image} alt={'sry'}/>

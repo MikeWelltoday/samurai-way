@@ -32,6 +32,15 @@ export {usersIsFetchingToggle} from './reducers/users-reducer'
 export {usersReducer} from './reducers/users-reducer'
 
 //========================================================================================
+// AUTH-REDUCER
+export type {AuthReducerType} from './reducers/auth-reducer'
+export {authSetUserDataAC} from './reducers/auth-reducer'
+export {authReducer} from './reducers/auth-reducer'
+export {} from './reducers/auth-reducer'
+export {} from './reducers/auth-reducer'
+export {} from './reducers/auth-reducer'
+
+//========================================================================================
 // STORE
 export type {StateType} from './store'
 export type {DispatchType} from './store'

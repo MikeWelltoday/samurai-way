@@ -1,41 +1,45 @@
+import {AuthApiDataType} from '../../api'
 //========================================================================================
 
-type AuthApiDataType = {
-    id: number
-    email: string
-    login: string
-}
-
-export type AuthDataReducerType = {
-    resultCode: number
-    messages: string[]
-    data: AuthApiDataType
-}
+export type AuthReducerActionsType = ReturnType<typeof authSetUserDataAC>
 
 //========================================================================================
 
+export type AuthReducerType = {
+    id: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+}
 
 const initialState = {
     id: null,
     email: null,
-    login: null
+    login: null,
+    isAuth: false
 }
 
+//========================================================================================
 
-export const authReducer(state:AuthDataReducerType = initialState, action):AuthDataReducerType {
+export function authReducer(state: AuthReducerType = initialState, action: AuthReducerActionsType): AuthReducerType {
 
+    switch (action.type) {
 
+        case 'AUTH-SET-USER-DATA': {
+            return {...state, ...action.payload.authDataFromApi, isAuth: true}
+        }
 
-
-
-
+        default: {
+            return state
+        }
+    }
 
 }
 
 //========================================================================================
 
-function authSetUserDataAC() {
-    return {type: 'AUTH-SET-USER-DATA', payloda: {}}
+export function authSetUserDataAC(authDataFromApi: AuthApiDataType) {
+    return {type: 'AUTH-SET-USER-DATA', payload: {authDataFromApi}} as const
 }
 
 

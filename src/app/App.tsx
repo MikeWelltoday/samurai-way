@@ -1,7 +1,6 @@
 import React, {FC} from 'react'
 import './App.css'
 import {Route} from 'react-router-dom'
-import {Header} from '../layout/header/Header'
 import {Navbar} from '../layout/navbar/Navbar'
 import {News} from '../layout/main/news/News'
 import {Music} from '../layout/main/music/Music'
@@ -10,6 +9,7 @@ import {DialogsContainer} from '../layout/main/dialogs/DialogsContainer'
 import {DispatchType, StateType} from '../redux'
 import {UsersContainer} from '../layout/main/users/UsersContainer'
 import {ProfileContainer} from '../layout/main/profile/ProfileContainer'
+import {HeaderComponent} from '../layout/header/HeaderContainer'
 
 //========================================================================================
 
@@ -37,7 +37,7 @@ const App: FC<AppPropsType> = (props) => {
     return (
 
         <div className="app-wrapper">
-            <Header/>
+            <HeaderComponent/>
             <Navbar/>
 
             {/* основные ОБЩИЕ стили тегов main => в App.css */}

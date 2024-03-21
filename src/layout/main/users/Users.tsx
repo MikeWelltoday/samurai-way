@@ -67,9 +67,7 @@ export const Users: FC<UsersClassType> = (props) => {
 
                             <div className={S.userPhoto}>
                                 <NavLink to={`/profile/${u.id}`}>
-                                    {
-                                        u.photos.small ? <img src={u.photos.small} alt="sry"/> : '🦝'
-                                    }
+                                    {u.photos.small ? <img src={u.photos.small} alt="sry"/> : '🦝'}
                                 </NavLink>
 
                                 <button

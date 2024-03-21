@@ -1,13 +1,31 @@
 .header {
     background: #66560f;
     display: flex;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
 }
 
 .header p {
+    flex-grow: 1;
+    text-align: center;
+
     font-size: 45px;
     letter-spacing: 15px;
     font-weight: 300;
     color: #282a2e;
+}
+
+.loginContainer {
+    padding: 0 20px;
+    font: 600 24px sans-serif;
+    font-style: italic;
+    color: #e76ee7;
+    width: 200px;
+
+    a {
+        &:hover {
+            color: #e59053;
+        }
+    }
 }

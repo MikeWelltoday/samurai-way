@@ -1,5 +1,5 @@
-import {StateType} from '../../../redux'
 import {
+    StateType,
     usersFollowToggle,
     usersIsFetchingToggle,
     usersSetCurrentPage,
@@ -9,7 +9,6 @@ import {
 } from '../../../redux'
 import {connect} from 'react-redux'
 import React from 'react'
-import axios from 'axios'
 import {Users} from './Users'
 import {PreloaderWrapper} from './preloaderWrapper/PreloaderWrapper'
 import {usersApi} from '../../../api'

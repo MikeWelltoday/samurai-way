@@ -13,5 +13,4 @@ export {profileApi} from './profile-api'
 
 //========================================================================================
 // AUTH-API
-
-export {authApi} from './auth-api'
+export type {AuthApiDataType} from './auth-api'
