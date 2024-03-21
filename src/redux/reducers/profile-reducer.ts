@@ -1,4 +1,4 @@
-import {UserProfileApiType} from '../../layout/main/profile/ProfileContainer'
+import {UserProfileApiType} from '../../api'
 
 //========================================================================================
 

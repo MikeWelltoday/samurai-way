@@ -4,7 +4,7 @@ import {
     profileReducerAddPostAC,
     profileUpdateNewPostTextAC, setUserProfile
 } from '../reducers/profile-reducer'
-import {UserProfileApiType} from '../../layout/main/profile/ProfileContainer'
+import {UserProfileApiType} from '../../api'
 
 //========================================================================================
 

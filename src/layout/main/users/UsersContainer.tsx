@@ -12,6 +12,7 @@ import React from 'react'
 import axios from 'axios'
 import {Users} from './Users'
 import {PreloaderWrapper} from './preloaderWrapper/PreloaderWrapper'
+import {usersApi} from '../../../api'
 
 //========================================================================================
 
@@ -31,53 +32,27 @@ type UsersAPIComponentClassType = {
 
 //========================================================================================
 
-type UsersApiType = {
-    items: Item[];
-    totalCount: number;
-    error?: any;
-}
-
-type Item = {
-    name: string;
-    id: number;
-    photos: Photos;
-    status: string | null
-    followed: boolean;
-}
-
-type Photos = {
-    small: string | null
-    large: string | null
-}
-
-//========================================================================================
-
 export class UsersApiContainer extends React.Component<UsersAPIComponentClassType> {
 
-    // метод, который будет вызываться при монтировании компоненты
     componentDidMount() {
-
         this.props.usersIsFetchingToggle(true)
-
-        // получаем данные пользователей с сервера
-        axios.get<UsersApiType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.usersSetUsers(response.data.items)
-                this.props.usersSetTotalUsersCount(response.data.totalCount)
-                this.props.usersIsFetchingToggle(false)
+        usersApi
+            .getUsers(this.props.currentPage, this.props.pageSize)
+            .then(res => {
+                this.props.usersSetUsers(res.data.items)
+                this.props.usersSetTotalUsersCount(res.data.totalCount)
             })
+        this.props.usersIsFetchingToggle(false)
     }
 
     changePageHandler = (newPageNumber: number) => {
-
         this.props.usersIsFetchingToggle(true)
-
-        setTimeout(() => {
-            axios.get<UsersApiType>(`https://social-network.samuraijs.com/api/1.0/users?page=${newPageNumber}&count=${this.props.pageSize}`)
-                .then(response => this.props.usersSetUsers(response.data.items))
-
-            this.props.usersIsFetchingToggle(false)
-        }, 500)
+        usersApi
+            .getUsers(newPageNumber, this.props.pageSize)
+            .then(res => {
+                this.props.usersSetUsers(res.data.items)
+            })
+        this.props.usersIsFetchingToggle(false)
     }
 
     render() {

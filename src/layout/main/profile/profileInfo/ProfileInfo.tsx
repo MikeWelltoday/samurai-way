@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import S from './ProfileInfo.module.css'
-import {UserProfileApiType} from '../ProfileContainer'
-import {Preloader} from '../../../../components'
+import {Preloader} from '../../../../components/loader/Preloader'
+import {UserProfileApiType} from '../../../../api'
 
 //========================================================================================
 
