@@ -22,7 +22,6 @@ export type DialogsReducerActionType =
     ReturnType<typeof dialogsReducerUpdateNewMessageBodyAC>
     | ReturnType<typeof dialogsReducerAddMessageAC>
 
-
 //========================================================================================
 
 const initialState = {
@@ -62,9 +61,7 @@ export function dialogsReducer(state: DialogsPageType = initialState, action: Di
         default: {
             return state
         }
-
     }
-
 }
 
 //========================================================================================

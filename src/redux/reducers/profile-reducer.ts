@@ -56,7 +56,6 @@ export function profileReducer(state: ProfilePageType = initialState, action: Pr
         default: {
             return state
         }
-
     }
 }
 

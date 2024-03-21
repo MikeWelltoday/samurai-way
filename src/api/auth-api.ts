@@ -21,6 +21,4 @@ export const authApi = {
     getAuth() {
         return instance.get<AuthDataReducerType>('/auth/me')
     }
-
-
 }

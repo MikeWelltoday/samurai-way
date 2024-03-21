@@ -21,12 +21,26 @@ type UsersApiType = {
     error?: any;
 }
 
+type PostDeleteResponseType = {
+    resultCode: number
+    messages: string[]
+    data: {}
+}
+
 //========================================================================================
 
 export const usersApi = {
 
     getUsers(currentPage: number, pageSize: number) {
         return instance.get<UsersApiType>(`users?page=${currentPage}&count=${pageSize}`)
+    },
+
+    followUserPost(userId: number) {
+        return instance.post<PostDeleteResponseType>(`/follow/${userId}`)
+    },
+
+    unfollowUserDelete(userId: number) {
+        return instance.delete<PostDeleteResponseType>(`/follow/${userId}`)
     }
 
 

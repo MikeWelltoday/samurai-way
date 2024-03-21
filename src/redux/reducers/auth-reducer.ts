@@ -33,7 +33,6 @@ export function authReducer(state: AuthReducerType = initialState, action: AuthR
             return state
         }
     }
-
 }
 
 //========================================================================================

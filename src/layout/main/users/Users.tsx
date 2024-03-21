@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import {UsersType} from '../../../redux'
 import S from './Users.module.css'
 import {NavLink} from 'react-router-dom'
-import {PATH} from '../../../app/App'
+import {usersApi} from '../../../api'
 
 //========================================================================================
 
@@ -20,8 +20,29 @@ type UsersClassType = {
 
 export const Users: FC<UsersClassType> = (props) => {
 
-    function usersFollowToggle(id: number) {
-        props.usersFollowToggle(id)
+    function usersFollowToggle(id: number, isFollowed: boolean) {
+
+        if (isFollowed) {
+            usersApi
+                .unfollowUserDelete(id)
+                .then(res => {
+                    if (res.data.resultCode === 0) {
+                        props.usersFollowToggle(id)
+                    } else {
+                        throw new Error('something went wrong 😑')
+                    }
+                })
+        } else {
+            usersApi
+                .followUserPost(id)
+                .then(res => {
+                    if (res.data.resultCode === 0) {
+                        props.usersFollowToggle(id)
+                    } else {
+                        throw new Error('something went wrong 😑')
+                    }
+                })
+        }
     }
 
     function changePageHandler(newPageNumber: number) {
@@ -44,22 +65,18 @@ export const Users: FC<UsersClassType> = (props) => {
         <main className={S.users}>
 
             <div className={S.paginationBox}>
-
                 {pages.map(p => {
                     return (
                         <span
                             key={p}
                             className={`${p === props.currentPage && S.active}`}
                             onClick={() => changePageHandler(p)}
-                        >
-                                {p}
-                        </span>
+                        >{p}</span>
                     )
                 })}
             </div>
 
             <h2>USERS</h2>
-
             <ul className={S.usersList}>
                 {props.users.map(u => {
                     return (
@@ -70,9 +87,7 @@ export const Users: FC<UsersClassType> = (props) => {
                                     {u.photos.small ? <img src={u.photos.small} alt="sry"/> : '🦝'}
                                 </NavLink>
 
-                                <button
-                                    onClick={() => usersFollowToggle(u.id)}
-                                >
+                                <button onClick={() => usersFollowToggle(u.id, u.followed)}>
                                     {u.followed ? 'UNFOLLOW' : 'FOLLOW'}
                                 </button>
                             </div>
@@ -80,7 +95,6 @@ export const Users: FC<UsersClassType> = (props) => {
                             <div className={S.userBody}>
                                 <h4>{u.name}</h4>
                             </div>
-
                         </li>
                     )
                 })}
