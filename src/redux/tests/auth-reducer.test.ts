@@ -1,8 +1,8 @@
-import {authReducer, AuthReducerType, authSetUserDataAC} from '../reducers/auth-reducer'
+import {authReducer, AuthStateType, authSetUserDataAC} from '../reducers/auth-reducer'
 
 //========================================================================================
 
-let startState: AuthReducerType
+let startState: AuthStateType
 
 beforeEach(() => {
     startState = {

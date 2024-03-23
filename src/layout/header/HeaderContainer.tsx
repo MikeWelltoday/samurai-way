@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {authSetUserDataAC, StateType} from '../../redux'
+import {AppRootStateType, authSetUserDataAC} from '../../redux'
 import {Header} from './Header'
-import {authApi, AuthApiDataType} from '../../api/auth-api'
+import {authApi, AuthApiDataType} from '../../redux/api/auth-api'
 
 //========================================================================================
 
@@ -37,7 +37,7 @@ export class HeaderApiContainer extends React.Component<HeaderApiContainerType> 
 //========================================================================================
 
 
-function mapStateToProps(state: StateType) {
+function mapStateToProps(state: AppRootStateType) {
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.login
@@ -45,4 +45,4 @@ function mapStateToProps(state: StateType) {
 
 }
 
-export const HeaderComponent = connect(mapStateToProps, {authSetUserDataAC})(HeaderApiContainer)
+export const HeaderContainer = connect(mapStateToProps, {authSetUserDataAC})(HeaderApiContainer)

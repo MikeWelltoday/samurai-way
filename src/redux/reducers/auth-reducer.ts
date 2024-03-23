@@ -1,18 +1,19 @@
-import {AuthApiDataType} from '../../api'
+import {AuthApiDataType} from '../api/auth-api'
+
 //========================================================================================
 
 export type AuthReducerActionsType = ReturnType<typeof authSetUserDataAC>
 
 //========================================================================================
 
-export type AuthReducerType = {
+export type AuthStateType = {
     id: number | null
     email: string | null
     login: string | null
     isAuth: boolean
 }
 
-const initialState = {
+const initialState: AuthStateType = {
     id: null,
     email: null,
     login: null,
@@ -21,7 +22,7 @@ const initialState = {
 
 //========================================================================================
 
-export function authReducer(state: AuthReducerType = initialState, action: AuthReducerActionsType): AuthReducerType {
+export function authReducer(state: AuthStateType = initialState, action: AuthReducerActionsType): AuthStateType {
 
     switch (action.type) {
 

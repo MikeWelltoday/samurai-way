@@ -1,15 +1,15 @@
 //========================================================================================
 
 import {
-    UserPageType,
-    usersFollowToggle, usersIsFetchingToggle,
+    UserStateType,
+    usersFollowToggleAC, usersIsFetchingToggleAC,
     usersReducer,
-    usersSetCurrentPage, usersSetTotalUsersCount,
-    usersSetUsers,
-    UsersType
+    usersSetCurrentPageAC, usersSetTotalUsersCountAC,
+    usersSetUsersAC,
+    UsersType, usersToggleIsFollowingProgressAC
 } from '../reducers/users-reducer'
 
-let startState: UserPageType
+let startState: UserStateType
 
 beforeEach(() => {
 
@@ -53,7 +53,8 @@ beforeEach(() => {
         pageSize: 5,
         totalUsersCount: 0,
         currentPage: 1,
-        isFetching: false
+        isFetching: false,
+        followingInProgress: false
     }
 
 })
@@ -77,28 +78,26 @@ test('USERS-SET-USERS', () => {
         }
     ]
 
-    const endState = usersReducer(startState, usersSetUsers(users))
+    const endState = usersReducer(startState, usersSetUsersAC(users))
 
     expect(endState.users.length).toBe(1)
     expect(endState.users[0].name).toBe('NEW')
-
 })
 
 test('USERS-FOLLOW-TOGGLE', () => {
 
-    const endState = usersReducer(startState, usersFollowToggle(1))
+    const endState = usersReducer(startState, usersFollowToggleAC(1))
 
     expect(endState.users[0].followed).toBe(false)
     expect(endState.users[1].followed).toBe(false)
     expect(endState.users[2].followed).toBe(true)
-
 })
 
 test('USERS-SET-CURRENT-PAGE', () => {
 
     const newPageNumber = 2
 
-    const endState = usersReducer(startState, usersSetCurrentPage(newPageNumber))
+    const endState = usersReducer(startState, usersSetCurrentPageAC(newPageNumber))
 
     expect(endState.currentPage).toBe(newPageNumber)
 
@@ -108,21 +107,28 @@ test('USERS-SET-TOTAL-USERS-COUNT', () => {
 
     const newTotalUsersCount = 50
 
-    const endState = usersReducer(startState, usersSetTotalUsersCount(newTotalUsersCount))
+    const endState = usersReducer(startState, usersSetTotalUsersCountAC(newTotalUsersCount))
 
     expect(endState.totalUsersCount).toBe(newTotalUsersCount)
-
 })
 
 test('USERS-isFETCHING-TOGGLE', () => {
 
-    const firstEndState = usersReducer(startState, usersIsFetchingToggle(true))
+    const firstEndState = usersReducer(startState, usersIsFetchingToggleAC(true))
 
     expect(firstEndState.isFetching).toBe(true)
 
-    const secondEndState = usersReducer(firstEndState, usersIsFetchingToggle(false))
+    const secondEndState = usersReducer(firstEndState, usersIsFetchingToggleAC(false))
 
     expect(secondEndState.isFetching).toBe(false)
+})
 
+test('USERS-TOGGLE-isFollowing-Progress', () => {
+
+    const newToggleIsFollowingProgressMode = true
+
+    const endState = usersReducer(startState, usersToggleIsFollowingProgressAC(newToggleIsFollowingProgressMode))
+
+    expect(endState.followingInProgress).toBe(newToggleIsFollowingProgressMode)
 })
 

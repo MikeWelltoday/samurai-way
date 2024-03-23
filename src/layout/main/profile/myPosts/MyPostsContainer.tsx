@@ -1,11 +1,11 @@
 import {MyPosts} from './MyPosts'
-import {profileReducerAddPostAC, profileUpdateNewPostTextAC} from '../../../../redux'
+import {AppRootStateType, profileReducerAddPostAC, profileUpdateNewPostTextAC} from '../../../../redux'
 import {connect} from 'react-redux'
-import {DispatchType, StateType} from '../../../../redux'
+import {DispatchType} from '../../../../redux'
 
 //========================================================================================
 
-function mapStateToProps(state: StateType) {
+function mapStateToProps(state: AppRootStateType) {
     return {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText

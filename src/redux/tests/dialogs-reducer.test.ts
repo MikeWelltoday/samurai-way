@@ -1,5 +1,5 @@
 import {
-    DialogsPageType,
+    DialogsStateType,
     dialogsReducer,
     dialogsReducerAddMessageAC,
     dialogsReducerUpdateNewMessageBodyAC
@@ -7,7 +7,7 @@ import {
 
 //========================================================================================
 
-let startState: DialogsPageType
+let startState: DialogsStateType
 
 beforeEach(() => {
 

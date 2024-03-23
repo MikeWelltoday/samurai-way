@@ -1,5 +1,3 @@
-//========================================================================================
-
 export type DialogsType = {
     id: string, person: string
 }
@@ -9,7 +7,7 @@ export type MessagesType = {
     text: string
 }
 
-export type DialogsPageType = {
+export type DialogsStateType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
     newMessageBody: string
@@ -44,7 +42,7 @@ const initialState = {
 
 //========================================================================================
 
-export function dialogsReducer(state: DialogsPageType = initialState, action: DialogsReducerActionType): DialogsPageType {
+export function dialogsReducer(state: DialogsStateType = initialState, action: DialogsReducerActionType): DialogsStateType {
 
     switch (action.type) {
 

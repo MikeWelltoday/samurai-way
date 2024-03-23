@@ -1,11 +1,12 @@
 import React, {FC} from 'react'
 import S from './ProfileInfo.module.css'
 import {Preloader} from '../../../../components/loader/Preloader'
-import {UserProfileApiType} from '../../../../api'
+import {UserProfileApiType} from '../../../../redux/api/profile-api'
 
 //========================================================================================
 
 import image from '../../../../assets/images/content-iamge.webp'
+
 
 //========================================================================================
 

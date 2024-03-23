@@ -6,10 +6,10 @@ import {News} from '../layout/main/news/News'
 import {Music} from '../layout/main/music/Music'
 import {Settings} from '../layout/main/settings/Settings'
 import {DialogsContainer} from '../layout/main/dialogs/DialogsContainer'
-import {DispatchType, StateType} from '../redux'
+import {AppRootStateType, DispatchType} from '../redux'
 import {UsersContainer} from '../layout/main/users/UsersContainer'
 import {ProfileContainer} from '../layout/main/profile/ProfileContainer'
-import {HeaderComponent} from '../layout/header/HeaderContainer'
+import {HeaderContainer} from '../layout/header/HeaderContainer'
 
 //========================================================================================
 
@@ -26,7 +26,7 @@ export const PATH = {
 
 type AppPropsType = {
     store: any
-    state: StateType
+    state: AppRootStateType
     dispatch: DispatchType
 }
 
@@ -37,7 +37,7 @@ const App: FC<AppPropsType> = (props) => {
     return (
 
         <div className="app-wrapper">
-            <HeaderComponent/>
+            <HeaderContainer/>
             <Navbar/>
 
             {/* основные ОБЩИЕ стили тегов main => в App.css */}

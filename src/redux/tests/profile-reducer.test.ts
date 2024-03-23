@@ -1,14 +1,14 @@
 import {
-    ProfilePageType,
+    ProfileStateType,
     profileReducer,
     profileReducerAddPostAC,
-    profileUpdateNewPostTextAC, setUserProfile
+    profileUpdateNewPostTextAC, setUserProfileAC
 } from '../reducers/profile-reducer'
-import {UserProfileApiType} from '../../api'
+import {UserProfileApiType} from '../api/profile-api'
 
 //========================================================================================
 
-let startState: ProfilePageType
+let startState: ProfileStateType
 
 beforeEach(() => {
 
@@ -75,7 +75,7 @@ test('PROFILE-SET-USER', () => {
         }
     }
 
-    const endState = profileReducer(startState, setUserProfile(userData))
+    const endState = profileReducer(startState, setUserProfileAC(userData))
 
     expect(endState.userProfile).not.toEqual({})
     expect(endState.userProfile).toEqual(userData)

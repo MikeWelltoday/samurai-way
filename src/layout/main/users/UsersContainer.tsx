@@ -1,17 +1,17 @@
 import {
-    StateType,
-    usersFollowToggle,
-    usersIsFetchingToggle,
-    usersSetCurrentPage,
-    usersSetTotalUsersCount,
-    usersSetUsers,
+    AppRootStateType, usersApi,
+    usersFollowToggleAC,
+    usersIsFetchingToggleAC,
+    usersSetCurrentPageAC,
+    usersSetTotalUsersCountAC,
+    usersSetUsersAC,
     UsersType
 } from '../../../redux'
 import {connect} from 'react-redux'
 import React from 'react'
 import {Users} from './Users'
 import {PreloaderWrapper} from './preloaderWrapper/PreloaderWrapper'
-import {usersApi} from '../../../api'
+import {usersToggleIsFollowingProgressAC} from '../../../redux/reducers/users-reducer'
 
 //========================================================================================
 
@@ -21,12 +21,14 @@ type UsersAPIComponentClassType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: boolean
 
     usersSetUsers: (users: UsersType[]) => void
     usersFollowToggle: (userId: number) => void
     usersSetCurrentPage: (newPageNumber: number) => void
     usersSetTotalUsersCount: (newTotalUsersCount: number) => void
     usersIsFetchingToggle: (isFetchingMode: boolean) => void
+    usersToggleIsFollowingProgress: (isFetching: boolean) => void
 }
 
 //========================================================================================
@@ -65,9 +67,12 @@ export class UsersApiContainer extends React.Component<UsersAPIComponentClassTyp
                         pageSize={this.props.pageSize}
                         totalUsersCount={this.props.totalUsersCount}
                         currentPage={this.props.currentPage}
+                        followingInProgress={this.props.followingInProgress}
+
                         changePageHandler={this.changePageHandler}
                         usersFollowToggle={this.props.usersFollowToggle}
                         usersSetCurrentPage={this.props.usersSetCurrentPage}
+                        usersToggleIsFollowingProgress={this.props.usersToggleIsFollowingProgress}
                     />
                 }
             </>
@@ -79,13 +84,14 @@ export class UsersApiContainer extends React.Component<UsersAPIComponentClassTyp
 
 //========================================================================================
 
-function mapStateToProps(state: StateType) {
+function mapStateToProps(state: AppRootStateType) {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -103,11 +109,12 @@ function mapStateToProps(state: StateType) {
 
 // connect сам там составляет cb-function на основе Action Creator
 export const UsersContainer = connect(mapStateToProps, {
-        usersSetUsers,
-        usersFollowToggle,
-        usersSetCurrentPage,
-        usersSetTotalUsersCount,
-        usersIsFetchingToggle
+        usersSetUsers: usersSetUsersAC,
+        usersFollowToggle: usersFollowToggleAC,
+        usersSetCurrentPage: usersSetCurrentPageAC,
+        usersSetTotalUsersCount: usersSetTotalUsersCountAC,
+        usersIsFetchingToggle: usersIsFetchingToggleAC,
+        usersToggleIsFollowingProgress: usersToggleIsFollowingProgressAC
     }
 )(UsersApiContainer)
 

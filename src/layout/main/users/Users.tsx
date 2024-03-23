@@ -1,8 +1,7 @@
 import React, {FC} from 'react'
-import {UsersType} from '../../../redux'
+import {usersApi, UsersType} from '../../../redux'
 import S from './Users.module.css'
 import {NavLink} from 'react-router-dom'
-import {usersApi} from '../../../api'
 
 //========================================================================================
 
@@ -11,9 +10,11 @@ type UsersClassType = {
     currentPage: number
     pageSize: number
     totalUsersCount: number
+    followingInProgress: boolean
     changePageHandler: (newPageNumber: number) => void
     usersFollowToggle: (userId: number) => void
     usersSetCurrentPage: (newPageNumber: number) => void
+    usersToggleIsFollowingProgress: (isFetching: boolean) => void
 }
 
 //========================================================================================
@@ -21,6 +22,8 @@ type UsersClassType = {
 export const Users: FC<UsersClassType> = (props) => {
 
     function usersFollowToggle(id: number, isFollowed: boolean) {
+
+        props.usersToggleIsFollowingProgress(true)
 
         if (isFollowed) {
             usersApi
@@ -31,6 +34,7 @@ export const Users: FC<UsersClassType> = (props) => {
                     } else {
                         throw new Error('something went wrong 😑')
                     }
+                    props.usersToggleIsFollowingProgress(false)
                 })
         } else {
             usersApi
@@ -41,6 +45,7 @@ export const Users: FC<UsersClassType> = (props) => {
                     } else {
                         throw new Error('something went wrong 😑')
                     }
+                    props.usersToggleIsFollowingProgress(false)
                 })
         }
     }
@@ -87,7 +92,8 @@ export const Users: FC<UsersClassType> = (props) => {
                                     {u.photos.small ? <img src={u.photos.small} alt="sry"/> : '🦝'}
                                 </NavLink>
 
-                                <button onClick={() => usersFollowToggle(u.id, u.followed)}>
+                                <button onClick={() => usersFollowToggle(u.id, u.followed)}
+                                        disabled={props.followingInProgress}>
                                     {u.followed ? 'UNFOLLOW' : 'FOLLOW'}
                                 </button>
                             </div>

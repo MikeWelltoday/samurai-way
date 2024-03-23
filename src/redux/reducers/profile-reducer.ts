@@ -1,4 +1,4 @@
-import {UserProfileApiType} from '../../api'
+import {UserProfileApiType} from '../api/profile-api'
 
 //========================================================================================
 
@@ -8,7 +8,7 @@ export type PostsType = {
     likesCount: number
 }
 
-export type ProfilePageType = {
+export type ProfileStateType = {
     posts: PostsType[]
     newPostText: string
     userProfile: UserProfileApiType | null
@@ -19,7 +19,7 @@ export type ProfilePageType = {
 export type ProfileReducerActionType =
     ReturnType<typeof profileUpdateNewPostTextAC>
     | ReturnType<typeof profileReducerAddPostAC>
-    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setUserProfileAC>
 
 //========================================================================================
 
@@ -35,7 +35,7 @@ const initialState = {
     userProfile: null
 }
 
-export function profileReducer(state: ProfilePageType = initialState, action: ProfileReducerActionType): ProfilePageType {
+export function profileReducer(state: ProfileStateType = initialState, action: ProfileReducerActionType): ProfileStateType {
 
     switch (action.type) {
 
@@ -69,7 +69,7 @@ export function profileReducerAddPostAC() {
     return {type: 'PROFILE-ADD-POST', payload: {}} as const
 }
 
-export function setUserProfile(userProfileFromServer: UserProfileApiType) {
+export function setUserProfileAC(userProfileFromServer: UserProfileApiType) {
     return {type: 'PROFILE-SET-USER', payload: {userProfileFromServer}} as const
 }
 

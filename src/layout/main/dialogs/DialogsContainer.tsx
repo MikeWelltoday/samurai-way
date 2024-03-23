@@ -1,14 +1,15 @@
 import {Dialogs} from './Dialogs'
 import {
+    AppRootStateType,
     dialogsReducerAddMessageAC,
     dialogsReducerUpdateNewMessageBodyAC
 } from '../../../redux'
 import {connect} from 'react-redux'
-import {DispatchType, StateType} from '../../../redux'
+import {DispatchType} from '../../../redux'
 
 //========================================================================================
 
-function mapStateToProps(state: StateType) {
+function mapStateToProps(state: AppRootStateType) {
     return {
         dialogsPage: state.dialogsPage
     }

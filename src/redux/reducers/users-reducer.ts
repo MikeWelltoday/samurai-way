@@ -14,34 +14,37 @@ export type UsersType = {
     uniqueUrlName?: string | null
 }
 
-export type UserPageType = {
+export type UserStateType = {
     users: UsersType[]
     pageSize: number
     totalUsersCount: number,
     currentPage: number,
-    isFetching: boolean
+    isFetching: boolean,
+    followingInProgress: boolean
 }
 
 //========================================================================================
 
 export type UsersReducerActionType =
-    ReturnType<typeof usersFollowToggle>
-    | ReturnType<typeof usersSetUsers>
-    | ReturnType<typeof usersSetCurrentPage>
-    | ReturnType<typeof usersSetTotalUsersCount>
-    | ReturnType<typeof usersIsFetchingToggle>
+    ReturnType<typeof usersFollowToggleAC>
+    | ReturnType<typeof usersSetUsersAC>
+    | ReturnType<typeof usersSetCurrentPageAC>
+    | ReturnType<typeof usersSetTotalUsersCountAC>
+    | ReturnType<typeof usersIsFetchingToggleAC>
+    | ReturnType<typeof usersToggleIsFollowingProgressAC>
 
 //========================================================================================
 
-const initialState: UserPageType = {
+const initialState: UserStateType = {
     users: [],
     pageSize: 50,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: false
 }
 
-export function usersReducer(state: UserPageType = initialState, action: UsersReducerActionType): UserPageType {
+export function usersReducer(state: UserStateType = initialState, action: UsersReducerActionType): UserStateType {
 
     switch (action.type) {
 
@@ -67,6 +70,10 @@ export function usersReducer(state: UserPageType = initialState, action: UsersRe
             return {...state, isFetching: action.payload.isFetchingMode}
         }
 
+        case 'USERS-TOGGLE-isFollowing-Progress': {
+            return {...state, followingInProgress: action.payload.isFetching}
+        }
+
         default: {
             return state
         }
@@ -75,22 +82,26 @@ export function usersReducer(state: UserPageType = initialState, action: UsersRe
 
 //========================================================================================
 
-export function usersSetUsers(users: UsersType[]) {
+export function usersSetUsersAC(users: UsersType[]) {
     return {type: 'USERS-SET-USERS', payload: {users}} as const
 }
 
-export function usersFollowToggle(userId: number) {
+export function usersFollowToggleAC(userId: number) {
     return {type: 'USERS-FOLLOW-TOGGLE', payload: {userId}} as const
 }
 
-export function usersSetCurrentPage(newPageNumber: number) {
+export function usersSetCurrentPageAC(newPageNumber: number) {
     return {type: 'USERS-SET-CURRENT-PAGE', payload: {newPageNumber}} as const
 }
 
-export function usersSetTotalUsersCount(newTotalUsersCount: number) {
+export function usersSetTotalUsersCountAC(newTotalUsersCount: number) {
     return {type: 'USERS-SET-TOTAL-USERS-COUNT', payload: {newTotalUsersCount}} as const
 }
 
-export function usersIsFetchingToggle(isFetchingMode: boolean) {
+export function usersIsFetchingToggleAC(isFetchingMode: boolean) {
     return {type: 'USERS-isFETCHING-TOGGLE', payload: {isFetchingMode}} as const
+}
+
+export function usersToggleIsFollowingProgressAC(isFetching: boolean) {
+    return {type: 'USERS-TOGGLE-isFollowing-Progress', payload: {isFetching}} as const
 }

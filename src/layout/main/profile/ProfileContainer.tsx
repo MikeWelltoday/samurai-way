@@ -1,9 +1,9 @@
 import React from 'react'
 import {Profile} from './Profile'
-import {setUserProfile, StateType} from '../../../redux'
+import {AppRootStateType, profileApi, setUserProfileAC} from '../../../redux'
 import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
-import {UserProfileApiType, profileApi} from '../../../api'
+import {UserProfileApiType} from '../../../redux/api/profile-api'
 
 //========================================================================================
 // connect props
@@ -36,7 +36,8 @@ export class ProfileApiContainer extends React.Component<PropsType> {
     componentDidMount() {
 
         let userId = this.props.match.params.userId
-        if (!userId) {
+
+        if (userId === ':userId') {
             userId = '30801'
         }
 
@@ -52,7 +53,7 @@ export class ProfileApiContainer extends React.Component<PropsType> {
 
 //========================================================================================
 
-function mapStateToProps(state: StateType): MapStateToPropsType {
+function mapStateToProps(state: AppRootStateType): MapStateToPropsType {
     return {
         userProfile: state.profilePage.userProfile
     }
@@ -63,7 +64,7 @@ function mapStateToProps(state: StateType): MapStateToPropsType {
 // @ts-ignore
 let WithUrlDataContainerComponent = withRouter(ProfileApiContainer)
 
-export const ProfileContainer = connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent)
+export const ProfileContainer = connect(mapStateToProps, {setUserProfile: setUserProfileAC})(WithUrlDataContainerComponent)
 
 // цепочка компонент
 // ProfileContainer => WithUrlDataContainerComponent => ProfileApiContainer
