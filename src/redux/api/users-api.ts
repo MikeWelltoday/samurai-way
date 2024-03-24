@@ -35,11 +35,11 @@ export const usersApi = {
         return instance.get<UsersApiType>(`users?page=${currentPage}&count=${pageSize}`)
     },
 
-    followUserPost(userId: number) {
+    followUser(userId: number) {
         return instance.post<PostDeleteResponseType>(`/follow/${userId}`)
     },
 
-    unfollowUserDelete(userId: number) {
+    unfollowUser(userId: number) {
         return instance.delete<PostDeleteResponseType>(`/follow/${userId}`)
     }
 

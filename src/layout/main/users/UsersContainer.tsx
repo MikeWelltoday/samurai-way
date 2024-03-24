@@ -1,17 +1,8 @@
-import {
-    AppRootStateType, usersApi,
-    usersFollowToggleAC,
-    usersIsFetchingToggleAC,
-    usersSetCurrentPageAC,
-    usersSetTotalUsersCountAC,
-    usersSetUsersAC,
-    UsersType
-} from '../../../redux'
+import {AppRootStateType, fetchUsersTC, usersSetCurrentPageAC, UsersType} from '../../../redux'
 import {connect} from 'react-redux'
 import React from 'react'
-import {Users} from './Users'
+import {Users} from './users/Users'
 import {PreloaderWrapper} from './preloaderWrapper/PreloaderWrapper'
-import {usersToggleIsFollowingProgressAC} from '../../../redux/reducers/users-reducer'
 
 //========================================================================================
 
@@ -21,14 +12,9 @@ type UsersAPIComponentClassType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    followingInProgress: boolean
 
-    usersSetUsers: (users: UsersType[]) => void
-    usersFollowToggle: (userId: number) => void
-    usersSetCurrentPage: (newPageNumber: number) => void
-    usersSetTotalUsersCount: (newTotalUsersCount: number) => void
-    usersIsFetchingToggle: (isFetchingMode: boolean) => void
-    usersToggleIsFollowingProgress: (isFetching: boolean) => void
+    usersSetCurrentPageAC: (newPageNumber: number) => void
+    fetchUsersTC: (currentPage: number, pageSize: number) => void
 }
 
 //========================================================================================
@@ -36,24 +22,11 @@ type UsersAPIComponentClassType = {
 export class UsersApiContainer extends React.Component<UsersAPIComponentClassType> {
 
     componentDidMount() {
-        this.props.usersIsFetchingToggle(true)
-        usersApi
-            .getUsers(this.props.currentPage, this.props.pageSize)
-            .then(res => {
-                this.props.usersSetUsers(res.data.items)
-                this.props.usersSetTotalUsersCount(res.data.totalCount)
-            })
-        this.props.usersIsFetchingToggle(false)
+        this.props.fetchUsersTC(this.props.currentPage, this.props.pageSize)
     }
 
-    changePageHandler = (newPageNumber: number) => {
-        this.props.usersIsFetchingToggle(true)
-        usersApi
-            .getUsers(newPageNumber, this.props.pageSize)
-            .then(res => {
-                this.props.usersSetUsers(res.data.items)
-            })
-        this.props.usersIsFetchingToggle(false)
+    onChangePageHandler = (newPageNumber: number) => {
+        this.props.fetchUsersTC(newPageNumber, this.props.pageSize)
     }
 
     render() {
@@ -67,17 +40,12 @@ export class UsersApiContainer extends React.Component<UsersAPIComponentClassTyp
                         pageSize={this.props.pageSize}
                         totalUsersCount={this.props.totalUsersCount}
                         currentPage={this.props.currentPage}
-                        followingInProgress={this.props.followingInProgress}
 
-                        changePageHandler={this.changePageHandler}
-                        usersFollowToggle={this.props.usersFollowToggle}
-                        usersSetCurrentPage={this.props.usersSetCurrentPage}
-                        usersToggleIsFollowingProgress={this.props.usersToggleIsFollowingProgress}
+                        usersSetCurrentPage={this.props.usersSetCurrentPageAC}
+                        changePageHandler={this.onChangePageHandler}
                     />
                 }
             </>
-
-
         )
     }
 }
@@ -90,33 +58,14 @@ function mapStateToProps(state: AppRootStateType) {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        isFetching: state.usersPage.isFetching
     }
 }
 
-// function mapDispatchToProps(dispatch: DispatchType) {
-//     return {
-//         usersSetUsers: (users: UsersType[]) => dispatch(usersSetUsersAC(users)),
-//         usersFollowToggle: (userId: number) => dispatch(usersFollowToggleAC(userId)),
-//         usersSetCurrentPage: (newPageNumber: number) => dispatch(usersSetCurrentPageAC(newPageNumber)),
-//         usersSetTotalUsersCount: (newTotalUsersCount: number) => dispatch(usersSetTotalUsersCountAC(newTotalUsersCount)),
-//         usersIsFetchingToggle: (isFetchingMode: boolean) => dispatch(usersIsFetchingToggleAC(isFetchingMode))
-//     }
-// }
-
-// export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer)
+const mapDispatchToProps = {
+    usersSetCurrentPageAC,
+    fetchUsersTC
+}
 
 // connect сам там составляет cb-function на основе Action Creator
-export const UsersContainer = connect(mapStateToProps, {
-        usersSetUsers: usersSetUsersAC,
-        usersFollowToggle: usersFollowToggleAC,
-        usersSetCurrentPage: usersSetCurrentPageAC,
-        usersSetTotalUsersCount: usersSetTotalUsersCountAC,
-        usersIsFetchingToggle: usersIsFetchingToggleAC,
-        usersToggleIsFollowingProgress: usersToggleIsFollowingProgressAC
-    }
-)(UsersApiContainer)
-
-
-
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer)

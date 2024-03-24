@@ -1,0 +1,48 @@
+.users {
+    background-color: #6c606c;
+    padding: 30px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    row-gap: 20px;
+}
+
+.paginationBox {
+    background-color: #e76ee7;
+    display: flex;
+    column-gap: 20px;
+
+}
+
+.paginationBox span {
+    font: 400 22px sans-serif;
+    cursor: pointer;
+}
+
+
+.paginationBox .active {
+    font-size: 22px;
+    font-weight: 700;
+    color: black;
+}
+
+.users h2 {
+    background-color: #6cde9f;
+    font: 500 28px sans-serif;
+}
+
+.usersList {
+    background-color: #66560f;
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 20px;
+}
+
+
+.showMoreButton {
+    background-color: #e7cb6e;
+    padding: 5px 10px;
+    border-radius: 8px;
+
+}

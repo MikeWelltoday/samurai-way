@@ -19,8 +19,7 @@ export type UserStateType = {
     pageSize: number
     totalUsersCount: number,
     currentPage: number,
-    isFetching: boolean,
-    followingInProgress: boolean
+    isFetching: boolean
 }
 
 //========================================================================================
@@ -31,7 +30,6 @@ export type UsersReducerActionType =
     | ReturnType<typeof usersSetCurrentPageAC>
     | ReturnType<typeof usersSetTotalUsersCountAC>
     | ReturnType<typeof usersIsFetchingToggleAC>
-    | ReturnType<typeof usersToggleIsFollowingProgressAC>
 
 //========================================================================================
 
@@ -40,8 +38,7 @@ const initialState: UserStateType = {
     pageSize: 50,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false,
-    followingInProgress: false
+    isFetching: false
 }
 
 export function usersReducer(state: UserStateType = initialState, action: UsersReducerActionType): UserStateType {
@@ -70,10 +67,6 @@ export function usersReducer(state: UserStateType = initialState, action: UsersR
             return {...state, isFetching: action.payload.isFetchingMode}
         }
 
-        case 'USERS-TOGGLE-isFollowing-Progress': {
-            return {...state, followingInProgress: action.payload.isFetching}
-        }
-
         default: {
             return state
         }
@@ -100,8 +93,4 @@ export function usersSetTotalUsersCountAC(newTotalUsersCount: number) {
 
 export function usersIsFetchingToggleAC(isFetchingMode: boolean) {
     return {type: 'USERS-isFETCHING-TOGGLE', payload: {isFetchingMode}} as const
-}
-
-export function usersToggleIsFollowingProgressAC(isFetching: boolean) {
-    return {type: 'USERS-TOGGLE-isFollowing-Progress', payload: {isFetching}} as const
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Profile} from './Profile'
-import {AppRootStateType, profileApi, setUserProfileAC} from '../../../redux'
+import {AppRootStateType, fetchUserProfileTC, profileApi, setUserProfileAC} from '../../../redux'
 import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {UserProfileApiType} from '../../../redux/api/profile-api'
@@ -13,7 +13,7 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToProps = {
-    setUserProfile: (user: UserProfileApiType) => void
+    fetchUserProfileTC: (userID: string) => void
 }
 
 type ProfileApiContainerPropsType = MapStateToPropsType & MapDispatchToProps
@@ -34,16 +34,13 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileApiContainerPropsT
 export class ProfileApiContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-
         let userId = this.props.match.params.userId
 
         if (userId === ':userId') {
             userId = '30801'
         }
 
-        profileApi
-            .getUserProfile(userId)
-            .then(res => this.props.setUserProfile(res.data))
+        this.props.fetchUserProfileTC(userId)
     }
 
     render() {
@@ -53,21 +50,28 @@ export class ProfileApiContainer extends React.Component<PropsType> {
 
 //========================================================================================
 
+// цепочка компонент
+// ProfileContainer => WithUrlDataContainerComponent => ProfileApiContainer
+
+// контейнерная компонента
+// @ts-ignore
+let WithUrlDataContainerComponent = withRouter(ProfileApiContainer)
+
+//========================================================================================
+
 function mapStateToProps(state: AppRootStateType): MapStateToPropsType {
     return {
         userProfile: state.profilePage.userProfile
     }
 }
 
-// контейнерная компонента
+const mapDispatchToProps = {
+    fetchUserProfileTC
+}
 
-// @ts-ignore
-let WithUrlDataContainerComponent = withRouter(ProfileApiContainer)
+export const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent)
 
-export const ProfileContainer = connect(mapStateToProps, {setUserProfile: setUserProfileAC})(WithUrlDataContainerComponent)
 
-// цепочка компонент
-// ProfileContainer => WithUrlDataContainerComponent => ProfileApiContainer
 
 
 

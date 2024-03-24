@@ -6,7 +6,7 @@ import {
     usersReducer,
     usersSetCurrentPageAC, usersSetTotalUsersCountAC,
     usersSetUsersAC,
-    UsersType, usersToggleIsFollowingProgressAC
+    UsersType
 } from '../reducers/users-reducer'
 
 let startState: UserStateType
@@ -53,8 +53,7 @@ beforeEach(() => {
         pageSize: 5,
         totalUsersCount: 0,
         currentPage: 1,
-        isFetching: false,
-        followingInProgress: false
+        isFetching: false
     }
 
 })
@@ -122,13 +121,3 @@ test('USERS-isFETCHING-TOGGLE', () => {
 
     expect(secondEndState.isFetching).toBe(false)
 })
-
-test('USERS-TOGGLE-isFollowing-Progress', () => {
-
-    const newToggleIsFollowingProgressMode = true
-
-    const endState = usersReducer(startState, usersToggleIsFollowingProgressAC(newToggleIsFollowingProgressMode))
-
-    expect(endState.followingInProgress).toBe(newToggleIsFollowingProgressMode)
-})
-

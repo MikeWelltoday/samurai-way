@@ -29,8 +29,17 @@ export {authSetUserDataAC} from './reducers/auth-reducer'
 export type {AppRootStateType} from './store'
 export type {DispatchType} from './store'
 export {store} from './store'
+export {useAppDispatch} from './store'
+
 //========================================================================================
 // API
 export {authApi} from './api/auth-api'
 export {profileApi} from './api/profile-api'
 export {usersApi} from './api/users-api'
+
+//========================================================================================
+//THUNKS
+export {fetchUsersTC} from './thunks/users-thunks'
+export {usersFollowToggleTC} from './thunks/users-thunks'
+export {fetchUserProfileTC} from './thunks/profile-thunks'
+export {authSetUserDataTC} from './thunks/auth-thunks'
