@@ -3,22 +3,32 @@ import S from './Dialogs.module.css'
 import {DialogItem} from './dialogItem/DialogItem'
 import {Message} from './message/Message'
 import {DialogsStateType} from '../../../redux'
+import {Redirect} from 'react-router-dom'
+import {PATH} from '../../../app/App'
 
 //========================================================================================
 
-type DialogsPropsType = {
+export type MapStateToPropsType = {
     dialogsPage: DialogsStateType
-    updateNewMessageBody: (textInput: string) => void
-    sendMessage: () => void
+    isAuth: boolean
 }
+
+export type MapDispatchToPropsType = {
+    dialogsReducerUpdateNewMessageBodyAC: (textInput: string) => void
+    dialogsReducerAddMessageAC: () => void
+}
+
+type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 //========================================================================================
 
 export const Dialogs: FC<DialogsPropsType> = (props) => {
 
     function onNewMessageChange(e: ChangeEvent<HTMLTextAreaElement>) {
-        props.updateNewMessageBody(e.currentTarget.value)
+        props.dialogsReducerUpdateNewMessageBodyAC(e.currentTarget.value)
     }
+
+    if (!props.isAuth) return <Redirect to={PATH.LOGIN}/>
 
     return (
         <main className={S.dialogs}>
@@ -33,7 +43,7 @@ export const Dialogs: FC<DialogsPropsType> = (props) => {
                         value={props.dialogsPage.newMessageBody}
                         onChange={onNewMessageChange}
                     />
-                    <button onClick={props.sendMessage}>SEND</button>
+                    <button onClick={props.dialogsReducerAddMessageAC}>SEND</button>
                 </div>
             </div>
         </main>

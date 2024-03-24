@@ -1,25 +1,19 @@
-import {Dialogs} from './Dialogs'
-import {
-    AppRootStateType,
-    dialogsReducerAddMessageAC,
-    dialogsReducerUpdateNewMessageBodyAC
-} from '../../../redux'
+import {Dialogs, MapDispatchToPropsType, MapStateToPropsType} from './Dialogs'
+import {AppRootStateType, dialogsReducerAddMessageAC, dialogsReducerUpdateNewMessageBodyAC} from '../../../redux'
 import {connect} from 'react-redux'
-import {DispatchType} from '../../../redux'
 
 //========================================================================================
 
-function mapStateToProps(state: AppRootStateType) {
+function mapStateToProps(state: AppRootStateType): MapStateToPropsType {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 
-function mapDispatchToProps(dispatch: DispatchType) {
-    return {
-        updateNewMessageBody: (textInput: string) => dispatch(dialogsReducerUpdateNewMessageBodyAC(textInput)),
-        sendMessage: () => dispatch(dialogsReducerAddMessageAC())
-    }
+const mapDispatchToProps: MapDispatchToPropsType = {
+    dialogsReducerUpdateNewMessageBodyAC,
+    dialogsReducerAddMessageAC
 }
 
 export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)

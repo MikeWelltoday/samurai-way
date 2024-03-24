@@ -6,16 +6,20 @@ import {PreloaderWrapper} from './preloaderWrapper/PreloaderWrapper'
 
 //========================================================================================
 
-type UsersAPIComponentClassType = {
+type MapStateToPropsType = {
     users: UsersType[]
     pageSize: number
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+}
 
+type mapDispatchToProps = {
     usersSetCurrentPageAC: (newPageNumber: number) => void
     fetchUsersTC: (currentPage: number, pageSize: number) => void
 }
+
+type UsersAPIComponentClassType = MapStateToPropsType & mapDispatchToProps
 
 //========================================================================================
 
@@ -52,7 +56,7 @@ export class UsersApiContainer extends React.Component<UsersAPIComponentClassTyp
 
 //========================================================================================
 
-function mapStateToProps(state: AppRootStateType) {
+function mapStateToProps(state: AppRootStateType): MapStateToPropsType {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -62,7 +66,7 @@ function mapStateToProps(state: AppRootStateType) {
     }
 }
 
-const mapDispatchToProps = {
+const mapDispatchToProps: mapDispatchToProps = {
     usersSetCurrentPageAC,
     fetchUsersTC
 }
