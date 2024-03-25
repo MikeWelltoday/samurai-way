@@ -1,13 +1,13 @@
 import {Dialogs, MapDispatchToPropsType, MapStateToPropsType} from './Dialogs'
 import {AppRootStateType, dialogsReducerAddMessageAC, dialogsReducerUpdateNewMessageBodyAC} from '../../../redux'
 import {connect} from 'react-redux'
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 
 //========================================================================================
 
 function mapStateToProps(state: AppRootStateType): MapStateToPropsType {
     return {
-        dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
+        dialogsPage: state.dialogsPage
     }
 }
 
@@ -16,4 +16,5 @@ const mapDispatchToProps: MapDispatchToPropsType = {
     dialogsReducerAddMessageAC
 }
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = withAuthRedirect(
+    connect(mapStateToProps, mapDispatchToProps)(Dialogs))

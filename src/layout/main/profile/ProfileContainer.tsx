@@ -2,17 +2,25 @@ import React from 'react'
 import {Profile} from './Profile'
 import {AppRootStateType, fetchUserProfileTC} from '../../../redux'
 import {connect} from 'react-redux'
-import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom'
+import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {UserProfileApiType} from '../../../redux/api/profile-api'
-import {PATH} from '../../../app/App'
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
+
+//========================================================================================
+// цепочка компонент
+// ProfileContainer => withAuthRedirect => connect => WithUrlDataContainerComponent => ProfileApiContainer => Profile
+
+//              withAuthRedirect => проверка авторизации, и перенаправление на login
+//                       connect => доступ к state + dispatch
+// WithUrlDataContainerComponent => доступ к считыванию url
+//           ProfileApiContainer => запрос на сервер
+//
 
 //========================================================================================
 // connect props
 
 type MapStateToPropsType = {
     userProfile: UserProfileApiType | null
-    isAuth: boolean
-
 }
 
 type MapDispatchToProps = {
@@ -28,7 +36,7 @@ type PathParamsType = {
 }
 
 //========================================================================================
-// бщие пропсы
+// общие пропсы
 
 type PropsType = RouteComponentProps<PathParamsType> & ProfileApiContainerPropsType
 
@@ -47,28 +55,21 @@ export class ProfileApiContainer extends React.Component<PropsType> {
     }
 
     render() {
-
-        if (!this.props.isAuth) return <Redirect to={PATH.LOGIN}/>
-
         return <Profile {...this.props} userProfile={this.props.userProfile}/>
     }
 }
 
 //========================================================================================
 
-// цепочка компонент
-// ProfileContainer => WithUrlDataContainerComponent => ProfileApiContainer
-
 // контейнерная компонента
 // @ts-ignore
-let WithUrlDataContainerComponent = withRouter(ProfileApiContainer)
+const WithUrlDataContainerComponent = withRouter(ProfileApiContainer)
 
 //========================================================================================
 
 function mapStateToProps(state: AppRootStateType): MapStateToPropsType {
     return {
-        userProfile: state.profilePage.userProfile,
-        isAuth: state.auth.isAuth
+        userProfile: state.profilePage.userProfile
     }
 }
 
@@ -76,8 +77,13 @@ const mapDispatchToProps: MapDispatchToProps = {
     fetchUserProfileTC
 }
 
-export const ProfileContainer = connect(mapStateToProps,
-    mapDispatchToProps)(WithUrlDataContainerComponent)
+export const ProfileContainer = withAuthRedirect(
+    connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent))
+
+
+
+
+
 
 
 

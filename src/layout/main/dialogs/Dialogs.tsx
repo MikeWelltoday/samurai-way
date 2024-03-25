@@ -3,14 +3,11 @@ import S from './Dialogs.module.css'
 import {DialogItem} from './dialogItem/DialogItem'
 import {Message} from './message/Message'
 import {DialogsStateType} from '../../../redux'
-import {Redirect} from 'react-router-dom'
-import {PATH} from '../../../app/App'
 
 //========================================================================================
 
 export type MapStateToPropsType = {
     dialogsPage: DialogsStateType
-    isAuth: boolean
 }
 
 export type MapDispatchToPropsType = {
@@ -27,8 +24,6 @@ export const Dialogs: FC<DialogsPropsType> = (props) => {
     function onNewMessageChange(e: ChangeEvent<HTMLTextAreaElement>) {
         props.dialogsReducerUpdateNewMessageBodyAC(e.currentTarget.value)
     }
-
-    if (!props.isAuth) return <Redirect to={PATH.LOGIN}/>
 
     return (
         <main className={S.dialogs}>

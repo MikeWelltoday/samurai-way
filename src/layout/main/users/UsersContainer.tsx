@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import React from 'react'
 import {Users} from './users/Users'
 import {PreloaderWrapper} from './preloaderWrapper/PreloaderWrapper'
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 
 //========================================================================================
 
@@ -72,4 +73,5 @@ const mapDispatchToProps: mapDispatchToProps = {
 }
 
 // connect сам там составляет cb-function на основе Action Creator
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer)
+export const UsersContainer = withAuthRedirect(
+    connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer))
