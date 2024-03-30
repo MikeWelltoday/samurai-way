@@ -1,0 +1,17 @@
+* {
+    
+}
+
+span {
+    font: 600 20px "Times New Roman";
+    font-style: italic;
+    color: coral;
+    letter-spacing: 2px;
+}
+
+input {
+    font: 600 20px "Times New Roman";
+    font-style: italic;
+    color: coral;
+    letter-spacing: 2px;
+}

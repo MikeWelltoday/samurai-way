@@ -2,9 +2,10 @@ import React from 'react'
 import {Profile} from './Profile'
 import {AppRootStateType, fetchUserProfileTC} from '../../../redux'
 import {connect} from 'react-redux'
-import {RouteComponentProps, withRouter} from 'react-router-dom'
+import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom'
 import {UserProfileApiType} from '../../../redux/api/profile-api'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
+import {compose} from 'redux'
 
 //========================================================================================
 // цепочка компонент
@@ -61,12 +62,6 @@ export class ProfileApiContainer extends React.Component<PropsType> {
 
 //========================================================================================
 
-// контейнерная компонента
-// @ts-ignore
-const WithUrlDataContainerComponent = withRouter(ProfileApiContainer)
-
-//========================================================================================
-
 function mapStateToProps(state: AppRootStateType): MapStateToPropsType {
     return {
         userProfile: state.profilePage.userProfile
@@ -77,8 +72,11 @@ const mapDispatchToProps: MapDispatchToProps = {
     fetchUserProfileTC
 }
 
-export const ProfileContainer = withAuthRedirect(
-    connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent))
+export const ProfileContainer = compose<React.ComponentType>(
+    withAuthRedirect,
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter
+)(ProfileApiContainer)
 
 
 

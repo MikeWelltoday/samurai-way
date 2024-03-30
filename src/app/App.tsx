@@ -10,7 +10,7 @@ import {AppRootStateType, DispatchType} from '../redux'
 import {UsersContainer} from '../layout/main/users/UsersContainer'
 import {ProfileContainer} from '../layout/main/profile/ProfileContainer'
 import {HeaderContainer} from '../layout/header/HeaderContainer'
-import {Login} from '../layout/main/login/Login'
+import {Login} from '../layout/login/Login'
 
 //========================================================================================
 
@@ -43,10 +43,9 @@ const App: FC<AppPropsType> = (props) => {
             <Navbar/>
 
             {/* основные ОБЩИЕ стили тегов main => в App.css */}
-
             <Route path={PATH.LOGIN} render={() => <Login/>}/>
 
-            <Route path={PATH.PROFILE} render={() => <ProfileContainer/>}/>
+            <Route path={'/profile/:userId'} render={() => <ProfileContainer/>}/>
             <Route path={PATH.USERS} render={() => <UsersContainer/>}/>
             <Route path={PATH.DIALOGS} render={() => <DialogsContainer/>}/>
             <Route path={PATH.NEWS} render={() => <News/>}/>

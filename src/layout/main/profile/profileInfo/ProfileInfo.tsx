@@ -2,11 +2,11 @@ import React, {FC} from 'react'
 import S from './ProfileInfo.module.css'
 import {Preloader} from '../../../../components/loader/Preloader'
 import {UserProfileApiType} from '../../../../redux/api/profile-api'
+import {ProfileStatus} from './profileStatus/ProfileStatus'
 
 //========================================================================================
 
 import image from '../../../../assets/images/content-iamge.webp'
-
 
 //========================================================================================
 
@@ -33,6 +33,9 @@ export const ProfileInfo: FC<ProfileInfoType> = (props) => {
                     :
                     <img src={image} alt={'sry'}/>
                 }
+            </div>
+            <div className={S.profileStatus}>
+                <ProfileStatus status={'SOME STATUS'}/>
             </div>
             <div className={S.description}>
                 Description about me...

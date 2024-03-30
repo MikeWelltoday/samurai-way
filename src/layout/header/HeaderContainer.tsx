@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {AppRootStateType, authSetUserDataTC} from '../../redux'
 import {Header} from './Header'
+import {compose} from 'redux'
 
 //========================================================================================
 
@@ -44,4 +45,7 @@ const mapDispatchToProps = {
     authSetUserDataTC
 }
 
-export const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderApiContainer)
+export const HeaderContainer = compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps)
+)
+(HeaderApiContainer)
