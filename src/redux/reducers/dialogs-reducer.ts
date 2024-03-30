@@ -13,7 +13,6 @@ export type DialogsStateType = {
     newMessageBody: string
 }
 
-
 //========================================================================================
 
 export type DialogsReducerActionType =
