@@ -20,6 +20,6 @@ type AuthDataReducerType = {
 export const authApi = {
 
     getAuth() {
-        return instance.get<AuthDataReducerType>('/auth/me')
+        return instance.get<AuthDataReducerType>('auth/me')
     }
 }

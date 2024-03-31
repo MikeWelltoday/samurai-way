@@ -36,11 +36,11 @@ export const usersApi = {
     },
 
     followUser(userId: number) {
-        return instance.post<PostDeleteResponseType>(`/follow/${userId}`)
+        return instance.post<PostDeleteResponseType>(`follow/${userId}`)
     },
 
     unfollowUser(userId: number) {
-        return instance.delete<PostDeleteResponseType>(`/follow/${userId}`)
+        return instance.delete<PostDeleteResponseType>(`follow/${userId}`)
     }
 
 

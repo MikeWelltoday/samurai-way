@@ -12,6 +12,9 @@ import image from '../../../../assets/images/content-iamge.webp'
 
 type ProfileInfoType = {
     userProfile: UserProfileApiType | null
+    profileStatus: string
+    isStatusChangeable: boolean
+    updateStatus: (newStatus: string) => void
 }
 
 export const ProfileInfo: FC<ProfileInfoType> = (props) => {
@@ -35,7 +38,8 @@ export const ProfileInfo: FC<ProfileInfoType> = (props) => {
                 }
             </div>
             <div className={S.profileStatusContainer}>
-                <ProfileStatus status={'SOME STATUS'}/>
+                <ProfileStatus status={props.profileStatus} updateStatus={props.updateStatus}
+                               isStatusChangeable={props.isStatusChangeable}/>
             </div>
             <div className={S.description}>
                 Description about me...

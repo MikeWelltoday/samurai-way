@@ -10,6 +10,7 @@ export type {PostsType} from './reducers/profile-reducer'
 export {profileUpdateNewPostTextAC} from './reducers/profile-reducer'
 export {profileReducerAddPostAC} from './reducers/profile-reducer'
 export {setUserProfileAC} from './reducers/profile-reducer'
+export {setStatusAC} from './reducers/profile-reducer'
 
 //========================================================================================
 // USER-REDUCER
@@ -38,3 +39,4 @@ export {fetchUsersTC} from './thunks/users-thunks'
 export {usersFollowToggleTC} from './thunks/users-thunks'
 export {fetchUserProfileTC} from './thunks/profile-thunks'
 export {authSetUserDataTC} from './thunks/auth-thunks'
+export {fetchStatusProfileTC} from './thunks/profile-thunks'

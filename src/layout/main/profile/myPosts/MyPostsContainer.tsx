@@ -2,6 +2,8 @@ import {MyPosts} from './MyPosts'
 import {AppRootStateType, profileReducerAddPostAC, profileUpdateNewPostTextAC} from '../../../../redux'
 import {connect} from 'react-redux'
 import {DispatchType} from '../../../../redux'
+import {compose} from 'redux'
+import React from 'react'
 
 //========================================================================================
 
@@ -19,4 +21,6 @@ function mapDispatchToProps(dispatch: DispatchType) {
     }
 }
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export const MyPostsContainer = compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps)
+)(MyPosts)

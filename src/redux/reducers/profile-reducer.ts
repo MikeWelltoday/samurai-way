@@ -12,6 +12,7 @@ export type ProfileStateType = {
     posts: PostsType[]
     newPostText: string
     userProfile: UserProfileApiType | null
+    status: string
 }
 
 //========================================================================================
@@ -20,10 +21,11 @@ export type ProfileReducerActionType =
     ReturnType<typeof profileUpdateNewPostTextAC>
     | ReturnType<typeof profileReducerAddPostAC>
     | ReturnType<typeof setUserProfileAC>
+    | ReturnType<typeof setStatusAC>
 
 //========================================================================================
 
-const initialState = {
+const initialState: ProfileStateType = {
     posts:
         [
             {id: 1, message: 'Hi, how are you?', likesCount: 15},
@@ -32,7 +34,8 @@ const initialState = {
             {id: 4, message: 'Yo', likesCount: 5}
         ],
     newPostText: '',
-    userProfile: null
+    userProfile: null,
+    status: ''
 }
 
 export function profileReducer(state: ProfileStateType = initialState, action: ProfileReducerActionType): ProfileStateType {
@@ -51,6 +54,10 @@ export function profileReducer(state: ProfileStateType = initialState, action: P
 
         case 'PROFILE-SET-USER': {
             return {...state, userProfile: {...action.payload.userProfileFromServer}}
+        }
+
+        case 'PROFILE-SET-STATUS': {
+            return {...state, status: action.payload.status || 'NO STATUS'}
         }
 
         default: {
@@ -73,6 +80,9 @@ export function setUserProfileAC(userProfileFromServer: UserProfileApiType) {
     return {type: 'PROFILE-SET-USER', payload: {userProfileFromServer}} as const
 }
 
+export function setStatusAC(status: string | null) {
+    return {type: 'PROFILE-SET-STATUS', payload: {status}} as const
+}
 
 
 

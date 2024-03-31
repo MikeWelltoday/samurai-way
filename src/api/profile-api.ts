@@ -25,15 +25,29 @@ export type UserProfileApiType = {
     lookingForAJobDescription: string
     fullName: string
     photos: PhotoType
-    userId: 2,
+    userId: 2
+}
+
+type AxiosResponseType<T = {}> = {
+    resultCode: number
+    messages: string[]
+    data: T
 }
 
 //========================================================================================
 
 export const profileApi = {
 
-    getUserProfile(userId: string) {
-        return instance.get<UserProfileApiType>(`profile/${userId}`)
+    getUserProfile(userID: string) {
+        return instance.get<UserProfileApiType>(`profile/${userID}`)
+    },
+
+    statusUpdate(status: string) {
+        return instance.put<AxiosResponseType>('profile/status', {status})
+    },
+
+    getUserProfileStatus(userID: string) {
+        return instance.get<string | null>(`profile/status/${userID}`)
     }
 }
 

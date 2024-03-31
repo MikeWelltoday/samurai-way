@@ -1,10 +1,12 @@
-import React, {ChangeEvent} from 'react'
+import React, {ChangeEvent, KeyboardEvent} from 'react'
 import S from './ProfileStatus.module.css'
 
 //========================================================================================
 
 type ProfileStatusPropsType = {
     status: string
+    isStatusChangeable: boolean
+    updateStatus: (newStatus: string) => void
 }
 
 //========================================================================================
@@ -12,27 +14,48 @@ type ProfileStatusPropsType = {
 export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
     state = {
-        input: this.props.status,
+        statusValue: this.props.status,
         editMode: false
     }
 
     onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         this.setState({
-            input: event.currentTarget.value
+            statusValue: event.currentTarget.value
         })
     }
 
     editModeON = () => {
-        this.setState({
-            editMode: true
-        })
+        if (this.props.isStatusChangeable) {
+            this.setState({
+                editMode: true
+            })
+        }
     }
 
     editModeOFF = () => {
+        const newTitle = this.state.statusValue
+
+        if (newTitle.trim()) {
+            this.props.updateStatus(newTitle)
+        } else {
+            this.setState({
+                statusValue: this.props.status
+            })
+        }
+
         this.setState({
             editMode: false
         })
     }
+
+    onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            this.editModeOFF()
+        }
+    }
+
+
+    isMyStatus = this.props.isStatusChangeable ? `${S.myStatus}` : ''
 
     render() {
         return (
@@ -40,15 +63,18 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
                 {!this.state.editMode ?
                     <span
+                        className={this.isMyStatus}
                         onDoubleClick={this.editModeON}
                     >{this.props.status}</span>
                     :
                     <input
+                        className={this.isMyStatus}
                         type="text"
-                        value={this.state.input}
+                        value={this.state.statusValue}
                         onChange={this.onChangeHandler}
                         onBlur={this.editModeOFF}
                         autoFocus={true}
+                        onKeyDown={this.onKeyDownHandler}
                     />
                 }
 

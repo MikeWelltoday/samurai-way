@@ -2,7 +2,7 @@ import {
     ProfileStateType,
     profileReducer,
     profileReducerAddPostAC,
-    profileUpdateNewPostTextAC, setUserProfileAC
+    profileUpdateNewPostTextAC, setUserProfileAC, setStatusAC
 } from '../reducers/profile-reducer'
 import {UserProfileApiType} from '../../api/profile-api'
 
@@ -11,7 +11,6 @@ import {UserProfileApiType} from '../../api/profile-api'
 let startState: ProfileStateType
 
 beforeEach(() => {
-
     startState = {
         posts:
             [
@@ -21,30 +20,24 @@ beforeEach(() => {
                 {id: 4, message: 'Yo', likesCount: 5}
             ],
         newPostText: '',
-        userProfile: null
+        userProfile: null,
+        status: ''
     }
-
 })
 
 //========================================================================================
 
 test('PROFILE-UPDATE-NEW-POST-TEXT', () => {
-
     const newBody = 'IT IS DONE'
-
     const endState = profileReducer(startState, profileUpdateNewPostTextAC(newBody))
-
     expect(endState.newPostText).not.toBe('')
     expect(endState.newPostText).toBe(newBody)
 })
 
 test('DIALOGS-SEND-MESSAGE', () => {
-
     startState.newPostText = 'SOMETHING IS PUT HERE'
     const newText = startState.newPostText
-
     const endState = profileReducer(startState, profileReducerAddPostAC())
-
     expect(endState.newPostText).toBe('')
     expect(endState.posts.length).toBe(5)
     expect(endState.posts[4].message).toBe(newText)
@@ -52,7 +45,6 @@ test('DIALOGS-SEND-MESSAGE', () => {
 })
 
 test('PROFILE-SET-USER', () => {
-
     const userData: UserProfileApiType = {
         aboutMe: 'я круто чувак 1001%',
         contacts: {
@@ -74,10 +66,17 @@ test('PROFILE-SET-USER', () => {
             large: 'https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0'
         }
     }
-
     const endState = profileReducer(startState, setUserProfileAC(userData))
-
     expect(endState.userProfile).not.toEqual({})
     expect(endState.userProfile).toEqual(userData)
+})
 
+test('', () => {
+    const statusFromServer = 'STATUS FROM SERVER'
+    const endState = profileReducer(startState, setStatusAC(statusFromServer))
+    expect(endState.status).toBe(statusFromServer)
+
+    const statusFromServerWithNull = null
+    const endStateWithNull = profileReducer(startState, setStatusAC(statusFromServerWithNull))
+    expect(endStateWithNull.status).toBe('NO STATUS')
 })

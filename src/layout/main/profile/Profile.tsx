@@ -8,6 +8,9 @@ import {UserProfileApiType} from '../../../api/profile-api'
 
 type ProfilePropsType = {
     userProfile: UserProfileApiType | null
+    profileStatus: string
+    isStatusChangeable: boolean
+    updateStatus: (newStatus: string) => void
 }
 
 //========================================================================================
@@ -15,7 +18,12 @@ type ProfilePropsType = {
 export const Profile: FC<ProfilePropsType> = (props) => {
     return (
         <main className={S.profile}>
-            <ProfileInfo userProfile={props.userProfile}/>
+            <ProfileInfo
+                userProfile={props.userProfile}
+                profileStatus={props.profileStatus}
+                isStatusChangeable={props.isStatusChangeable}
+                updateStatus={props.updateStatus}
+            />
             <MyPostsContainer/>
         </main>
     )
