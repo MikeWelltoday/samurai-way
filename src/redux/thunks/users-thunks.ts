@@ -5,7 +5,7 @@ import {
     usersSetTotalUsersCountAC,
     usersSetUsersAC
 } from '../reducers/users-reducer'
-import {usersApi} from '../api/users-api'
+import {usersApi} from '../../api/users-api'
 
 //========================================================================================
 

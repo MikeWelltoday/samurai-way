@@ -2,23 +2,12 @@ import React from 'react'
 import {Profile} from './Profile'
 import {AppRootStateType, fetchUserProfileTC} from '../../../redux'
 import {connect} from 'react-redux'
-import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom'
-import {UserProfileApiType} from '../../../redux/api/profile-api'
+import {RouteComponentProps, withRouter} from 'react-router-dom'
+import {UserProfileApiType} from '../../../api/profile-api'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 import {compose} from 'redux'
 
 //========================================================================================
-// цепочка компонент
-// ProfileContainer => withAuthRedirect => connect => WithUrlDataContainerComponent => ProfileApiContainer => Profile
-
-//              withAuthRedirect => проверка авторизации, и перенаправление на login
-//                       connect => доступ к state + dispatch
-// WithUrlDataContainerComponent => доступ к считыванию url
-//           ProfileApiContainer => запрос на сервер
-//
-
-//========================================================================================
-// connect props
 
 type MapStateToPropsType = {
     userProfile: UserProfileApiType | null
@@ -31,7 +20,7 @@ type MapDispatchToProps = {
 type ProfileApiContainerPropsType = MapStateToPropsType & MapDispatchToProps
 
 //========================================================================================
-// пропсы withRouter
+
 type PathParamsType = {
     userId: string
 }

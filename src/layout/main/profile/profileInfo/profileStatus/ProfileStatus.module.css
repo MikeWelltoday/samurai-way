@@ -1,17 +1,21 @@
-* {
-    
+.profileStatus {
+    padding: 15px 0;
 }
 
-span {
+.profileStatus * {
     font: 600 20px "Times New Roman";
     font-style: italic;
     color: coral;
     letter-spacing: 2px;
 }
 
-input {
-    font: 600 20px "Times New Roman";
-    font-style: italic;
-    color: coral;
-    letter-spacing: 2px;
+.profileStatus input {
+    text-align: center;
+    background-color: rgba(79, 94, 88, 0.17);
+}
+
+.profileStatus input:focus-visible {
+    outline: 2px solid #beadad;
+    border-radius: 25px;
+    padding: 0 20px;
 }

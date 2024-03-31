@@ -31,11 +31,6 @@ export type {DispatchType} from './store'
 export {store} from './store'
 export {useAppDispatch} from './store'
 
-//========================================================================================
-// API
-export {authApi} from './api/auth-api'
-export {profileApi} from './api/profile-api'
-export {usersApi} from './api/users-api'
 
 //========================================================================================
 //THUNKS

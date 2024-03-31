@@ -1,5 +1,5 @@
 import {AppThunkDispatchType} from '../store'
-import {authApi} from '../api/auth-api'
+import {authApi} from '../../api/auth-api'
 import {authSetUserDataAC} from '../reducers/auth-reducer'
 
 //========================================================================================

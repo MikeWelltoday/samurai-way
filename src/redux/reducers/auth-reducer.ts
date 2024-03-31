@@ -1,4 +1,4 @@
-import {AuthApiDataType} from '../api/auth-api'
+import {AuthApiDataType} from '../../api/auth-api'
 
 //========================================================================================
 

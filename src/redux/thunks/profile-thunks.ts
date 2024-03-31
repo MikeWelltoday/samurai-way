@@ -1,5 +1,5 @@
 import {AppThunkDispatchType} from '../store'
-import {profileApi} from '../api/profile-api'
+import {profileApi} from '../../api/profile-api'
 import {setUserProfileAC} from '../reducers/profile-reducer'
 
 //========================================================================================

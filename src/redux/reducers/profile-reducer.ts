@@ -1,4 +1,4 @@
-import {UserProfileApiType} from '../api/profile-api'
+import {UserProfileApiType} from '../../api/profile-api'
 
 //========================================================================================
 

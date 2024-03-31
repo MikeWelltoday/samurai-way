@@ -1,6 +1,7 @@
 import {instance} from './instance'
 
 //========================================================================================
+
 export type AuthApiDataType = {
     id: number
     email: string

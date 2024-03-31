@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import S from './Profile.module.css'
 import {ProfileInfo} from './profileInfo/ProfileInfo'
 import {MyPostsContainer} from './myPosts/MyPostsContainer'
-import {UserProfileApiType} from '../../../redux/api/profile-api'
+import {UserProfileApiType} from '../../../api/profile-api'
 
 //========================================================================================
 
