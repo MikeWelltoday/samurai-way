@@ -54,6 +54,17 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         }
     }
 
+    // реакт дает возможность получитсья доступ к предыдущим пропсам и стейту
+    componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<{}>, snapshot?: any) {
+
+        // сравнение пропсов
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                    statusValue: this.props.status
+                }
+            )
+        }
+    }
 
     isMyStatus = this.props.isStatusChangeable ? `${S.myStatus}` : ''
 
