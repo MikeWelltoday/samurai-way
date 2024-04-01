@@ -11,6 +11,7 @@ import {UsersContainer} from '../layout/main/users/UsersContainer'
 import {ProfileContainer} from '../layout/main/profile/ProfileContainer'
 import {HeaderContainer} from '../layout/header/HeaderContainer'
 import {Login} from '../layout/login/Login'
+import {LoginContainer} from '../layout/login/LoginContainer'
 
 //========================================================================================
 
@@ -43,7 +44,7 @@ const App: FC<AppPropsType> = (props) => {
             <Navbar/>
 
             {/* основные ОБЩИЕ стили тегов main => в App.css */}
-            <Route path={PATH.LOGIN} render={() => <Login/>}/>
+            <Route path={PATH.LOGIN} render={() => <LoginContainer/>}/>
 
             <Route path={'/profile/:userId'} render={() => <ProfileContainer/>}/>
             <Route path={PATH.USERS} render={() => <UsersContainer/>}/>

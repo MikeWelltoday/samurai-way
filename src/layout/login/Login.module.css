@@ -13,6 +13,16 @@
     margin-bottom: 20px;
 }
 
+.formGroup span {
+    display: block;
+    text-align: center;
+    padding: 4px 0;
+    font: 300 22px "Times New Roman";
+    text-transform: lowercase;
+    color: #ef3e3e;
+    height: 26px;
+}
+
 label {
     display: block;
     margin-bottom: 5px;

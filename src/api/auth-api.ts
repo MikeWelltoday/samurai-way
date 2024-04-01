@@ -8,18 +8,37 @@ export type AuthApiDataType = {
     login: string
 }
 
-type AuthDataReducerType = {
+type LoginResponseType = {
+    userId: number
+}
+
+type AxiosContainerResponseType<T = {}> = {
     resultCode: number
     messages: string[]
-    data: AuthApiDataType
+    data: T
 }
 
 //========================================================================================
 
 
-export const authApi = {
+export const authAPI = {
 
     getAuth() {
-        return instance.get<AuthDataReducerType>('auth/me')
+        return instance.get<AxiosContainerResponseType<AuthApiDataType>>('auth/me')
+    },
+
+    loginAuth(email: string, password: number, rememberMe: boolean, captcha: boolean) {
+        return instance.post<AxiosContainerResponseType<LoginResponseType>>('auth/login', {
+            email,
+            password,
+            rememberMe,
+            captcha
+        })
+    },
+
+    logoutAuth() {
+        return instance.delete<AxiosContainerResponseType>('auth/login')
     }
+
+
 }

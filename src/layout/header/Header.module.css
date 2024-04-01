@@ -1,12 +1,17 @@
 .header {
     background: #66560f;
+    flex-flow: column nowrap;
+}
+
+.content {
+    flex-grow: 1;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
 }
 
-.header p {
+.content p {
     flex-grow: 1;
     text-align: center;
 

@@ -2,7 +2,7 @@ import {AuthApiDataType} from '../../api/auth-api'
 
 //========================================================================================
 
-export type AuthReducerActionsType = ReturnType<typeof authSetUserDataAC>
+export type AuthReducerActionsType = ReturnType<typeof authSetUserDataAC> | ReturnType<typeof logToggleAC>
 
 //========================================================================================
 
@@ -30,6 +30,10 @@ export function authReducer(state: AuthStateType = initialState, action: AuthRed
             return {...state, ...action.payload.authDataFromApi, isAuth: true}
         }
 
+        case 'AUTH-SET-LOG-TOGGLE': {
+            return {...state, isAuth: action.payload.log}
+        }
+
         default: {
             return state
         }
@@ -40,6 +44,10 @@ export function authReducer(state: AuthStateType = initialState, action: AuthRed
 
 export function authSetUserDataAC(authDataFromApi: AuthApiDataType) {
     return {type: 'AUTH-SET-USER-DATA', payload: {authDataFromApi}} as const
+}
+
+export function logToggleAC(log: boolean) {
+    return {type: 'AUTH-SET-LOG-TOGGLE', payload: {log}} as const
 }
 
 

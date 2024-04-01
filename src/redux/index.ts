@@ -24,6 +24,7 @@ export {usersIsFetchingToggleAC} from './reducers/users-reducer'
 //========================================================================================
 // AUTH-REDUCER
 export {authSetUserDataAC} from './reducers/auth-reducer'
+export {logToggleAC} from './reducers/auth-reducer'
 
 //========================================================================================
 // STORE
@@ -32,7 +33,6 @@ export type {DispatchType} from './store'
 export {store} from './store'
 export {useAppDispatch} from './store'
 
-
 //========================================================================================
 //THUNKS
 export {fetchUsersTC} from './thunks/users-thunks'
@@ -40,3 +40,5 @@ export {usersFollowToggleTC} from './thunks/users-thunks'
 export {fetchUserProfileTC} from './thunks/profile-thunks'
 export {authSetUserDataTC} from './thunks/auth-thunks'
 export {fetchStatusProfileTC} from './thunks/profile-thunks'
+export {authLoginTC} from './thunks/auth-thunks'
+export {authLogoutTC} from './thunks/auth-thunks'
