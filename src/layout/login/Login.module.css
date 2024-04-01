@@ -1,3 +1,57 @@
-.login {
+.loginForm {
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
 
+.loginForm form {
+    width: 100%;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font: 500 20px sans-serif;
+    text-align: center;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.lastFormGroup {
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.8)
+}
+
+input[type="checkbox"]:checked {
+}
+
+.loginButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #cc60e5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.loginButton:hover {
+    background-color: #e681f5;
 }
