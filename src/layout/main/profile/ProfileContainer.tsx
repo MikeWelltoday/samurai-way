@@ -41,7 +41,10 @@ export class ProfileApiContainer extends React.Component<PropsType> {
 
     componentDidMount() {
 
+        console.log(this.props.match)
+
         let userId = this.props.match.params.userId
+
 
         if (userId === ':userId') {
             if (this.props.authUserID) {
@@ -54,7 +57,7 @@ export class ProfileApiContainer extends React.Component<PropsType> {
     }
 
     isStatusChangeable: boolean = this.props.match.params.userId === '' + this.props.authUserID || this.props.match.params.userId === ':userId'
-    
+
     render() {
         return (
             <Profile
