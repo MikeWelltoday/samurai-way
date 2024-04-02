@@ -38,8 +38,11 @@ export const ProfileInfo: FC<ProfileInfoType> = (props) => {
                 }
             </div>
             <div className={S.profileStatusContainer}>
-                <ProfileStatus status={props.profileStatus} updateStatus={props.updateStatus}
-                               isStatusChangeable={props.isStatusChangeable}/>
+                <ProfileStatus
+                    status={props.profileStatus}
+                    updateStatus={props.updateStatus}
+                    isStatusChangeable={props.isStatusChangeable}
+                />
             </div>
             <div className={S.description}>
                 Description about me...

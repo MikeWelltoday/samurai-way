@@ -28,9 +28,14 @@
     color: #e76ee7;
     width: 200px;
 
-    a {
+    span {
+        cursor: pointer;
+
         &:hover {
-            color: #e59053;
+            color: #6e33e5;
         }
     }
 }
+
+
+

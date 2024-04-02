@@ -19,13 +19,8 @@ type LoginPropsType = {
 //========================================================================================
 export const Login: FC<LoginPropsType> = (props) => {
 
-    // if (props.isAuth) {
-    //     return <Redirect to={'/profile/:userId'}/>
-    // }
-
     const {register, handleSubmit, formState: {errors}, reset} = useForm<FormType>()
     const onSubmitHandler: SubmitHandler<FormType> = (data) => {
-        console.log(data)
         props.authLoginTC(data.login, data.password, data.checkbox, true)
         reset()
     }

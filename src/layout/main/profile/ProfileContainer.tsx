@@ -38,15 +38,11 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileApiContainerPropsT
 //========================================================================================
 
 export class ProfileApiContainer extends React.Component<PropsType> {
-
     componentDidMount() {
-
-        console.log(this.props.match)
 
         let userId = this.props.match.params.userId
 
-
-        if (userId === ':userId') {
+        if (!userId) {
             if (this.props.authUserID) {
                 userId = '' + this.props.authUserID
             }
@@ -56,7 +52,6 @@ export class ProfileApiContainer extends React.Component<PropsType> {
         this.props.fetchStatusProfileTC(userId)
     }
 
-    isStatusChangeable: boolean = this.props.match.params.userId === '' + this.props.authUserID || this.props.match.params.userId === ':userId'
 
     render() {
         return (
@@ -65,7 +60,7 @@ export class ProfileApiContainer extends React.Component<PropsType> {
                 userProfile={this.props.userProfile}
                 profileStatus={this.props.profileStatus}
                 updateStatus={this.props.updateStatusTC}
-                isStatusChangeable={this.isStatusChangeable}
+                isStatusChangeable={!this.props.match.params.userId}
             />
         )
     }

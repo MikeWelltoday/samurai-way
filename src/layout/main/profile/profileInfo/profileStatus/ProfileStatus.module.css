@@ -10,6 +10,7 @@
 }
 
 .profileStatus input {
+    display: inline-block;
     text-align: center;
     background-color: rgba(79, 94, 88, 0.17);
 }

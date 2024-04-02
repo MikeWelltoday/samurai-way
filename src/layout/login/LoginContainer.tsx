@@ -4,6 +4,7 @@ import {AppRootStateType, authLoginTC} from '../../redux'
 import {compose} from 'redux'
 import {Login} from './Login'
 import {Redirect} from 'react-router-dom'
+import {PATH} from '../../app/App'
 
 //========================================================================================
 
@@ -26,8 +27,10 @@ export class LoginApiContainer extends React.Component<HeaderApiContainerType> {
 
     }
 
-
     render() {
+
+        if (this.props.isAuth) return <Redirect to={PATH.PROFILE}/>
+
         return <Login authLoginTC={this.props.authLoginTC} isAuth={this.props.isAuth}/>
     }
 }

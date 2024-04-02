@@ -35,12 +35,14 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     editModeOFF = () => {
         const newTitle = this.state.statusValue
 
-        if (newTitle.trim()) {
-            this.props.updateStatus(newTitle)
-        } else {
-            this.setState({
-                statusValue: this.props.status
-            })
+        if (newTitle !== this.props.status) {
+            if (newTitle.trim()) {
+                this.props.updateStatus(newTitle)
+            } else {
+                this.setState({
+                    statusValue: this.props.status
+                })
+            }
         }
 
         this.setState({

@@ -1,4 +1,4 @@
-import {AppRootStateType, AppThunkDispatchType} from '../store'
+import {AppThunkDispatchType} from '../store'
 import {profileApi} from '../../api'
 import {setStatusAC, setUserProfileAC} from '../reducers/profile-reducer'
 
