@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 import './App.css'
-import {Route} from 'react-router-dom'
+import {Redirect, Route} from 'react-router-dom'
 import {Navbar} from '../layout/navbar/Navbar'
 import {News} from '../layout/main/news/News'
 import {Music} from '../layout/main/music/Music'
@@ -44,6 +44,8 @@ const App: FC<AppPropsType> = (props) => {
 
             {/* основные ОБЩИЕ стили тегов main => в App.css */}
             <Route path={PATH.LOGIN} render={() => <LoginContainer/>}/>
+
+            <Route path={'/'} render={() => <Redirect to={PATH.PROFILE + '/:userId?'}/>}/>
 
             <Route path={PATH.PROFILE + '/:userId?'} render={() => <ProfileContainer/>}/>
             <Route path={PATH.USERS} render={() => <UsersContainer/>}/>

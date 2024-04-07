@@ -23,6 +23,7 @@ export {usersIsFetchingToggleAC} from './reducers/users-reducer'
 // AUTH-REDUCER
 export {authSetUserDataAC} from './reducers/auth-reducer'
 export {logToggleAC} from './reducers/auth-reducer'
+export {clearUserAuthDataAC} from './reducers/auth-reducer'
 
 //========================================================================================
 // STORE

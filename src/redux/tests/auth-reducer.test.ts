@@ -1,4 +1,4 @@
-import {authReducer, AuthStateType, authSetUserDataAC, logToggleAC} from '../reducers/auth-reducer'
+import {authReducer, AuthStateType, authSetUserDataAC, logToggleAC, clearUserAuthDataAC} from '../reducers/auth-reducer'
 
 //========================================================================================
 
@@ -29,6 +29,17 @@ test('AUTH-SET-USER-DATA', () => {
 test('AUTH-SET-LOG-TOGGLE', () => {
     const endState = authReducer(startState, logToggleAC(true))
     expect(endState.isAuth).toBe(true)
+})
+
+test('AUTH/CLEAR__USER__AUTH__DATA', () => {
+    startState = {
+        id: 123,
+        email: '123',
+        login: '123',
+        isAuth: true
+    }
+    const endState = authReducer(startState, clearUserAuthDataAC())
+    expect(endState).toEqual({id: null, email: null, login: null, isAuth: true})
 })
 
 

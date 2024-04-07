@@ -1,6 +1,6 @@
 import {AppThunkDispatchType} from '../store'
 import {authAPI} from '../../api'
-import {authSetUserDataAC, logToggleAC} from '../reducers/auth-reducer'
+import {authSetUserDataAC, clearUserAuthDataAC, logToggleAC} from '../reducers/auth-reducer'
 import {appLoadingAC} from '../reducers/app-reducer'
 
 //========================================================================================
@@ -30,7 +30,10 @@ export const authLoginTC = (email: string, password: number, rememberMe: boolean
     try {
         const res = await authAPI.loginAuth(email, password, rememberMe, captcha)
         if (res.data.resultCode === 0) {
-            dispatch(logToggleAC(true))
+
+            // если логин подошел => запрашиваем данные для аунтефикации, чтобы делать запросы
+            await dispatch(authSetUserDataTC())
+
         } else {
             if (res.data.messages[1]) {
                 console.error(res.data.messages[1])
@@ -50,6 +53,7 @@ export const authLogoutTC = () => async (dispatch: AppThunkDispatchType) => {
         const res = await authAPI.logoutAuth()
         if (res.data.resultCode === 0) {
             dispatch(logToggleAC(false))
+            dispatch(clearUserAuthDataAC())
         } else {
             if (res.data.messages[1]) {
                 console.error(res.data.messages[1])
