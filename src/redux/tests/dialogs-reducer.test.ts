@@ -1,9 +1,4 @@
-import {
-    DialogsStateType,
-    dialogsReducer,
-    dialogsReducerAddMessageAC,
-    dialogsReducerUpdateNewMessageBodyAC
-} from '../reducers/dialogs-reducer'
+import {dialogsReducer, dialogsReducerAddMessageAC, DialogsStateType} from '../reducers/dialogs-reducer'
 
 //========================================================================================
 
@@ -25,33 +20,19 @@ beforeEach(() => {
                 {id: '1', text: 'Hello friend'},
                 {id: '2', text: 'How are you?'},
                 {id: '3', text: 'I\'ve got story to tell'}
-            ],
-        newMessageBody: ''
+            ]
     }
 
 })
 
 //========================================================================================
-// 🧪 .T.E.S.T.S.
-
-test('DIALOGS-UPDATE-NEW-MESSAGE-BODY', () => {
-
-    const newBody = 'IT IS DONE'
-
-    const endState = dialogsReducer(startState, dialogsReducerUpdateNewMessageBodyAC(newBody))
-
-    expect(endState.newMessageBody).not.toBe('')
-    expect(endState.newMessageBody).toBe(newBody)
-})
 
 test('DIALOGS-SEND-MESSAGE', () => {
 
-    startState.newMessageBody = 'SOMETHING IS PUT HERE'
-    const newText = startState.newMessageBody
+    const endState = dialogsReducer(startState, dialogsReducerAddMessageAC('blabla'))
 
-    const endState = dialogsReducer(startState, dialogsReducerAddMessageAC())
-
-    expect(endState.newMessageBody).toBe('')
     expect(endState.messages.length).toBe(4)
-    expect(endState.messages[3].text).toBe(newText)
+    expect(endState.messages[3].id).toBe('4')
+    expect(endState.messages[3].text).toBe('blabla')
+
 })

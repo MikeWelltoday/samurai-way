@@ -10,7 +10,6 @@ export type PostsType = {
 
 export type ProfileStateType = {
     posts: PostsType[]
-    newPostText: string
     userProfile: UserProfileApiType | null
     status: string
 }
@@ -18,8 +17,7 @@ export type ProfileStateType = {
 //========================================================================================
 
 export type ProfileReducerActionType =
-    ReturnType<typeof profileUpdateNewPostTextAC>
-    | ReturnType<typeof profileReducerAddPostAC>
+    ReturnType<typeof profileReducerAddPostAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setStatusAC>
 
@@ -33,7 +31,6 @@ const initialState: ProfileStateType = {
             {id: 3, message: 'Yo', likesCount: 1},
             {id: 4, message: 'Yo', likesCount: 5}
         ],
-    newPostText: '',
     userProfile: null,
     status: ''
 }
@@ -42,14 +39,11 @@ export function profileReducer(state: ProfileStateType = initialState, action: P
 
     switch (action.type) {
 
-        case 'PROFILE-UPDATE-NEW-POST-TEXT': {
-            return {...state, newPostText: action.payload.newText}
-        }
-
         case 'PROFILE-ADD-POST': {
-            const newPostTextCopy = state.newPostText
-            state.newPostText = ''
-            return {...state, posts: [...state.posts, {id: 5, message: newPostTextCopy, likesCount: 0}]}
+            return {
+                ...state,
+                posts: [...state.posts, {id: state.posts.length + 1, message: action.payload.message, likesCount: 0}]
+            }
         }
 
         case 'PROFILE-SET-USER': {
@@ -68,12 +62,8 @@ export function profileReducer(state: ProfileStateType = initialState, action: P
 
 //========================================================================================
 
-export function profileUpdateNewPostTextAC(newText: string) {
-    return {type: 'PROFILE-UPDATE-NEW-POST-TEXT', payload: {newText}} as const
-}
-
-export function profileReducerAddPostAC() {
-    return {type: 'PROFILE-ADD-POST', payload: {}} as const
+export function profileReducerAddPostAC(message: string) {
+    return {type: 'PROFILE-ADD-POST', payload: {message}} as const
 }
 
 export function setUserProfileAC(userProfileFromServer: UserProfileApiType) {

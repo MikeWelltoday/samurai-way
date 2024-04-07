@@ -10,14 +10,11 @@ export type MessagesType = {
 export type DialogsStateType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
-    newMessageBody: string
 }
 
 //========================================================================================
 
-export type DialogsReducerActionType =
-    ReturnType<typeof dialogsReducerUpdateNewMessageBodyAC>
-    | ReturnType<typeof dialogsReducerAddMessageAC>
+export type DialogsReducerActionType = ReturnType<typeof dialogsReducerAddMessageAC>
 
 //========================================================================================
 
@@ -35,8 +32,7 @@ const initialState = {
             {id: '1', text: 'Hello friend'},
             {id: '2', text: 'How are you?'},
             {id: '3', text: 'I\'ve got story to tell'}
-        ],
-    newMessageBody: ''
+        ]
 }
 
 //========================================================================================
@@ -45,14 +41,11 @@ export function dialogsReducer(state: DialogsStateType = initialState, action: D
 
     switch (action.type) {
 
-        case 'DIALOGS-UPDATE-NEW-MESSAGE-BODY': {
-            return {...state, newMessageBody: action.payload.newBody}
-        }
-
         case 'DIALOGS-SEND-MESSAGE': {
-            const newMessageBodyCopy = state.newMessageBody
-            state.newMessageBody = ''
-            return {...state, messages: [...state.messages, {id: '4', text: newMessageBodyCopy}]}
+            return {
+                ...state,
+                messages: [...state.messages, {id: '' + (state.messages.length + 1), text: action.payload.message}]
+            }
         }
 
         default: {
@@ -63,10 +56,6 @@ export function dialogsReducer(state: DialogsStateType = initialState, action: D
 
 //========================================================================================
 
-export function dialogsReducerUpdateNewMessageBodyAC(newBody: string) {
-    return {type: 'DIALOGS-UPDATE-NEW-MESSAGE-BODY', payload: {newBody}} as const
-}
-
-export function dialogsReducerAddMessageAC() {
-    return {type: 'DIALOGS-SEND-MESSAGE', payload: {}} as const
+export function dialogsReducerAddMessageAC(message: string) {
+    return {type: 'DIALOGS-SEND-MESSAGE', payload: {message}} as const
 }

@@ -13,8 +13,12 @@
 
 .messageList {
     background-color: rgba(221, 180, 232, 0.32);
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding-top: 50px;
+    row-gap: 10px;
 }
 
-.inputFrom {
 
-}
+

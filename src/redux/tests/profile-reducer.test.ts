@@ -1,8 +1,7 @@
 import {
     ProfileStateType,
     profileReducer,
-    profileReducerAddPostAC,
-    profileUpdateNewPostTextAC, setUserProfileAC, setStatusAC
+    profileReducerAddPostAC, setUserProfileAC, setStatusAC
 } from '../reducers/profile-reducer'
 import {UserProfileApiType} from '../../api/profile-api'
 
@@ -19,7 +18,6 @@ beforeEach(() => {
                 {id: 3, message: 'Yo', likesCount: 1},
                 {id: 4, message: 'Yo', likesCount: 5}
             ],
-        newPostText: '',
         userProfile: null,
         status: ''
     }
@@ -27,20 +25,11 @@ beforeEach(() => {
 
 //========================================================================================
 
-test('PROFILE-UPDATE-NEW-POST-TEXT', () => {
-    const newBody = 'IT IS DONE'
-    const endState = profileReducer(startState, profileUpdateNewPostTextAC(newBody))
-    expect(endState.newPostText).not.toBe('')
-    expect(endState.newPostText).toBe(newBody)
-})
-
 test('DIALOGS-SEND-MESSAGE', () => {
-    startState.newPostText = 'SOMETHING IS PUT HERE'
-    const newText = startState.newPostText
-    const endState = profileReducer(startState, profileReducerAddPostAC())
-    expect(endState.newPostText).toBe('')
+
+    const endState = profileReducer(startState, profileReducerAddPostAC('blabla'))
     expect(endState.posts.length).toBe(5)
-    expect(endState.posts[4].message).toBe(newText)
+    expect(endState.posts[4].message).toBe('blabla')
     expect(endState.posts[4].likesCount).toBe(0)
 })
 

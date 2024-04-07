@@ -1,13 +1,11 @@
 //========================================================================================
 // DIALOGS-REDUCER
 export type {DialogsStateType} from './reducers/dialogs-reducer'
-export {dialogsReducerUpdateNewMessageBodyAC} from './reducers/dialogs-reducer'
 export {dialogsReducerAddMessageAC} from './reducers/dialogs-reducer'
 
 //========================================================================================
 // PROFILE-REDUCER
 export type {PostsType} from './reducers/profile-reducer'
-export {profileUpdateNewPostTextAC} from './reducers/profile-reducer'
 export {profileReducerAddPostAC} from './reducers/profile-reducer'
 export {setUserProfileAC} from './reducers/profile-reducer'
 export {setStatusAC} from './reducers/profile-reducer'

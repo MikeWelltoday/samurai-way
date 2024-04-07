@@ -1,5 +1,5 @@
 import {Dialogs, MapDispatchToPropsType, MapStateToPropsType} from './Dialogs'
-import {AppRootStateType, dialogsReducerAddMessageAC, dialogsReducerUpdateNewMessageBodyAC} from '../../../redux'
+import {AppRootStateType, dialogsReducerAddMessageAC} from '../../../redux'
 import {connect} from 'react-redux'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 import {compose} from 'redux'
@@ -14,7 +14,6 @@ function mapStateToProps(state: AppRootStateType): MapStateToPropsType {
 }
 
 const mapDispatchToProps: MapDispatchToPropsType = {
-    dialogsReducerUpdateNewMessageBodyAC,
     dialogsReducerAddMessageAC
 }
 
