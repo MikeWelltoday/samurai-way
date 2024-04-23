@@ -53,4 +53,5 @@ export {authLogoutTC} from './thunks/auth-thunks'
 
 //========================================================================================
 // selectores
-export {appInitializationSelector} from './selectors/app-initialization-selector'
+export {appSelectors} from './selectors/appSelectors'
+export {usersSelectors} from './selectors/usersSelectors'

@@ -1,4 +1,4 @@
-import {AppRootStateType, fetchUsersTC, usersSetCurrentPageAC, UsersType} from '../../../redux'
+import {AppRootStateType, fetchUsersTC, usersSelectors, usersSetCurrentPageAC, UsersType} from '../../../redux'
 import {connect} from 'react-redux'
 import React from 'react'
 import {Users} from './users/Users'
@@ -60,13 +60,14 @@ export class UsersApiContainer extends React.Component<UsersAPIComponentClassTyp
 
 function mapStateToProps(state: AppRootStateType): MapStateToPropsType {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        users: usersSelectors.usersWithReselect(state),
+        pageSize: usersSelectors.pageSize(state),
+        totalUsersCount: usersSelectors.totalUsersCount(state),
+        currentPage: usersSelectors.currentPage(state),
+        isFetching: usersSelectors.isFetching(state)
     }
 }
+
 
 const mapDispatchToProps: mapDispatchToProps = {
     usersSetCurrentPageAC,
