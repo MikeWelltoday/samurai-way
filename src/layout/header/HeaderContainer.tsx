@@ -24,9 +24,10 @@ type HeaderApiContainerType = MapStateToPropsType & MapDispatchToPropsType
 
 export class HeaderApiContainer extends React.Component<HeaderApiContainerType> {
 
-    componentDidMount() {
-        this.props.authSetUserDataTC()
-    }
+    // проверка куки перенес в App
+    // componentDidMount() {
+    //     this.props.authSetUserDataTC()
+    // }
 
     render() {
         return (
@@ -51,7 +52,7 @@ function mapStateToProps(state: AppRootStateType) {
 }
 
 const mapDispatchToProps = {
-    authSetUserDataTC,
+    // authSetUserDataTC,
     authLogoutTC
 }
 

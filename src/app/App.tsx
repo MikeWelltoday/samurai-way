@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, useEffect} from 'react'
 import './App.css'
 import {Redirect, Route} from 'react-router-dom'
 import {Navbar} from '../layout/navbar/Navbar'
@@ -6,11 +6,13 @@ import {News} from '../layout/main/news/News'
 import {Music} from '../layout/main/music/Music'
 import {Settings} from '../layout/main/settings/Settings'
 import {DialogsContainer} from '../layout/main/dialogs/DialogsContainer'
-import {AppRootStateType, DispatchType} from '../redux'
+import {appInitializationSelector, AppRootStateType, authSetUserDataTC, DispatchType} from '../redux'
 import {UsersContainer} from '../layout/main/users/UsersContainer'
 import {ProfileContainer} from '../layout/main/profile/ProfileContainer'
 import {HeaderContainer} from '../layout/header/HeaderContainer'
 import {LoginContainer} from '../layout/login/LoginContainer'
+import {useDispatch, useSelector} from 'react-redux'
+import {AppPreloader, useAppDispatch} from '../shared'
 
 //========================================================================================
 
@@ -35,6 +37,17 @@ type AppPropsType = {
 //========================================================================================
 
 const App: FC<AppPropsType> = (props) => {
+
+    const dispatch = useAppDispatch()
+    const isAppInitialized = useSelector(appInitializationSelector)
+
+    useEffect(() => {
+        dispatch(authSetUserDataTC())
+    }, [])
+
+    if (!isAppInitialized) {
+        return <AppPreloader/>
+    }
 
     return (
 

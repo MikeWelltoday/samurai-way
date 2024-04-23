@@ -1,0 +1,28 @@
+.appPreloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    border: 10px solid #cec38c; /* Светлая часть крутилки */
+    border-top: 12px solid #671658; /* Цветная часть крутилки */
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

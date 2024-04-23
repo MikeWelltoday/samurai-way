@@ -3,7 +3,7 @@ import S from './Loader.module.css'
 
 //========================================================================================
 
-export const Preloader: FC = () => {
+export const Loader: FC = () => {
     return (
         <div className={S.loader}></div>
     )

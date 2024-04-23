@@ -1,5 +1,5 @@
 import React from 'react'
-import {Preloader} from '../../../../components/loader/Preloader'
+import {Loader} from '../../../../shared/ui/loader/Loader'
 import S from './PreloaderWrapper.module.css'
 
 //========================================================================================
@@ -8,7 +8,7 @@ import S from './PreloaderWrapper.module.css'
 export const PreloaderWrapper = () => {
     return (
         <main className={S.loadWrapper}>
-            <Preloader/>
+            <Loader/>
         </main>
     )
 }

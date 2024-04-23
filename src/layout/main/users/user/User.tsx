@@ -1,7 +1,8 @@
 import React, {FC, useState} from 'react'
 import S from './User.module.css'
 import {NavLink} from 'react-router-dom'
-import {useAppDispatch, usersFollowToggleTC, UsersType} from '../../../../redux'
+import {usersFollowToggleTC, UsersType} from '../../../../redux'
+import {useAppDispatch} from '../../../../shared'
 
 //========================================================================================
 

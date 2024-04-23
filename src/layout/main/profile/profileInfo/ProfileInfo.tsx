@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 import S from './ProfileInfo.module.css'
-import {Preloader} from '../../../../components/loader/Preloader'
+import {Loader} from '../../../../shared/ui/loader/Loader'
 import {UserProfileApiType} from '../../../../api/profile-api'
 import {ProfileStatus} from './profileStatus/ProfileStatus'
 
@@ -22,7 +22,7 @@ export const ProfileInfo: FC<ProfileInfoType> = (props) => {
     if (!props.userProfile) {
         return (
             <div className={S.preloaderContainer}>
-                <Preloader/>
+                <Loader/>
             </div>
 
         )

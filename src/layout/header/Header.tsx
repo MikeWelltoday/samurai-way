@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import S from './Header.module.css'
 import {NavLink} from 'react-router-dom'
-import {LoadingBar} from '../../components/loadingBar/LoadingBar'
+import {LoadingBar} from '../../shared/ui/loadingBar/LoadingBar'
 
 //========================================================================================
 

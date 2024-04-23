@@ -1,14 +1,14 @@
 import {AppThunkDispatchType} from '../store'
 import {authAPI} from '../../api'
 import {authSetUserDataAC, clearUserAuthDataAC, logToggleAC} from '../reducers/auth-reducer'
-import {appLoadingAC} from '../reducers/app-reducer'
+import {appInitializationAction, appLoadingAC} from '../reducers/app-reducer'
 
 //========================================================================================
 
 export const authSetUserDataTC = () => async (dispatch: AppThunkDispatchType) => {
-    dispatch(appLoadingAC(true))
     try {
         const res = await authAPI.getAuth()
+        dispatch(appInitializationAction())
         if (res.data.resultCode === 0) {
             dispatch(authSetUserDataAC(res.data.data))
         } else {
@@ -21,7 +21,6 @@ export const authSetUserDataTC = () => async (dispatch: AppThunkDispatchType) =>
     } catch (error) {
         console.error((error as Error).message)
     }
-    dispatch(appLoadingAC(false))
 }
 
 export const authLoginTC = (email: string, password: number, rememberMe: boolean,
