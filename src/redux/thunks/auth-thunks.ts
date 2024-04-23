@@ -12,10 +12,10 @@ export const authSetUserDataTC = () => async (dispatch: AppThunkDispatchType) =>
         if (res.data.resultCode === 0) {
             dispatch(authSetUserDataAC(res.data.data))
         } else {
-            if (res.data.messages[1]) {
-                console.error(res.data.messages[1])
+            if (res.data.messages[0]) {
+                console.error(res.data.messages[0])
             } else {
-                console.error('ERROR')
+                console.error('auth-error')
             }
         }
     } catch (error) {
@@ -29,22 +29,20 @@ export const authLoginTC = (email: string, password: number, rememberMe: boolean
     dispatch(appLoadingAC(true))
     try {
         const res = await authAPI.loginAuth(email, password, rememberMe, captcha)
+        dispatch(appLoadingAC(false))
         if (res.data.resultCode === 0) {
 
             // если логин подошел => запрашиваем данные для аунтефикации, чтобы делать запросы
             await dispatch(authSetUserDataTC())
-
         } else {
-            if (res.data.messages[1]) {
-                console.error(res.data.messages[1])
-            } else {
-                console.error('ERROR')
-            }
+            const errorMessage = res.data.messages[0] ? res.data.messages[0] : 'auth error'
+            throw new Error(errorMessage)
         }
     } catch (error) {
         console.error((error as Error).message)
+        throw error
     }
-    dispatch(appLoadingAC(false))
+
 }
 
 export const authLogoutTC = () => async (dispatch: AppThunkDispatchType) => {

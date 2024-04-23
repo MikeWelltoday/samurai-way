@@ -62,6 +62,17 @@ input[type="checkbox"]:checked {
     margin-top: 10px;
 }
 
+.loginButtonDisabled {
+    opacity: 0.2;
+}
+
 .loginButton:hover {
     background-color: #e681f5;
+}
+
+.authErrorFromServer {
+    margin-top: 10px;
+    text-align: center;
+    font: 700 24px sans-serif;
+    color: #ec902e;
 }

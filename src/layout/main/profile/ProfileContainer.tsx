@@ -4,7 +4,7 @@ import {AppRootStateType, fetchUserProfileTC, fetchStatusProfileTC} from '../../
 import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {UserProfileApiType} from '../../../api/profile-api'
-import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
+import {withAuthRedirect} from '../../../shared'
 import {compose} from 'redux'
 import {updateStatusTC} from '../../../redux/thunks/profile-thunks'
 

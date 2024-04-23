@@ -8,11 +8,11 @@ export type AuthApiDataType = {
     login: string
 }
 
-type LoginResponseType = {
+export type LoginResponseType = {
     userId: number
 }
 
-type AxiosContainerResponseType<T = {}> = {
+export type AxiosContainerResponseType<T = {}> = {
     resultCode: number
     messages: string[]
     data: T

@@ -1,7 +1,7 @@
 import {Dialogs, MapDispatchToPropsType, MapStateToPropsType} from './Dialogs'
 import {AppRootStateType, dialogsReducerAddMessageAC} from '../../../redux'
 import {connect} from 'react-redux'
-import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
+import {withAuthRedirect} from '../../../shared'
 import {compose} from 'redux'
 import React from 'react'
 

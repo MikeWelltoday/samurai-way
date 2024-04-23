@@ -5,6 +5,7 @@ import {compose} from 'redux'
 import {Login} from './Login'
 import {Redirect} from 'react-router-dom'
 import {PATH} from '../../app/App'
+import {AxiosContainerResponseType, LoginResponseType} from '../../api/auth-api'
 
 //========================================================================================
 
@@ -13,7 +14,7 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    authLoginTC: (email: string, password: number, rememberMe: boolean, captcha: boolean) => void
+    authLoginTC: (email: string, password: number, rememberMe: boolean, captcha: boolean) => Promise<AxiosContainerResponseType<LoginResponseType>>
 }
 
 type HeaderApiContainerType = MapStateToPropsType & MapDispatchToPropsType

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import React from 'react'
 import {Users} from './users/Users'
 import {PreloaderWrapper} from './preloaderWrapper/PreloaderWrapper'
-import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
+import {withAuthRedirect} from '../../../shared'
 import {compose} from 'redux'
 
 //========================================================================================

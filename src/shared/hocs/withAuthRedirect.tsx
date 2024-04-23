@@ -1,5 +1,5 @@
 import React, {ComponentType} from 'react'
-import {AppRootStateType} from '../redux'
+import {AppRootStateType} from '../../redux'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 
