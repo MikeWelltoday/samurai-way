@@ -1,0 +1,16 @@
+.paginator {
+    background-color: #e76ee7;
+    display: flex;
+    column-gap: 20px;
+}
+
+.paginator span {
+    font: 400 22px sans-serif;
+    cursor: pointer;
+}
+
+.paginator .active {
+    font-size: 22px;
+    font-weight: 700;
+    color: black;
+}

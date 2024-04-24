@@ -8,4 +8,7 @@ export {withAuthRedirect} from './hocs/withAuthRedirect'
 export {useAppDispatch} from './hooks/useAppDispatch'
 
 // ui
+export {Paginator} from './ui/paginator/Paginator'
+
+// ui
 export {AppPreloader} from './ui/appPreloader/AppPreloader'
