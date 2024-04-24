@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, memo} from 'react'
 import S from './MyPosts.module.css'
 import {Post} from './post/Post'
 import {PostsType} from '../../../../redux'
@@ -13,7 +13,7 @@ type PostsPropsType = {
 
 //========================================================================================
 
-export const MyPosts: FC<PostsPropsType> = (props) => {
+export const MyPosts: FC<PostsPropsType> = memo((props) => {
 
 
     return (
@@ -35,4 +35,4 @@ export const MyPosts: FC<PostsPropsType> = (props) => {
 
         </div>
     )
-}
+})

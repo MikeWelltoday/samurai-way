@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, memo} from 'react'
 import S from './PostForm.module.css'
 import {SubmitHandler, useForm} from 'react-hook-form'
 
@@ -11,9 +11,10 @@ type FormType = {
 
 }
 
-export const PostForm: FC<PostFormPropsType> = (props) => {
+export const PostForm: FC<PostFormPropsType> = memo((props) => {
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm<FormType>()
+
     const onSubmitHandler: SubmitHandler<FormType> = (data) => {
         props.profileReducerAddPostAC(data.message)
         reset()
@@ -34,4 +35,4 @@ export const PostForm: FC<PostFormPropsType> = (props) => {
             </div>
         </form>
     )
-}
+})

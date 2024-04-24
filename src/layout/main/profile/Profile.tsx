@@ -4,8 +4,6 @@ import {ProfileInfo} from './profileInfo/ProfileInfo'
 import {MyPostsContainer} from './myPosts/MyPostsContainer'
 import {UserProfileApiType} from '../../../api/profile-api'
 
-//========================================================================================
-
 type ProfilePropsType = {
     userProfile: UserProfileApiType | null
     profileStatus: string
@@ -13,7 +11,6 @@ type ProfilePropsType = {
     updateStatus: (newStatus: string) => void
 }
 
-//========================================================================================
 
 export const Profile: FC<ProfilePropsType> = (props) => {
 
