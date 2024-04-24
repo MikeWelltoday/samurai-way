@@ -1,3 +1,6 @@
+// api
+export {ResultCodeEnum} from './api/resultCode'
+
 // hocs
 export {withAuthRedirect} from './hocs/withAuthRedirect'
 

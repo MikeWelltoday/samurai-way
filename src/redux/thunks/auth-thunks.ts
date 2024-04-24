@@ -2,6 +2,7 @@ import {AppThunkDispatchType} from '../store'
 import {authAPI} from '../../api'
 import {authSetUserDataAC, clearUserAuthDataAC, logToggleAC} from '../reducers/auth-reducer'
 import {appInitializationAction, appLoadingAC} from '../reducers/app-reducer'
+import {ResultCodeEnum} from '../../shared'
 
 //========================================================================================
 
@@ -9,7 +10,7 @@ export const authSetUserDataTC = () => async (dispatch: AppThunkDispatchType) =>
     try {
         const res = await authAPI.getAuth()
         dispatch(appInitializationAction())
-        if (res.data.resultCode === 0) {
+        if (res.data.resultCode === ResultCodeEnum.Success) {
             dispatch(authSetUserDataAC(res.data.data))
         } else {
             if (res.data.messages[0]) {
@@ -29,7 +30,7 @@ export const authLoginTC = (email: string, password: number, rememberMe: boolean
     try {
         const res = await authAPI.loginAuth(email, password, rememberMe, captcha)
         dispatch(appLoadingAC(false))
-        if (res.data.resultCode === 0) {
+        if (res.data.resultCode === ResultCodeEnum.Success) {
 
             // если логин подошел => запрашиваем данные для аунтефикации, чтобы делать запросы
             await dispatch(authSetUserDataTC())
@@ -48,7 +49,7 @@ export const authLogoutTC = () => async (dispatch: AppThunkDispatchType) => {
     dispatch(appLoadingAC(true))
     try {
         const res = await authAPI.logoutAuth()
-        if (res.data.resultCode === 0) {
+        if (res.data.resultCode === ResultCodeEnum.Success) {
             dispatch(logToggleAC(false))
             dispatch(clearUserAuthDataAC())
         } else {

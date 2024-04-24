@@ -12,21 +12,21 @@ const initialState: AppReducerType = {
 }
 
 export function appLoadingAC(loading: boolean) {
-    return {type: 'APP-LOADING', loading} as const
+    return {type: 'appReducer/LOADING', loading} as const
 }
 
 export function appInitializationAction() {
-    return {type: 'APP-INITIALIZATION'} as const
+    return {type: 'appReducer/INITIALIZATION'} as const
 }
 
 export function appReducer(state: AppReducerType = initialState, action: AppReducerActionType): AppReducerType {
     switch (action.type) {
 
-        case 'APP-LOADING': {
+        case 'appReducer/LOADING': {
             return {...state, loading: action.loading}
         }
 
-        case 'APP-INITIALIZATION': {
+        case 'appReducer/INITIALIZATION': {
             return {...state, isAppInitialized: true}
         }
 

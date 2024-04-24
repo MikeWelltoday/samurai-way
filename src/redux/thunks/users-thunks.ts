@@ -5,7 +5,8 @@ import {
     usersSetTotalUsersCountAC,
     usersSetUsersAC
 } from '../reducers/users-reducer'
-import {usersApi} from '../../api/users-api'
+import {usersApi} from '../../api'
+import {ResultCodeEnum} from '../../shared'
 
 //========================================================================================
 
@@ -28,7 +29,7 @@ export const usersFollowToggleTC = (userId: number, currentIsFollowed: boolean) 
 
         try {
             const res = await usersApi.unfollowUser(userId)
-            if (res.data.resultCode === 0) {
+            if (res.data.resultCode === ResultCodeEnum.Success) {
                 dispatch(usersFollowToggleAC(userId))
             } else {
                 console.error(res.data.messages[0])

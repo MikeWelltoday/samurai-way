@@ -1,6 +1,7 @@
 import {AppThunkDispatchType} from '../store'
 import {profileApi} from '../../api'
 import {setStatusAC, setUserProfileAC} from '../reducers/profile-reducer'
+import {ResultCodeEnum} from '../../shared'
 
 //========================================================================================
 
@@ -26,7 +27,7 @@ export const updateStatusTC = (newStatus: string) => async (dispatch: AppThunkDi
     try {
         dispatch(setStatusAC('🚀 LOADING 🛸'))
         const res = await profileApi.statusUpdate(newStatus)
-        if (res.data.resultCode === 0) {
+        if (res.data.resultCode === ResultCodeEnum.Success) {
             dispatch(setStatusAC(newStatus))
         } else {
             console.error(res.data.messages[0])
