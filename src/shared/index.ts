@@ -9,6 +9,7 @@ export {useAppDispatch} from './hooks/useAppDispatch'
 
 // ui
 export {Paginator} from './ui/paginator/Paginator'
-
-// ui
 export {AppPreloader} from './ui/appPreloader/AppPreloader'
+
+// utils
+export {LazyWrapper} from './utils/LazyWrapper'

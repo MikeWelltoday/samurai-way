@@ -17,10 +17,12 @@ const mapDispatchToProps: MapDispatchToPropsType = {
     dialogsReducerAddMessageAC
 }
 
-export const DialogsContainer = compose<React.ComponentType>(
+const DialogsContainer = compose<React.ComponentType>(
     withAuthRedirect,
     connect(mapStateToProps, mapDispatchToProps)
 )(Dialogs)
+
+export default DialogsContainer
 
 
 

@@ -74,7 +74,9 @@ const mapDispatchToProps: mapDispatchToProps = {
     fetchUsersTC
 }
 
-export const UsersContainer = compose<React.ComponentType>(
+const UsersContainer = compose<React.ComponentType>(
     withAuthRedirect,
     connect(mapStateToProps, mapDispatchToProps)
 )(UsersApiContainer)
+
+export default UsersContainer

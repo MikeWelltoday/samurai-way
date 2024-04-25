@@ -35,13 +35,11 @@ export {authSetUserDataAC} from './reducers/auth-reducer'
 export {logToggleAC} from './reducers/auth-reducer'
 export {clearUserAuthDataAC} from './reducers/auth-reducer'
 
-//========================================================================================
 // STORE
 export type {AppRootStateType} from './store'
 export type {DispatchType} from './store'
 export {store} from './store'
 
-//========================================================================================
 //THUNKS
 export {fetchUsersTC} from './thunks/users-thunks'
 export {usersFollowToggleTC} from './thunks/users-thunks'
@@ -51,7 +49,6 @@ export {fetchStatusProfileTC} from './thunks/profile-thunks'
 export {authLoginTC} from './thunks/auth-thunks'
 export {authLogoutTC} from './thunks/auth-thunks'
 
-//========================================================================================
-// selectores
+// selectors
 export {appSelectors} from './selectors/appSelectors'
 export {usersSelectors} from './selectors/usersSelectors'

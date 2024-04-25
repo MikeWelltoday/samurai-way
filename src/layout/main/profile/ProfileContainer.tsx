@@ -22,7 +22,7 @@ type MapDispatchToProps = {
     updateStatusTC: (newStatus: string) => void
 }
 
-type ProfileApiContainerPropsType = MapStateToPropsType & MapDispatchToProps
+export type ProfileApiContainerPropsType = MapStateToPropsType & MapDispatchToProps
 
 //========================================================================================
 
@@ -82,12 +82,13 @@ const mapDispatchToProps: MapDispatchToProps = {
     updateStatusTC
 }
 
-export const ProfileContainer = compose<React.ComponentType>(
+const ProfileContainer = compose<React.ComponentType>(
     withAuthRedirect,
     connect(mapStateToProps, mapDispatchToProps),
     withRouter
 )(ProfileApiContainer)
 
+export default ProfileContainer
 
 
 

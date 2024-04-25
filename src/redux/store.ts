@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, compose, createStore, Store} from 'redux'
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
 import thunk, {ThunkDispatch} from 'redux-thunk'
 import {dialogsReducer, DialogsReducerActionType} from './reducers/dialogs-reducer'
 import {profileReducer, ProfileReducerActionType} from './reducers/profile-reducer'
@@ -28,6 +28,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
     appReducer
 })
+
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? composeWithDevTools({}) : compose
 
