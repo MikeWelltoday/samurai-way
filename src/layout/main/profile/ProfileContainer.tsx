@@ -1,11 +1,11 @@
 import React from 'react'
+import {compose} from 'redux'
 import {Profile} from './Profile'
 import {AppRootStateType, fetchUserProfileTC, fetchStatusProfileTC} from '../../../redux'
 import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {UserProfileApiType} from '../../../api/profile-api'
 import {withAuthRedirect} from '../../../shared'
-import {compose} from 'redux'
 import {updateStatusTC} from '../../../redux/thunks/profile-thunks'
 
 //========================================================================================

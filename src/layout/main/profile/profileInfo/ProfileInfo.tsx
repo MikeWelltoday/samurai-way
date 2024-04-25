@@ -7,6 +7,7 @@ import {ProfileStatus} from './profileStatus/ProfileStatus'
 //========================================================================================
 
 import image from '../../../../assets/images/content-iamge.webp'
+import {EditableSpan} from '../../../../shared'
 
 //========================================================================================
 
@@ -28,8 +29,11 @@ export const ProfileInfo: FC<ProfileInfoType> = (props) => {
         )
     }
 
+    console.log(props.isStatusChangeable)
+
     return (
         <div className={S.profileInfo}>
+
             <div className={S.imageBox}>
                 {props.userProfile?.photos.large ?
                     <img src={props.userProfile.photos.large} alt="sry"/>
@@ -37,6 +41,8 @@ export const ProfileInfo: FC<ProfileInfoType> = (props) => {
                     <img src={image} alt={'sry'}/>
                 }
             </div>
+
+
             <div className={S.profileStatusContainer}>
                 <ProfileStatus
                     status={props.profileStatus}
@@ -44,9 +50,29 @@ export const ProfileInfo: FC<ProfileInfoType> = (props) => {
                     isStatusChangeable={props.isStatusChangeable}
                 />
             </div>
+
             <div className={S.description}>
-                Description about me...
+
+                <div>
+                    <span>🟣 My name is </span>
+                    <EditableSpan value={props.userProfile.fullName}
+                                  isAbleToBeEdited={props.isStatusChangeable}
+                                  updateCallBackFnc={(newValue: string) => {
+                                  }}
+                    />.
+                </div>
+
+                <div>
+                    <span>🟣 Do i look for a job? I think </span>
+                    <EditableSpan value={props.userProfile.lookingForAJob.toString()}
+                                  isAbleToBeEdited={props.isStatusChangeable}
+                                  updateCallBackFnc={(newValue: string) => {
+                                  }}
+                    />.
+                </div>
+
             </div>
+
         </div>
     )
 }

@@ -25,13 +25,21 @@ export type UserProfileApiType = {
     lookingForAJobDescription: string
     fullName: string
     photos: PhotoType
-    userId: 2
+    userId: number
 }
 
 type AxiosResponseType<T = {}> = {
     resultCode: number
     messages: string[]
     data: T
+}
+
+export type ModelToUpdate = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ContactsType
 }
 
 //========================================================================================
@@ -48,6 +56,10 @@ export const profileApi = {
 
     getUserProfileStatus(userID: string) {
         return instance.get<string | null>(`profile/status/${userID}`)
+    },
+
+    updateProfile(modelToUpdate: ModelToUpdate) {
+        return instance.put<AxiosResponseType>('profile', {modelToUpdate})
     }
 }
 

@@ -2,6 +2,13 @@
     margin-bottom: 25px;
 }
 
+.preloaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
 .imageBox {
     margin-bottom: 25px;
 }
@@ -16,12 +23,18 @@
 }
 
 .description {
-    font-size: 16px;
+    font: 700 24px sans-serif;
+    color: #6cde9f;
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 10px;
 }
 
-.preloaderContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
+.description div {
+    padding-left: 50px
 }
+
+.contacts {
+
+}
+
