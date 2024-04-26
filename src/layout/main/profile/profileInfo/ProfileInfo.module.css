@@ -22,19 +22,14 @@
     text-align: center;
 }
 
-.description {
-    font: 700 24px sans-serif;
-    color: #6cde9f;
-    display: flex;
-    flex-flow: column nowrap;
-    row-gap: 10px;
+
+.imageUpload {
+    border: 2px solid #646415;
+    display: inline-block;
 }
 
-.description div {
-    padding-left: 50px
-}
-
-.contacts {
-
+.imageUpload:hover {
+    background-color: #646415;
+    cursor: pointer;
 }
 

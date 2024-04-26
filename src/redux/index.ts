@@ -52,3 +52,4 @@ export {authLogoutTC} from './thunks/auth-thunks'
 // selectors
 export {appSelectors} from './selectors/appSelectors'
 export {usersSelectors} from './selectors/usersSelectors'
+export {profileDescriptionSelector} from './selectors/profileDescriptionSelector'

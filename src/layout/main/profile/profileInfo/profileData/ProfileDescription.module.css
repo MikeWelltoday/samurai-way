@@ -1,0 +1,44 @@
+
+.profileDescription {
+    background-color: #6c606c;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileDescription .editButton {
+    background-color: #6cde9f;
+
+    padding: 5px 20px;
+    border: 4px solid #47a1e1;
+    border-radius: 10px;
+}
+
+.profileDescription ul {
+    background-color: #495160;
+}
+
+.profileDescription ul li {
+    font: 700 16px sans-serif;
+
+    display: flex;
+    column-gap: 150px;
+}
+
+.profileDescription ul li p {
+    color: #39e3cf;
+    flex-grow: 1;
+}
+
+.profileDescription ul li span {
+    color: #d785d7;
+}
+
+.profileDescription ul li input {
+    flex-grow: 0;
+    display: block;
+    width: auto;
+    padding: 0;
+}
+
