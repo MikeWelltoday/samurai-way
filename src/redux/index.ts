@@ -48,8 +48,10 @@ export {authSetUserDataTC} from './thunks/auth-thunks'
 export {fetchStatusProfileTC} from './thunks/profile-thunks'
 export {authLoginTC} from './thunks/auth-thunks'
 export {authLogoutTC} from './thunks/auth-thunks'
+export {changeProfileThunk} from './thunks/profile-thunks'
 
 // selectors
 export {appSelectors} from './selectors/appSelectors'
 export {usersSelectors} from './selectors/usersSelectors'
 export {profileDescriptionSelector} from './selectors/profileDescriptionSelector'
+export {idSelector} from './selectors/idSelector'

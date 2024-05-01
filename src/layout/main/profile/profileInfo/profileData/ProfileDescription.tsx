@@ -1,13 +1,20 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC, useState} from 'react'
 import S from './ProfileDescription.module.css'
-import {profileDescriptionSelector} from '../../../../../redux'
+import {changeProfileThunk, idSelector, profileDescriptionSelector} from '../../../../../redux'
 import {useSelector} from 'react-redux'
+import {ModelToUpdateType} from '../../../../../api/profile-api'
+import {useAppDispatch} from '../../../../../shared'
 
 type ProfileDescriptionPropsType = {}
 
 export const ProfileDescription: FC<ProfileDescriptionPropsType> = (props) => {
 
+    const dispatch = useAppDispatch()
     const profile = useSelector(profileDescriptionSelector)
+    const id = useSelector(idSelector)
+
+    const isChangeable = id === profile.userId
+
     const [editMode, setEditMode] = useState(false)
 
     const [fullName, setFullName] = useState(profile?.fullName)
@@ -23,13 +30,44 @@ export const ProfileDescription: FC<ProfileDescriptionPropsType> = (props) => {
     const [mainLink, setMainLink] = useState(profile?.contacts.mainLink)
 
     function onClickHandler() {
-        setEditMode(!editMode)
+        if (!editMode) {
+            setEditMode(true)
+        }
+
+
+        if (editMode) {
+            // ВКЛЮЧАЕМ РЕЖИМ - SPAN
+            setEditMode(false)
+
+            // собираем форму к отправке
+
+            const modelToUpdate: ModelToUpdateType = {
+                userId: id,
+                fullName,
+                lookingForAJob,
+                lookingForAJobDescription,
+                contacts: {
+                    github,
+                    vk,
+                    facebook,
+                    instagram,
+                    twitter,
+                    website,
+                    youtube,
+                    mainLink
+                }
+            }
+
+            dispatch(changeProfileThunk(modelToUpdate))
+        }
     }
 
     return (
-        <div className={S.profileDescription}>
+        <div
+            className={S.profileDescription}>
 
-            <button className={S.editButton} onClick={onClickHandler}>
+            <button className={!isChangeable ? `${S.editButton} ${S.buttonShow}` : `${S.editButton}`}
+                    onClick={onClickHandler} disabled={!isChangeable}>
                 {editMode ? 'save' : 'edit'}
             </button>
 
@@ -62,36 +100,77 @@ export const ProfileDescription: FC<ProfileDescriptionPropsType> = (props) => {
                 </li>
 
                 <li>
-                    <p>github: </p><span> {profile?.contacts.github ? profile?.contacts.github : 'none'}</span>
+                    <p>github: </p>
+                    {editMode ?
+                        <input type="text" value={github ? github : ''}
+                               onChange={(e) => setGithub(e.target.value)}/> :
+                        <span> {profile?.contacts.github ? profile?.contacts.github : 'none'}</span>
+                    }
                 </li>
 
                 <li>
-                    <p>vk: </p><span> {profile?.contacts.vk ? profile?.contacts.vk : 'none'}</span>
+                    <p>vk: </p>
+                    {editMode ?
+                        <input type="text" value={vk ? vk : ''}
+                               onChange={(e) => setVk(e.target.value)}/> :
+                        <span> {profile?.contacts.vk ? profile?.contacts.vk : 'none'}</span>
+                    }
                 </li>
 
                 <li>
-                    <p>facebook: </p><span> {profile?.contacts.facebook ? profile?.contacts.facebook : 'none'}</span>
+                    <p>facebook: </p>
+                    {editMode ?
+                        <input type="text" value={facebook ? facebook : ''}
+                               onChange={(e) => setFacebook(e.target.value)}/> :
+                        <span> {profile?.contacts.facebook ? profile?.contacts.facebook : 'none'}</span>
+                    }
                 </li>
 
 
                 <li>
-                    <p>instagram: </p><span> {profile?.contacts.instagram ? profile?.contacts.instagram : 'none'}</span>
+                    <p>instagram: </p>
+                    {editMode ?
+                        <input type="text" value={instagram ? instagram : ''}
+                               onChange={(e) => setInstagram(e.target.value)}/> :
+                        <span> {profile?.contacts.instagram ? profile?.contacts.instagram : 'none'}</span>
+                    }
                 </li>
 
                 <li>
-                    <p>twitter: </p><span> {profile?.contacts.twitter ? profile?.contacts.twitter : 'none'}</span>
+                    <p>twitter: </p>
+                    {editMode ?
+                        <input type="text" value={twitter ? twitter : ''}
+                               onChange={(e) => setTwitter(e.target.value)}/> :
+                        <span> {profile?.contacts.twitter ? profile?.contacts.twitter : 'none'}</span>
+                    }
                 </li>
 
                 <li>
-                    <p>website: </p><span> {profile?.contacts.website ? profile?.contacts.website : 'none'}</span>
+                    <p>website: </p>
+                    {editMode ?
+                        <input type="text" value={website ? website : ''}
+                               onChange={(e) => setWebsite(e.target.value)}/> :
+                        <span> {profile?.contacts.website ? profile?.contacts.website : 'none'}</span>
+                    }
                 </li>
 
                 <li>
-                    <p>youtube: </p><span> {profile?.contacts.youtube ? profile?.contacts.youtube : 'none'}</span>
+                    <p>youtube: </p>
+                    {editMode ?
+                        <input type="text" value={youtube ? youtube : ''}
+                               onChange={(e) => setYoutube(e.target.value)}/> :
+                        <span> {profile?.contacts.youtube ? profile?.contacts.youtube : 'none'}</span>
+                    }
                 </li>
 
                 <li>
-                    <p>mainLink: </p><span> {profile?.contacts.mainLink ? profile?.contacts.mainLink : 'none'}</span>
+                    <p>mainLink: </p>
+                    {editMode ?
+                        <input type="text" value={mainLink ? mainLink : ''}
+                               onChange={(e) => setMainLink(e.target.value)}/>
+                        :
+                        <span> {profile?.contacts.mainLink ? profile?.contacts.mainLink : 'none'}</span>
+                    }
                 </li>
 
 

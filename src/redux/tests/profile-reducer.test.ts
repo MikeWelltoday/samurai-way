@@ -1,7 +1,7 @@
 import {
     ProfileStateType,
     profileReducer,
-    profileReducerAddPostAC, setUserProfileAC, setStatusAC
+    profileReducerAddPostAC, setUserProfileAC, setStatusAC, changeProfileAction
 } from '../reducers/profile-reducer'
 import {UserProfileApiType} from '../../api/profile-api'
 
@@ -18,8 +18,29 @@ beforeEach(() => {
                 {id: 3, message: 'Yo', likesCount: 1},
                 {id: 4, message: 'Yo', likesCount: 5}
             ],
-        userProfile: null,
+        userProfile: {
+            aboutMe: '',
+            contacts: {
+                facebook: '',
+                website: '',
+                vk: '',
+                twitter: '',
+                instagram: '',
+                youtube: '',
+                github: '',
+                mainLink: ''
+            },
+            lookingForAJob: true,
+            lookingForAJobDescription: '',
+            fullName: '',
+            userId: 0,
+            photos: {
+                small: '',
+                large: ''
+            }
+        },
         status: ''
+    
     }
 })
 
@@ -60,7 +81,7 @@ test('PROFILE-SET-USER', () => {
     expect(endState.userProfile).toEqual(userData)
 })
 
-test('', () => {
+test('PROFILE-SET-STATUS', () => {
     const statusFromServer = 'STATUS FROM SERVER'
     const endState = profileReducer(startState, setStatusAC(statusFromServer))
     expect(endState.status).toBe(statusFromServer)
@@ -68,4 +89,32 @@ test('', () => {
     const statusFromServerWithNull = null
     const endStateWithNull = profileReducer(startState, setStatusAC(statusFromServerWithNull))
     expect(endStateWithNull.status).toBe('NO STATUS')
+})
+
+test('PROFILE/CHANGE-PROFILE-ACTION', () => {
+
+    const newProfileToUpdate: UserProfileApiType = {
+        aboutMe: '1',
+        contacts: {
+            facebook: '1',
+            website: null,
+            vk: '1',
+            twitter: '1',
+            instagram: '1',
+            youtube: null,
+            github: '1',
+            mainLink: null
+        },
+        lookingForAJob: true,
+        lookingForAJobDescription: '1',
+        fullName: '1',
+        userId: 2,
+        photos: {
+            small: '1',
+            large: '1'
+        }
+    }
+
+    const endState = profileReducer(startState, changeProfileAction(newProfileToUpdate))
+    expect(endState.userProfile).toEqual(newProfileToUpdate)
 })

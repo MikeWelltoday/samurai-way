@@ -1,6 +1,5 @@
 
 .profileDescription {
-    background-color: #6c606c;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -13,10 +12,15 @@
     padding: 5px 20px;
     border: 4px solid #47a1e1;
     border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.buttonShow {
+    display: none;
 }
 
 .profileDescription ul {
-    background-color: #495160;
+
 }
 
 .profileDescription ul li {
@@ -24,6 +28,9 @@
 
     display: flex;
     column-gap: 150px;
+
+    margin-bottom: 5px;
+    border-bottom: 2px solid rgba(197, 155, 100, 0.16);
 }
 
 .profileDescription ul li p {
@@ -36,6 +43,7 @@
 }
 
 .profileDescription ul li input {
+    background-color: rgba(73, 207, 218, 0.49);
     flex-grow: 0;
     display: block;
     width: auto;

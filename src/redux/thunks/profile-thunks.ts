@@ -1,7 +1,9 @@
-import {AppThunkDispatchType} from '../store'
+import {AppRootStateType, AppThunkDispatchType} from '../store'
 import {profileApi} from '../../api'
-import {setStatusAC, setUserProfileAC} from '../reducers/profile-reducer'
+import {changeProfileAction, setStatusAC, setUserProfileAC} from '../reducers/profile-reducer'
 import {ResultCodeEnum} from '../../shared'
+import {ModelToUpdateType, UserProfileApiType} from '../../api/profile-api'
+import {appLoadingAC} from '../reducers/app-reducer'
 
 //========================================================================================
 
@@ -35,4 +37,24 @@ export const updateStatusTC = (newStatus: string) => async (dispatch: AppThunkDi
     } catch (error) {
         console.error((error as Error).message)
     }
+}
+
+export const changeProfileThunk = (modelToUpdate: ModelToUpdateType) => async (dispatch: AppThunkDispatchType, getState: () => AppRootStateType) => {
+    dispatch(appLoadingAC(true))
+    try {
+        const res = await profileApi.updateProfile(modelToUpdate)
+
+        if (res.data.resultCode === ResultCodeEnum.Success) {
+            const profile: UserProfileApiType = {
+                ...getState().profilePage.userProfile,
+                ...res.data.data
+            }
+            dispatch(changeProfileAction(profile))
+        } else {
+            console.error(res.data.messages[0])
+        }
+    } catch (error) {
+        console.error((error as Error).message)
+    }
+    dispatch(appLoadingAC(false))
 }

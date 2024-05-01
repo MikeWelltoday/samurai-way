@@ -10,7 +10,8 @@ export type PostsType = {
 
 export type ProfileStateType = {
     posts: PostsType[]
-    userProfile: UserProfileApiType | null
+    // userProfile: UserProfileApiType | null
+    userProfile: UserProfileApiType
     status: string
 }
 
@@ -20,6 +21,7 @@ export type ProfileReducerActionType =
     ReturnType<typeof profileReducerAddPostAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setStatusAC>
+    | ReturnType<typeof changeProfileAction>
 
 //========================================================================================
 
@@ -31,7 +33,27 @@ const initialState: ProfileStateType = {
             {id: 3, message: 'Yo', likesCount: 1},
             {id: 4, message: 'Yo', likesCount: 5}
         ],
-    userProfile: null,
+    userProfile: {
+        aboutMe: '',
+        contacts: {
+            facebook: '',
+            website: '',
+            vk: '',
+            twitter: '',
+            instagram: '',
+            youtube: '',
+            github: '',
+            mainLink: ''
+        },
+        lookingForAJob: true,
+        lookingForAJobDescription: '',
+        fullName: '',
+        userId: 0,
+        photos: {
+            small: '',
+            large: ''
+        }
+    },
     status: ''
 }
 
@@ -54,6 +76,10 @@ export function profileReducer(state: ProfileStateType = initialState, action: P
             return {...state, status: action.payload.status || 'NO STATUS'}
         }
 
+        case 'PROFILE/CHANGE-PROFILE-ACTION': {
+            return {...state, userProfile: {...action.payload.newProfileToUpdate}}
+        }
+
         default: {
             return state
         }
@@ -72,6 +98,10 @@ export function setUserProfileAC(userProfileFromServer: UserProfileApiType) {
 
 export function setStatusAC(status: string | null) {
     return {type: 'PROFILE-SET-STATUS', payload: {status}} as const
+}
+
+export function changeProfileAction(newProfileToUpdate: UserProfileApiType) {
+    return {type: 'PROFILE/CHANGE-PROFILE-ACTION', payload: {newProfileToUpdate}} as const
 }
 
 

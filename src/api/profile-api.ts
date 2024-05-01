@@ -35,7 +35,7 @@ type AxiosResponseType<T = {}> = {
     data: T
 }
 
-type ModelToUpdateType = {
+export type ModelToUpdateType = {
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string
@@ -59,20 +59,9 @@ export const profileApi = {
         return instance.get<string | null>(`profile/status/${userID}`)
     },
 
-    updateProfile(modelToUpdate: UserProfileApiType) {
-
-        // данные профиля в get и put не совпадают
-        // просто на сервер будем отправлять только нужные свойства
-        const profile: ModelToUpdateType = {
-            userId: modelToUpdate.userId,
-            lookingForAJob: modelToUpdate.lookingForAJob,
-            lookingForAJobDescription: modelToUpdate.lookingForAJobDescription,
-            fullName: modelToUpdate.fullName,
-            contacts: modelToUpdate.contacts
-        }
-
+    updateProfile(modelToUpdate: ModelToUpdateType) {
         // и отправляем запрос на сервер
-        return instance.put<AxiosResponseType>('profile', {...profile})
+        return instance.put<AxiosResponseType>('profile', {...modelToUpdate})
     },
 
     updatePhoto(image: any) {
